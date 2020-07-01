@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@import "~@ng-select/ng-select/themes/material.theme.css";
+// angular flatpicker theme
+@import "../node_modules/flatpickr/dist/flatpickr.min.css";
+// aos -- animate on scroll style
+@import "~aos/dist/aos.css";
+// when hover on button
+// @import "~hover.css/css/hover.css";
+// angular calendar
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+// < uppy uploader classes > //
+@import "@uppy/core/dist/style.css";
+@import "@uppy/dashboard/dist/style.css";
+@import "@uppy/progress-bar/dist/style.css";
+
+/// << quill imports >> //
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+@import "~quill/dist/quill.core.css";
+@import "~quill-emoji/dist/quill-emoji.css";
+@import "~quill-mention/dist/quill.mention.min.css";
+
+// sweet alert theme
+@import "~@sweetalert2/theme-material-ui/material-ui.scss";
+
+// our custom styles
+@import "./assets/scss/custom.scss";
+@import "./assets/scss/fonts.scss";
+
+* {
+  box-sizing: border-box;
+  font-family: cairo;
+}
+
+.rtl-item {
+  direction: rtl;
+  text-align: right;
+}
+
+// .uppy-Dashboard-poweredByIcon{
+//   display: none;
+// }
+
+// a.uppy-Dashboard-poweredBy{
+//   visibility: hidden;
+// }
+
+// // << start grid style >> //
+// #app-grid-container {
+//   // margin: 0px 10px;
+//   // width: 100%;
+//   display: grid;
+//   grid-template-columns: 100%;
+//   grid-template-rows: 60px 60px minmax(400px, auto) auto;
+//   grid-auto-flow: row;
+
+//   gap: 5px 0px;
+//   position: relative;
+//   // padding: 10px 5px;
+
+//   #grid-navbar {
+//     grid-column: 1 / -1;
+//   }
+
+//   #grid-crumb {
+//     grid-column: 1/-1;
+//   }
+
+//   #grid-content {
+//     grid-column: 1/-1;
+//     // padding: 5px;
+//     width: 100%;
+//     // overflow: scroll;
+//     // overflow-x: hidden;
+//     position: relative;
+//     min-height: 100vh;
+//   }
+
+//   #grid-footer {
+//     // grid-column: 1/-1;
+//     width: 100%;
+//     background-color: sandybrown;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     position: relative;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//     margin-top: 10px;
+//   }
+// }
+
+// #grid-footer {
+//   grid-column: 1/-1;
+//   background-color: sandybrown;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   // margin: 0px 10px;
+// }
+
+.swiper-pagination {
+  text-align: left !important;
+  margin: 0px 20px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px !important;
+  height: 8px !important;
+  text-align: center !important;
+  border-radius: 5px !important;
+  line-height: 20px !important;
+  font-size: 12px !important;
+  color: #000 !important;
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+.swiper-pagination-bullet-active {
+  color: #fff !important;
+  background: darkorange !important;
+  transition: all 0.5s ease-in-out;
+}

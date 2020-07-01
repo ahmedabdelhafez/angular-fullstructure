@@ -1,0 +1,54 @@
+@import "../../../assets/scss/mixin/util";
+
+/*styling material table*/
+table {
+  width: 100%;
+}
+mat-header-cell {
+  background-color: firebrick !important;
+}
+
+th.mat-header-cell {
+  text-align: center !important;
+  font-size: 16px !important;
+  color: darkblue;
+}
+
+td.mat-cell {
+  text-align: center !important;
+  color: black;
+  font-size: 18px !important;
+  // background-color: gainsboro;
+}
+
+.mat-row:nth-child(even) {
+  background-color: lightblue;
+}
+
+.mat-row:nth-child(odd) {
+  background-color: lightskyblue;
+}
+
+img {
+  border-radius: 100% !important;
+  width: 50px;
+  height: 50px;
+}
+
+.red-bg {
+  background-color: red !important;
+}
+
+.green-bg {
+  background-color: green !important;
+}
+
+.font-vw {
+  color: darkmagenta;
+  @include fontSizeVw(50);
+}
+
+.font-em {
+  color: darkturquoise;
+  @include fontSizeEm(32);
+}

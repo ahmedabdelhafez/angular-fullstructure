@@ -1,0 +1,75 @@
+$color_1: #B3B7C1;
+$color_2: #95db89;
+$color_3: #fff;
+$color_4: #E1E6EB;
+$color_5: #3c4043;
+$color_6: #bc4043;
+$font_family_1: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$background_color_1: #F8F9FB;
+$background_color_2: NONE;
+$background_color_3: #00abc9;
+$background_color_4: none;
+
+
+.clearfix {
+	clear: both;
+	min-height: 15px;
+}
+.breadcrumb-pagination {
+	width: 100%;
+	border-bottom: 1px solid #E1E6EB;
+	text-align: center;
+	float: left;
+	color: $color_1;
+	div {
+		width: 25%;
+		display: inline-block;
+		span {
+			margin: 0 auto;
+			display: block;
+			border-radius: 100%;
+			height: 30px;
+			width: 36px;
+			padding: 6px 0 0 0px;
+			font-size: 20px;
+		}
+		p {
+			text-align: center;
+			line-height: 0;
+			margin: 30px auto 25px;
+		}
+	}
+}
+.completed {
+	span {
+		background-color: $background_color_2;
+		color: $color_2;
+		border: 2px solid #95db89;
+		&::before {
+			content: '\2713';
+		}
+	}
+	p {
+		color: $color_6;
+	}
+}
+.active {
+	span {
+		background-color: $background_color_3;
+		color: $color_3;
+	}
+	p {
+		border-bottom: 2px solid #00abc9;
+		padding-bottom: 27px;
+		margin-bottom: 0px !important;
+		color: $color_5;
+		font-weight: 700;
+	}
+}
+.todo {
+	span {
+		background-color: $background_color_4;
+		color: $color_4;
+		border: 2px solid #E1E6EB;
+	}
+}

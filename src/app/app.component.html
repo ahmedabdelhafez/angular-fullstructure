@@ -1,0 +1,44 @@
+<side-viewer></side-viewer>
+<!-- <app-loadingspinner></app-loadingspinner> -->
+<!-- <ngx-spinner [name]="'log1'"></ngx-spinner> -->
+<div id="app-grid-container">
+  <div id="grid-navbar">
+    <app-side-navbar></app-side-navbar>
+    <!-- <app-navbar></app-navbar> -->
+  </div>
+  <div id="grid-crumb">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div id="grid-content">
+    <router-outlet></router-outlet>
+    <div class="got-top-item" (click)="scrollTop()">
+      Top
+    </div>
+  </div>
+  <footer id="grid-footer">
+    <!-- <app-footer></app-footer> -->
+    <h3>
+      <span><b>My Site</b></span>
+    </h3>
+    <div id="social-icons">
+      <h4>
+        <span><i class="fa fa-facebook" aria-hidden="true"></i></span>
+        <span><i class="fa fa-twitter" aria-hidden="true"></i></span>
+      </h4>
+    </div>
+  </footer>
+</div>
+
+<ngx-spinner
+  bdcolor="rgba(0, 0, 0, 0.8)"
+  size="default"
+  color="#fff"
+  [fullScreen]="true"
+>
+  <img
+    [src]="'assets/icons/200 App & Web Minimal Outline Icons/SVG/01.svg'"
+    width="50"
+    height="50"
+    alt=""
+  />
+</ngx-spinner>

@@ -1,0 +1,6 @@
+<div class="view-wrapper rtl" [@showhide]="state" appRtl>
+  <div class="view-controller">
+    <span [@openclose]="state"><i class="fa fa-times" aria-hidden="true" (click)="closeViewer()"></i></span>
+  </div>
+  <ng-container *ngTemplateOutlet="template"></ng-container>
+</div>

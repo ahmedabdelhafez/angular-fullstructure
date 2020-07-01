@@ -1,0 +1,133 @@
+<!-- <div class="swiper-container" id="slider1">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let img of images">
+      <img [src]="img" alt="" />
+    </div>
+  </div>
+</div> -->
+
+<div class="swiper-container" id="slider1" dir="rtl">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <ng-container *ngFor="let item of images; let idx = index">
+      <div class="swiper-slide" #imgele>
+        <ng-container>
+          <div id="slide-text" *ngIf="idx === currentSliderIndex">
+            <h3
+              class="h3"
+              #h2text
+              [@swing]="{
+                value: 'swing',
+                params: { timing: 2 }
+              }"
+            >
+              {{ item.title }}
+            </h3>
+            <h6
+              class="h6"
+              [@slideInRight]="{
+                value: 'slideInRight',
+                params: { timing: 1 }
+              }"
+            >
+              {{ item.heading }}
+            </h6>
+          </div>
+        </ng-container>
+
+        <img [src]="item.img" alt="" data-depth="0.2" />
+      </div>
+    </ng-container>
+
+    <!-- <h2
+      class="h2-text"
+      *ngIf="animateState"
+      [@enter]="{ params: { duration: transitionSpeed } }"
+    >
+      {{ hetitle }}
+    </h2>
+    <h2 class="h2-text" *ngIf="!animateState">
+      {{ hetitle }}
+    </h2> -->
+
+    <!-- <p class="animated delay-2 faster" #ptext>
+      hi maaaan
+    </p> -->
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="nav-item">
+    <!-- <button type="button" class="btn btn-primary" id="prevBtn">prev</button> -->
+    <!-- <button type="button" class="btn btn-primary" id="nextBtn">next</button> -->
+    <img
+      [src]="'../../../assets/icons/svg/61.svg'"
+      width="50"
+      height="50"
+      alt=""
+      id="prevBtn"
+    />
+    <img
+      [src]="'../../../assets/icons/svg/62.svg'"
+      width="50"
+      height="50"
+      alt=""
+      id="nextBtn"
+    />
+  </div>
+
+  <!-- If we need scrollbar -->
+  <!-- <div class="swiper-scrollbar"></div> -->
+</div>
+<h3 class="h3">
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis libero
+  laudantium quibusdam dolores porro? Voluptatibus enim debitis reiciendis rerum
+  minus! Minima explicabo repellat molestiae excepturi adipisci corporis eos
+  praesentium doloribus?Itaque aperiam totam porro tempora ut. Sit odio
+  reprehenderit similique, porro neque distinctio harum ullam veniam incidunt!
+  Natus pariatur nesciunt iste ipsum repudiandae recusandae nihil tenetur, quam
+  sint nam voluptatum?
+</h3>
+<h3 class="h3">
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis libero
+  laudantium quibusdam dolores porro? Voluptatibus enim debitis reiciendis rerum
+  minus! Minima explicabo repellat molestiae excepturi adipisci corporis eos
+  praesentium doloribus?Itaque aperiam totam porro tempora ut. Sit odio
+  reprehenderit similique, porro neque distinctio harum ullam veniam incidunt!
+  Natus pariatur nesciunt iste ipsum repudiandae recusandae nihil tenetur, quam
+  sint nam voluptatum?
+</h3>
+<h3 class="h3">
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis libero
+  laudantium quibusdam dolores porro? Voluptatibus enim debitis reiciendis rerum
+  minus! Minima explicabo repellat molestiae excepturi adipisci corporis eos
+  praesentium doloribus?Itaque aperiam totam porro tempora ut. Sit odio
+  reprehenderit similique, porro neque distinctio harum ullam veniam incidunt!
+  Natus pariatur nesciunt iste ipsum repudiandae recusandae nihil tenetur, quam
+  sint nam voluptatum?
+</h3>
+
+<h3 class="h3 bg-success">
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis libero
+  laudantium quibusdam dolores porro? Voluptatibus enim debitis reiciendis rerum
+  minus! Minima explicabo repellat molestiae excepturi adipisci corporis eos
+  praesentium doloribus?Itaque aperiam totam porro tempora ut. Sit odio
+  reprehenderit similique, porro neque distinctio harum ullam veniam incidunt!
+  Natus pariatur nesciunt iste ipsum repudiandae recusandae nihil tenetur, quam
+  sint nam voluptatum?
+</h3>
+<h3 class="h3 bg-danger">
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis libero
+  laudantium quibusdam dolores porro? Voluptatibus enim debitis reiciendis rerum
+  minus! Minima explicabo repellat molestiae excepturi adipisci corporis eos
+  praesentium doloribus?Itaque aperiam totam porro tempora ut. Sit odio
+  reprehenderit similique, porro neque distinctio harum ullam veniam incidunt!
+  Natus pariatur nesciunt iste ipsum repudiandae recusandae nihil tenetur, quam
+  sint nam voluptatum?
+</h3>
+<mat-tab-group>
+  <mat-tab label="First" > Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>

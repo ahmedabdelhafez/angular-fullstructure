@@ -1,0 +1,52 @@
+{
+  "hello": "Welcome Man",
+  "companyname": "Test website",
+  "language": "Language",
+  "name": "Name",
+  "config": {},
+  "statuscode": {
+    "200": "The request has succeeded",
+    "201": "resource created succefuly",
+    "400": "bad request please try again",
+    "401": "please add the auth key or login",
+    "402": "bad request please try again",
+    "403": "please authorize the request",
+    "404": "sorry: Request Not found",
+    "unknownerror": "unknown error please contact with technical support"
+  },
+  "url-translate": {
+    "home": "home",
+    "teststyle": "test",
+    "testprint": "print",
+    "aboutus": "aboutus",
+    "fullmenu": "fill menu",
+    "moreabout": "More Info",
+    "observable": "Realtime Data",
+    "grid": "Grid CSS3",
+    "sliders": "Slider",
+    "materialtest": "Material Test",
+    "aboutemp": "About Emp"
+  },
+  "navbar": {
+    "home": "Home",
+    "teststyle": "Test Style",
+    "testprint": "Test Print",
+    "aboutus": "Aboutus",
+    "fullmenu": "Full Menu",
+    "moreabout": "More Aboutus",
+    "aboutemp": "About Emp",
+    "observable": "Realtime Data",
+    "profile": "Profile",
+    "grid": "Grid CSS3",
+    "sliders": "Slider",
+    "materialtest": "Material Test"
+  },
+  "table-header": {
+    "empId": "Emp ID",
+    "name": "Name",
+    "salary": "Salary",
+    "symbol": "Symbol",
+    "actions": "Actions",
+    "image": "Image"
+  }
+}

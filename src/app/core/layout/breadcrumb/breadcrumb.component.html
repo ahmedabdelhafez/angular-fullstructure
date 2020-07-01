@@ -1,0 +1,13 @@
+<!-- <nav class="breadcrumb rtl">
+  <a class="breadcrumb-item">{{ currentUrl }}</a>
+</nav> -->
+
+<div class="breadcrumb-pagination">
+  <ng-container *ngFor="let item of translateUrlArr">
+    <div class="active" (click)="goLink(item.realUrl)">
+      <p>
+        {{ item.urlTranslated }}
+      </p>
+    </div>
+  </ng-container>
+</div>

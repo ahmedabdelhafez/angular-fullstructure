@@ -1,0 +1,177 @@
+<div class="top-nav-container" appRtl>
+  <span (click)="showSideMenu()"> <i class="fa fa-bars"></i></span>
+  <div class="navbar-controls">
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdoenId"
+        data-toggle="dropdown"
+      >
+        {{ "language" | translate }}
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" (click)="changeLangAndStyle('ar')">Arabic</a>
+        <a class="dropdown-item" (click)="changeLangAndStyle('en')">English</a>
+      </div>
+    </div>
+    <!-- -->
+    <button mat-button [matMenuTriggerFor]="menuRef">
+      Theme
+    </button>
+
+    <mat-menu #menuRef="matMenu">
+      <button
+        mat-menu-item
+        *ngFor="let item of materialTheme"
+        (click)="chageTheme(item)"
+      >
+        {{ item.name | uppercase }}
+      </button>
+    </mat-menu>
+    <!-- -->
+  </div>
+</div>
+
+<!-- ########################################################## -->
+<!-- side menu items -->
+<div
+  class="sidemenu-container"
+  [@showhideEn]="menuStateEn"
+  [@showhideAr]="menuStateAr"
+  appRtl
+  #menuItem
+>
+  <div class="action-close-btn">
+    <span (click)="hideSideMenu()">
+      <i class="fa fa-times" aria-hidden="true"></i
+    ></span>
+  </div>
+  <div class="logged-user">
+    <h3>Ahmed Fezo</h3>
+    <p>Job: {{ "front end developer" }}</p>
+  </div>
+  <div class="search-item">
+    <input
+      type="text"
+      name="search-bar"
+      id="search-bar"
+      placeholder="seach here..."
+    />
+  </div>
+  <!-- start of the menu -->
+  <!-- <ul>
+    <li>
+      <a routerLink="/" routerLinkActive="">{{ "navbar.home" | translate }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/teststyle']" routerLinkActive="active-link">{{
+        "navbar.teststyle" | translate
+      }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/testprint']" routerLinkActive="active-link">{{
+        "navbar.testprint" | translate
+      }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/aboutus']" routerLinkActive="active-link">{{
+        "navbar.aboutus" | translate
+      }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/fullmenu']" routerLinkActive="active-link">{{
+        "navbar.fullmenu" | translate
+      }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/observable']" routerLinkActive="active-link">{{
+        "navbar.observable" | translate
+      }}</a>
+    </li>
+    <li #nestedMenuItem>
+      <a [routerLink]="['/materialtest']" routerLinkActive="active-link">{{
+        "navbar.materialtest" | translate
+      }}</a>
+      <ul>
+        <li><a id="">Slider</a></li>
+        <li><a id="">Table</a></li>
+        <li>
+          <a id="">Designs</a>
+          <ul>
+            <li><a id="">Java</a></li>
+            <li><a id="">HTML</a></li>
+            <li><a id="">Jquery</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a [routerLink]="['/grid']">{{ "navbar.grid" | translate }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/sliders']">{{ "navbar.sliders" | translate }}</a>
+    </li>
+  </ul> -->
+
+  <nav appRtl>
+    <!-- <a routerLink="/" routerLinkActive="">{{ "navbar.home" | translate }}</a>
+    <a [routerLink]="['/teststyle']" routerLinkActive="active-link">{{
+      "navbar.teststyle" | translate
+    }}</a>
+    <a [routerLink]="['/testprint']" routerLinkActive="active-link">{{
+      "navbar.testprint" | translate
+    }}</a>
+    <a [routerLink]="['/aboutus']" routerLinkActive="active-link">{{
+      "navbar.aboutus" | translate
+    }}</a>
+    <a [routerLink]="['/fullmenu']" routerLinkActive="active-link">{{
+      "navbar.fullmenu" | translate
+    }}</a>
+    <a [routerLink]="['/observable']" routerLinkActive="active-link">{{
+      "navbar.observable" | translate
+    }}</a>
+    <a [routerLink]="['/materialtest']" routerLinkActive="active-link">{{
+      "navbar.materialtest" | translate
+    }}</a>
+    <a [routerLink]="['/grid']">{{ "navbar.grid" | translate }}</a>
+    <a [routerLink]="['/sliders']">{{ "navbar.sliders" | translate }}</a>
+    <div class="nav-collapsible">
+      <input type="checkbox" id="nav-collapsible-1" />
+      <label for="nav-collapsible-1" appRtl>Inventory</label>
+      <div class="wrap">
+        <a>Items</a>
+        <a>Item Group</a>
+        <a>Item Subgroup</a>
+      </div>
+    </div>
+    <div class="nav-collapsible">
+      <input type="checkbox" id="nav-collapsible-2" />
+      <label for="nav-collapsible-2" appRtl>Blog</label>
+      <div class="wrap">
+        <a>Art</a>
+        <a>Design</a>
+        <a>Print</a>
+        <a>Web</a>
+      </div>
+    </div>
+    <a>Contact</a>
+
+    <div class="social-items">
+      <div class="social-icons">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        <i class="fa fa-dribbble" aria-hidden="true"></i>
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+        <i class="fa fa-youtube" aria-hidden="true"></i>
+      </div>
+    </div> -->
+    <ng-material-multilevel-menu
+      [configuration]="config"
+      [items]="appRouterData"
+    >
+    </ng-material-multilevel-menu>
+  </nav>
+
+  <!-- end of the menu -->
+</div>

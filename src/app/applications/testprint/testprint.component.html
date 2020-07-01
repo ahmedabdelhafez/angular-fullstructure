@@ -1,0 +1,81 @@
+<button type="button" class="btn btn-primary" (click)="getAll()">
+  Get Posts
+</button>
+<button type="button" class="btn btn-danger" (click)="getOne()">
+  Posts With ID
+</button>
+
+<h1 [@showhide]="state" (@showhide.done)="onAnimationDone($event)">
+  How are you man
+  <span class="content">
+    <img
+      [src]="
+        '../../../assets/icons/200 App & Web Minimal Outline Icons/SVG/08.svg'
+      "
+      width="28"
+      height="28"
+      alt=""
+      srcset=""
+  /></span>
+  in you vision
+</h1>
+<h1 [@showhide]="state2">
+  How are you man
+  <span class="content">
+    <img
+      [src]="
+        '../../../assets/icons/200 App & Web Minimal Outline Icons/SVG/08.svg'
+      "
+      width="28"
+      height="28"
+      alt=""
+      srcset=""
+  /></span>
+  in you vision
+</h1>
+
+<div class="grid-cont">
+  <div class="d1">
+    <form [formGroup]="myform" (ngSubmit)="saveForm()">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="label"
+          (change)="onNameChange($event)"
+          formControlName="userName"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="label" formControlName="age" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="label" formControlName="salary" />
+      </mat-form-field>
+      <button type="submit" mat-raised-button>Save</button>
+    </form>
+  </div>
+  <div class="d2">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ea quam
+    temporibus, quisquam repellat voluptas dolores eaque ducimus nulla mollitia
+    modi velit necessitatibus magnam nobis harum voluptatibus. Dicta, earum eum?
+  </div>
+</div>
+
+<!-- <div class="dropdown-main">
+  <h6>Select Any Data</h6>
+  <img
+    [src]="
+      '../../../assets/icons/200 App & Web Minimal Outline Icons/SVG/05.svg'
+    "
+    width="22"
+    height="22"
+    alt=""
+    srcset=""
+  />
+  <div class="dropdown-option">
+    <div class="myoption">option 1</div>
+    <div class="myoption">option 1</div>
+    <div class="myoption">option 1</div>
+    <div class="myoption">option 1</div>
+  </div>
+</div> -->

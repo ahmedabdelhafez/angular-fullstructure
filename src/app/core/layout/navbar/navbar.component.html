@@ -1,0 +1,119 @@
+<!-- <nav class="navbar navbar-expand-md navbar-light bg-light mb-2 rtl">
+  <a class="navbar-brand">
+  <p class="lead">{{appConfig?.name}}</p>
+  </a>
+  <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="openSidenav()">
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="[ '/' ]">{{'navbar.home' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/teststyle' ]">{{'navbar.teststyle' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/testprint' ]">{{'navbar.testprint' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/aboutus' ]">{{'navbar.aboutus' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/fullmenu' ]">{{'navbar.fullmenu' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/observable' ]">{{'navbar.observable' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/profile' ]">{{'navbar.profile' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/grid' ]">{{'navbar.grid' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[ '/sliders' ]">{{'navbar.sliders' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown">
+            {{'language' | translate}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="triggerId">
+            <a class="dropdown-item" (click)="changeLang('ar')">Arabic</a>
+            <a class="dropdown-item" (click)="changeLang('en')">English</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+ -->
+
+<!-- side navbar new design -->
+<div class="in-top"></div>
+<div class="side-navbar">
+  <a href="" class="side-brand">
+    Website
+  </a>
+  <div class="toggle-button" appRtl *ngIf="false">
+    <i class="fa fa-bars" aria-hidden="true" (click)="shoeHideSIdeMenu()"></i>
+  </div>
+  <div class="nav-container" appRtl>
+    <div id="nav-icon1" #navbar (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="side-menu" #sideMenu>
+    <a href="" routerLink="/" routerLinkActive="">{{
+      "navbar.home" | translate
+    }}</a>
+    <a href="" [routerLink]="['/teststyle']" routerLinkActive="active-link">{{
+      "navbar.teststyle" | translate
+    }}</a>
+    <a href="" [routerLink]="['/testprint']" routerLinkActive="active-link">{{
+      "navbar.testprint" | translate
+    }}</a>
+    <a href="" [routerLink]="['/aboutus']" routerLinkActive="active-link">{{
+      "navbar.aboutus" | translate
+    }}</a>
+    <a href="" [routerLink]="['/fullmenu']" routerLinkActive="active-link">{{
+      "navbar.fullmenu" | translate
+    }}</a>
+    <a href="" [routerLink]="['/observable']" routerLinkActive="active-link">{{
+      "navbar.observable" | translate
+    }}</a>
+    <a
+      href=""
+      [routerLink]="['/materialtest']"
+      routerLinkActive="active-link"
+      >{{ "navbar.materialtest" | translate }}</a
+    >
+    <a href="" [routerLink]="['/grid']">{{ "navbar.grid" | translate }}</a>
+    <a href="" [routerLink]="['/sliders']">{{
+      "navbar.sliders" | translate
+    }}</a>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="triggerId"
+        data-toggle="dropdown"
+      >
+        {{ "language" | translate }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="triggerId">
+        <a class="dropdown-item" (click)="changeLang('ar')">Arabic</a>
+        <a class="dropdown-item" (click)="changeLang('en')">English</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,206 @@
+@mixin center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -53%);
+}
+
+$easing: cubic-bezier(0.93, 0.01, 0.15, 0.97);
+
+/*--------------------
+  Stage
+  --------------------*/
+.onboard {
+  @include center;
+  width: 350px;
+  height: 500px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+h1 {
+  padding: 30px;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #1c222b;
+
+  strong {
+    background: #fa6b5b;
+    color: #fff;
+    display: inline-block;
+    border-radius: 30px;
+    padding: 8px;
+    font-size: 83%;
+    line-height: 1;
+    position: relative;
+    top: -2px;
+    left: 2px;
+  }
+}
+
+.slick-track {
+  transition: all 0.5s $easing;
+}
+
+.item {
+  width: 300px;
+  height: 500px;
+  text-align: center;
+  font-size: 200px;
+  color: #eee;
+  outline: none;
+  padding: 100px 40px 0;
+
+  .ico {
+    margin: 0 auto;
+    height: 160px;
+    text-align: center;
+    position: relative;
+
+    svg {
+      width: 130px;
+      height: 130px;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .tit {
+    font-size: 25px;
+    color: #fa6b5b;
+    margin-bottom: 20px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #5c5f67;
+  }
+
+  .cta {
+    background: linear-gradient(-5deg, #ce4c4b, #fc6956);
+    border-radius: 30px;
+    font-size: 18px;
+    display: block;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 300;
+    padding: 14px 10px;
+    margin: 35px 0 0;
+    width: 100%;
+
+    &:hover {
+      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+      box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+/*--------------------
+  Animation
+  ---------------------*/
+.from-right {
+  .ico,
+  .tit,
+  .text,
+  .cta {
+    opacity: 0;
+    transform: translate(200px);
+  }
+  .ico {
+    transform: translate(200px) rotate(45deg);
+  }
+}
+
+.from-left {
+  .ico,
+  .tit,
+  .text,
+  .cta {
+    opacity: 0;
+    transform: translate(-200px);
+  }
+  .ico {
+    transform: translate(-200px) rotate(-45deg);
+  }
+}
+
+.ready {
+  .ico,
+  .tit,
+  .text,
+  .cta {
+    transform: translate(0) rotate(0);
+    opacity: 1;
+    transition: all 0.5s $easing 0.5s;
+  }
+
+  .tit {
+    transition-delay: 0.6s;
+  }
+
+  .text {
+    transition-delay: 0.7s;
+  }
+
+  .cta {
+    transition: all 0.5s $easing 0.8s, box-shadow 0.3s ease 0s;
+  }
+}
+
+/*--------------------
+  Slick Dots
+  ---------------------*/
+.slick-dots {
+  bottom: -40px;
+
+  a {
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  span {
+    @include center;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  circle {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-dasharray: 39 39;
+    stroke-dashoffset: 39;
+    transition: all 0.9s ease-in-out;
+    transition: stroke-dashoffset 0.5s $easing;
+  }
+
+  .slick-active circle {
+    stroke-dashoffset: 0;
+  }
+}
+
+// * { display: none; }

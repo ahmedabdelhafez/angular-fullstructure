@@ -1,0 +1,62 @@
+
+/*
+this is a font face mixin to load the font but it have a fixed entry point
+1- you must add a name for the font
+2- you must include the font folder or file
+*/
+// @mixin font-face-static($fontName, $file) {
+//   @font-face {
+//     font-family: "#{$fontName}";
+//     src: url("../../fonts/#{$file}.eot");
+//     src: url("../../fonts/#{$file}.eot?#iefix") format("embedded-opentype"),
+//       url("../../fonts/#{$file}.woff") format("woff"),
+//       url("../../fonts/#{$file}.ttf") format("truetype"),
+//       url("../../fonts/#{$file}.svg?#webfont") format("svg");
+//   }
+// }
+
+// /*
+
+// */
+// @mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+//   @font-face {
+//     font-family: quote($font-name);
+//     src: url($file-name+".eot");
+//     src: url($file-name+".eot?#iefix") format("embedded-opentype"),
+//       url($file-name+".woff") format("woff"),
+//       url($file-name+".ttf") format("truetype"),
+//       url($file-name+".svg##{$font-name}") format("svg");
+//     font-weight: $weight;
+//     font-style: $style;
+//   }
+// }
+
+
+
+///////////////////////////////////////////////////////////
+/* my fonts installed here*/
+
+@font-face {
+  font-family: "bodoni";
+  src: url("./assets/fonts/bodoni/Bodoni-Bold.ttf");
+}
+
+@font-face {
+  font-family: "rlway";
+  src: url("./assets/fonts/raleway/Raleway-Medium.ttf");
+}
+
+@font-face {
+  font-family: "cairo";
+  src: url("./assets/fonts/cairo/Cairo-Regular.ttf");
+}
+
+@font-face {
+  font-family: "cairo-bold";
+  src: url("./assets/fonts/cairo/Cairo-Bold.ttf");
+}
+
+@font-face {
+  font-family: "cairo-light";
+  src: url("./assets/fonts/cairo/Cairo-Light.ttf");
+}

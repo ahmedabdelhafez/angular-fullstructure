@@ -1,0 +1,23 @@
+<div class="form-group" id="seacrh-box">
+  <label for="searchItem">Search item:</label>
+  <input
+    type="text"
+    class="form-control"
+    name="searchItem"
+    id="searchItem"
+    placeholder="search item"
+    [(ngModel)]="searchText"
+    (ngModelChange)="logSearchData($event)"
+  />
+  <div class="search-res">
+    <ul class="list-group">
+      <li class="list-group-item d-flex flex-row justify-content-between align-items-baseline" *ngIf="alldata.length > 0">
+        <p>All Search Resualt:</p>
+        <span (click)="clearSearchResault()"><i class="fa fa-times" aria-hidden="true"></i></span>
+      </li>
+      <li class="list-group-item" *ngFor="let item of alldata">
+        {{ item.title }}
+      </li>
+    </ul>
+  </div>
+</div>

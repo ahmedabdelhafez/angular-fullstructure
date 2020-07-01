@@ -1,0 +1,13 @@
+#seacrh-box {
+  position: relative;
+
+  .search-res {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+.list-group-item:last-child {
+  background-color: red !important;
+}

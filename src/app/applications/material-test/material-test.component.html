@@ -1,0 +1,24 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center">
+  <ul
+    class="list-group"
+    fxFlex="1 1 300px"
+    fxLayout="column wrap"
+    fxLayoutAlign="start center"
+    ngClass="second-st"
+  >
+    <div [@listAnimation]="dataElement.length">
+      <li
+        class="list-group-item"
+        *ngFor="let item of dataElement; let i = index"
+        (click)="removeItem(i)"
+      >
+        {{ item }}
+      </li>
+    </div>
+  </ul>
+</div>
+
+<button type="button" class="btn btn-danger" (click)="showHide()">
+  Show / Hide
+</button>
+<button type="button" class="btn btn-primary" (click)="reload()">Reload</button>

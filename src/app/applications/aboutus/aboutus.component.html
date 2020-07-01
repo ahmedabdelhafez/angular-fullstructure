@@ -1,0 +1,73 @@
+<div class="container-fluid" #toppage>
+  <div class="row">
+    <div class="col">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngStyle]="{ padding: '0px 10px' }"
+      >
+        <ng-container *ngFor="let item of fragemntItems">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="scrolltoSec(item.sectionId)"
+          >
+            {{ item.sectionName }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <section>
+        <div
+          class="section"
+          *ngFor="let link of fragemntItems"
+          [id]="link.sectionId"
+        >
+          <h1>{{ link.sectionName }}</h1>
+          <div class="content">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Exercitationem, officia praesentium, reiciendis et sunt quam maxime
+            perspiciatis quibusdam quas a, rem iusto? Perspiciatis quae ex
+            eligendi modi consectetur fuga libero! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Minus odio doloremque tempora ipsa,
+            deserunt accusantium soluta? Repellat totam odio, reprehenderit, ad
+            rem aliquid harum pariatur dignissimos optio, odit dicta provident.
+            Doloremque fugiat earum, at reiciendis nihil placeat eius nam,
+            dolorem, repudiandae neque voluptates voluptatum molestiae? Optio
+            ipsum eveniet totam sapiente, ipsam fugiat est atque nisi excepturi
+            perferendis, inventore et fugit. Aspernatur explicabo ab optio
+            reprehenderit ullam illo doloremque ea saepe at aliquid repellendus,
+            perspiciatis enim temporibus quisquam est rem quidem, perferendis,
+            voluptates exercitationem? Provident maiores perspiciatis distinctio
+            nostrum quis eligendi. Fuga in libero quia perferendis voluptates
+            velit rem soluta cum tempore excepturi quod harum fugiat cumque
+            veniam reprehenderit, laborum rerum saepe sequi molestias vitae
+            optio itaque! Earum non recusandae voluptatum. Sunt vitae nostrum
+            repudiandae, a nam nobis fugit architecto distinctio ipsam?
+            Perferendis consectetur rem, incidunt id vero blanditiis, laboriosam
+            totam quidem, provident corporis quas delectus fugiat rerum harum
+            molestiae tenetur.
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" (click)="scrollTop()">
+  Go Top
+</button>
+<!-- <button type="button" class="btn btn-primary" (click)="moreAbout()">
+  More About
+</button> -->
+<mat-toolbar>
+  <button mat-raised-button color="primary" [routerLink]="['moreabout']">More About</button>
+  <button mat-raised-button color="primary" [routerLink]="['aboutemp']">About Emp</button>
+</mat-toolbar>
+
+<div class="mynested-route">
+  <router-outlet></router-outlet>
+</div>

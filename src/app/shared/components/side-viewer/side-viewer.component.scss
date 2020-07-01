@@ -1,0 +1,68 @@
+@import "../../../../assets/scss/mixin/media";
+.view-wrapper {
+  width: 400px;
+  border-radius: 5px;
+  height: 300px;
+  // border: 1px solid black;
+  padding: 5px;
+  margin: 0 0 0 15px;
+  -webkit-box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 3px 10px 0px rgba(0, 0, 0, 0.75);
+  background-color: gainsboro;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  &.rtl-item{
+    // left: 85%;
+    right: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 20px;
+    background-color: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #d62929;
+  }
+
+  @include phone {
+    width: 250px;
+    height: 200px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  .view-controller {
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    background-color: lightcoral;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 0 5px 0;
+    position: sticky;
+    top: 0;
+    // left: 0;
+
+    span {
+      margin-right: 0px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<!-- Slider main container -->
+<div class="swiper-container" [id]="sliderId" dir="rtl">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide" *ngFor="let item of ImageList; let idx = index">
+      <img [src]="item.img" alt="{{ '#' + item.id }}" srcset="" />
+    </div>
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev" [id]="btnPrev"></div>
+  <div class="swiper-button-next" [id]="btnNext"></div>
+
+  <!-- If we need scrollbar -->
+  <!-- <div class="swiper-scrollbar"></div> -->
+</div>
