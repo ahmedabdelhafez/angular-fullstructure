@@ -3,16 +3,17 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  AfterViewInit
+  AfterViewInit,
 } from "@angular/core";
 import Typed from "typed.js/src/typed.js";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ViewportScroller } from "@angular/common";
 import { from, fromEvent } from "rxjs";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-aboutus",
   templateUrl: "./aboutus.component.html",
-  styleUrls: ["./aboutus.component.scss"]
+  styleUrls: ["./aboutus.component.scss"],
 })
 export class AboutusComponent implements OnInit, AfterViewInit {
   @ViewChild("toppage", { static: true }) toppage: ElementRef<HTMLElement>;
@@ -23,13 +24,13 @@ export class AboutusComponent implements OnInit, AfterViewInit {
       "أفضل عمالة ماهرة في مصر",
       "أفضل خبرات",
       "مؤهلات عالية و خبرة في كافة المجالات",
-      "نتطرق للأفضل"
+      "نتطرق للأفضل",
     ],
     typeSpeed: 100,
     backSpeed: 40,
     showCursor: false,
     cursorChar: "|",
-    loop: true
+    loop: true,
   };
 
   fragemntItems = [
@@ -37,7 +38,7 @@ export class AboutusComponent implements OnInit, AfterViewInit {
     { sectionId: "section2", sectionName: "Section 2" },
     { sectionId: "section3", sectionName: "Section 3" },
     { sectionId: "section4", sectionName: "Section 4" },
-    { sectionId: "section5", sectionName: "Section 5" }
+    { sectionId: "section5", sectionName: "Section 5" },
   ];
 
   postItem = [1, 2, 3, 4, 5];
@@ -45,7 +46,8 @@ export class AboutusComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private viewScroll: ViewportScroller
+    private viewScroll: ViewportScroller,
+    private translateService: TranslateService
   ) {}
 
   moreAbout() {
@@ -54,10 +56,14 @@ export class AboutusComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // const typed = new Typed('.typed-element', this.options);
+    this.translateService.get("hello").subscribe((data) => {
+      console.log("from about translation");
+      console.log(data);
+    });
   }
 
   ngAfterViewInit() {
-    this.activeRoute.fragment.subscribe(frag => {
+    this.activeRoute.fragment.subscribe((frag) => {
       if (frag) {
         this.viewScroll.scrollToAnchor(frag.toString());
       }
@@ -72,7 +78,7 @@ export class AboutusComponent implements OnInit, AfterViewInit {
     // this.viewScroll.scrollToPosition([0, 0]);
 
     this.toppage.nativeElement.scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }
 }

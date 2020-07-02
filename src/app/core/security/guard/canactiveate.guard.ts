@@ -1,13 +1,30 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivateChild, CanActivate } from '@angular/router';
-import { Observable } from 'rxjs';
-import {JwtHelperService} from '@auth0/angular-jwt'
+import { Injectable } from "@angular/core";
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  CanActivate,
+} from "@angular/router";
+import { Observable } from "rxjs";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { AppAlert } from "src/app/shared/util/AppAlert";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CanactiveateGuard implements CanActivate {
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    throw new Error("Method not implemented.");
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean | Promise<boolean | UrlTree> {
+    if (!localStorage.getItem("user")) {
+      AppAlert.showToastInfo(
+        "you cannot visit this url please login",
+        "",
+        2000
+      );
+      return false;
+    } else {
+      return true;
+    }
   }
-
 }

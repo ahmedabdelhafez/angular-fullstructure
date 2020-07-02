@@ -17,16 +17,13 @@ import { RolesDirective } from "../core/security/roles_directive/roles.directive
 import { CustomPopoverDirective } from "./directive/custom-popover.directive";
 import { RtlDirective } from "./directive/rtl.directive";
 import { QuillModule } from "ngx-quill";
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatTimepickerModule,
-  NgxMatNativeDateModule,
-} from "ngx-mat-datetime-picker";
+
 import { NgSelectModule } from "@ng-select/ng-select";
 import { Ng2FlatpickrModule } from "ng2-flatpickr";
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { FilterPipe } from "./pipes/filter.pipe";
 import { NgxPrintModule } from "ngx-print";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -49,19 +46,11 @@ export function createTranslateLoader(http: HttpClient) {
     MaterialModule,
     BootstrapngxModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
+    TranslateModule,
     FormsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatNativeDateModule,
+    NgxMaterialTimepickerModule.setLocale("ar-AE"),
     NgSelectModule,
     Ng2FlatpickrModule,
     NgCircleProgressModule.forRoot({
@@ -93,13 +82,11 @@ export function createTranslateLoader(http: HttpClient) {
     CustomPopoverDirective,
     RtlDirective,
     QuillModule,
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatNativeDateModule,
     NgSelectModule,
     Ng2FlatpickrModule,
     NgCircleProgressModule,
     FilterPipe,
+    NgxMaterialTimepickerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

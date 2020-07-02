@@ -1,18 +1,42 @@
 <mat-card>
-  <mat-card-header fxLayout="row" fxLayoutAlign="start center">
-    <img [src]="imgFile" alt="" class="image-cover" />
-    <p class="lead">title is here</p>
-  </mat-card-header>
   <mat-card-content>
-    <swiper-slider
-      [ImageList]="images"
-      [sliderId]="'slider122'"
-      [nextArrow]="'next11'"
-      [prevArrow]="'prev11'"
-      [sliderLoop]="false"
-    ></swiper-slider>
+    <mat-card class="mat-input-full-width">
+      <mat-card-header>
+        <mat-card-title>Add New Employee</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="employeeForm" (ngSubmit)="saveForm()">
+          <mat-form-field>
+            <input matInput placeholder="empid" formControlName="empId" />
+            <mat-error *ngIf="formErrors.empId">
+              {{ formErrors.empId }}
+            </mat-error>
+          </mat-form-field>
+          <!-- <mat-divider [inset]="true"> </mat-divider> --><br />
+          <mat-form-field>
+            <input matInput placeholder="emp name" formControlName="empName" />
+            <mat-error *ngIf="formErrors.empName">
+              {{ formErrors.empName }}
+            </mat-error>
+          </mat-form-field>
+          <!-- <mat-divider [inset]="true"> </mat-divider> -->
+          <br />
+          <mat-form-field>
+            <input matInput placeholder="salary" formControlName="salary" />
+            <mat-error *ngIf="formErrors.empName">
+              {{ formErrors.salary }}
+            </mat-error>
+          </mat-form-field>
+          <div formGroupName="address">
+            <mat-form-field>
+              <input matInput placeholder="city" formControlName="city" />
+              <mat-error *ngIf="formErrors.address.city">
+                {{ formErrors.address.city }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </mat-card-content>
-  <mat-card-actions>
-   <button mat-fab><mat-icon>share</mat-icon></button>
-  </mat-card-actions>
 </mat-card>

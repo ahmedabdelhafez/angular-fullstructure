@@ -26,7 +26,7 @@ export class SwiperSliderComponent implements OnInit, AfterViewInit, OnChanges {
   @Input("sliderId") sliderId: string = "";
   @Input("btnNext") btnNext: string = "";
   @Input("btnPrev") btnPrev: string = "";
-  @Input("sliderLoop") sliderLoop: boolean = false;
+  @Input("sliderLoop") sliderLoop: true | false = false;
 
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,6 +49,7 @@ export class SwiperSliderComponent implements OnInit, AfterViewInit, OnChanges {
       speed: 500,
       setWrapperSize: true,
       spaceBetween: 10,
+
       // If we need pagination
       pagination: {
         el: ".swiper-pagination",

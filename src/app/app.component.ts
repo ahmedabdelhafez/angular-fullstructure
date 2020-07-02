@@ -185,11 +185,11 @@ export class AppComponent implements OnInit, OnDestroy {
     let scrollToTop = window.setInterval(() => {
       let pos = window.pageYOffset;
       if (pos > 0) {
-        window.scrollTo({ behavior: "smooth", left: 0, top: pos - 30 }); // how far to scroll on each step
+        window.scrollTo({ behavior: "smooth", left: 0, top: pos - 10 }); // how far to scroll on each step
       } else {
         window.clearInterval(scrollToTop);
       }
-    }, 16);
+    }, 1);
   }
 
   ngOnDestroy(): void {

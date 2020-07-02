@@ -8,7 +8,6 @@ import { BehaviorSubject, Subject } from "rxjs";
 export class GlobalService {
   menuState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   httpLoader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  scrollState: Subject<string> = new Subject();
   constructor(private http: HttpCall) {}
 
   get getMenuState() {
@@ -25,13 +24,5 @@ export class GlobalService {
 
   hide() {
     this.httpLoader.next(false);
-  }
-
-  setScrollState(state:string){
-
-  }
-
-  getScrollState(){
-    
   }
 }

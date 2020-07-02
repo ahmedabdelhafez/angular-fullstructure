@@ -6,19 +6,25 @@ import {
   CanActivateChild,
 } from "@angular/router";
 import { Observable } from "rxjs";
+import { AppAlert } from "src/app/shared/util/AppAlert";
 
 @Injectable({
   providedIn: "root",
 })
 export class CanactiveatechildGuard implements CanActivateChild {
-  canActivateChild(
+  async canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
-    return false;
+  ): Promise<boolean | UrlTree> {
+    if (!localStorage.getItem("user")) {
+      await AppAlert.showToastInfo(
+        "you cannot visit this url please login",
+        "",
+        2000
+      );
+      return false;
+    } else {
+      return true;
+    }
   }
 }

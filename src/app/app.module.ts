@@ -6,7 +6,7 @@ import {
   APP_INITIALIZER,
 } from "@angular/core";
 import { AppComponent } from "./app.component";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 import { ErrorhandlerService } from "./core/error_handler/errorhandler.service";
 import { CoreModule } from "./core/core.module";
 
@@ -19,6 +19,8 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { SideviewerModule } from "./shared/components/side-viewer/sideviewer.module";
 import { RequestLogService } from "./core/RequestLog.service";
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { createTranslateLoader } from './shared/shared.module';
 
 export function loadConfigurations(configAppService: ConfigAppService) {
   return () => configAppService.getConfig();
@@ -38,6 +40,13 @@ export function loadConfigurations(configAppService: ConfigAppService) {
     }),
     SideviewerModule,
     LoadingspinnerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     // HttpConfigService,

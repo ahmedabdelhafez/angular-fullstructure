@@ -124,3 +124,37 @@
   background: darkorange !important;
   transition: all 0.5s ease-in-out;
 }
+
+$someColor: seagreen;
+.timepicker__header {
+  background-color: $someColor !important;
+}
+
+.clock-face__clock-hand {
+  background-color: $someColor !important;
+  outline: none;
+
+  &::after {
+    background-color: $someColor !important;
+    outline: none;
+  }
+
+  &::before {
+    border-color: $someColor !important;
+    outline: none;
+  }
+}
+
+.clock-face__number {
+  > span.active {
+    background-color: $someColor !important;
+    outline: none;
+  }
+}
+
+.timepicker-dial__control {
+  outline: none;
+}
+// button:not(.timepicker-dial__item) {
+//   color: $someColor !important;
+// }

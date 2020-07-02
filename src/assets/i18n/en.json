@@ -4,6 +4,12 @@
   "language": "Language",
   "name": "Name",
   "config": {},
+  "validation": {
+    "required": "the {{value}} field is required",
+    "notNumber": "the {{value}} must be a number",
+    "maxlength":"maxlength faild",
+    "notArabic":"this field must have arabic data only"
+  },
   "statuscode": {
     "200": "The request has succeeded",
     "201": "resource created succefuly",

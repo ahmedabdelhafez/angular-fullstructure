@@ -18,10 +18,10 @@
       </div>
     </div>
   </div>
-
+  <p class="lead text-danger">{{ "hello" | translate }}</p>
   <div class="row">
     <div class="col">
-      <section>
+      <section appRtl>
         <div
           class="section"
           *ngFor="let link of fragemntItems"
@@ -64,8 +64,12 @@
   More About
 </button> -->
 <mat-toolbar>
-  <button mat-raised-button color="primary" [routerLink]="['moreabout']">More About</button>
-  <button mat-raised-button color="primary" [routerLink]="['aboutemp']">About Emp</button>
+  <button mat-raised-button color="primary" [routerLink]="['moreabout']">
+    More About
+  </button>
+  <button mat-raised-button color="primary" [routerLink]="['aboutemp']">
+    About Emp
+  </button>
 </mat-toolbar>
 
 <div class="mynested-route">

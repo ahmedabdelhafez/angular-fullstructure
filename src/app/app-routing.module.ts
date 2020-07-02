@@ -11,9 +11,6 @@ import { ProfileComponent } from "./applications/profile/profile.component";
 import { GridComponent } from "./applications/grid/grid.component";
 import { SlidersComponent } from "./applications/sliders/sliders.component";
 import { MaterialTestComponent } from "./applications/material-test/material-test.component";
-import { CanloadGuard } from "./core/security/guard/canload.guard";
-import { MoreaboutComponent } from "./applications/aboutus/moreabout/moreabout.component";
-import { AboutEmpComponent } from "./applications/aboutus/about-emp/about-emp.component";
 
 const routes: Routes = [
   {
@@ -33,7 +30,10 @@ const routes: Routes = [
   },
   {
     path: "aboutus",
-    loadChildren: () => AboutusModule,
+    loadChildren: () =>
+      import("./applications/aboutus/aboutus.module").then(
+        (m) => m.AboutusModule
+      ),
     canLoad: [],
     data: { breadcrumb: "/aboutus", title: "about us" },
   },
