@@ -336,14 +336,6 @@ export class SideNavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  chageTheme(selectedTheme: any) {
-    this.defaultTheme = selectedTheme.name;
-
-    this.document
-      .getElementById("material-theme")
-      .setAttribute("href", selectedTheme.path);
-  }
-
   getTranslateRecursive(itemObj: MultilevelNodes[]) {
     itemObj.map(async (ele) => {
       let routerLinkObject = new Object(ele);

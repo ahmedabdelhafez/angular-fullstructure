@@ -3,12 +3,16 @@
   "companyname": "اختبار موقع",
   "language": "اللغة",
   "name": "الإسم",
+  "generalMessage": {
+    "internetConnectionError": "لا يوجد أتصال بالأنترنت",
+    "internetConnectionSuccess": "الأتصال بالأنترنت يعمل بنجاح"
+  },
   "config": {},
   "validation": {
     "required": "حقل {{value}} يجب إدخال بياناته",
     "notNumber": "حقل {{value}} يجب ان يحتوي ارقام فقط",
-    "maxlength":"لقد تعديت الحد المسموح للأرقام",
-    "notArabic":"هذا الحقل يجب ان يحتوي حروف عربي فقط"
+    "maxlength": "لقد تعديت الحد المسموح للأرقام",
+    "notArabic": "هذا الحقل يجب ان يحتوي حروف عربي فقط"
   },
   "statuscode": {
     "200": "تم التنفيذ بنجاح",

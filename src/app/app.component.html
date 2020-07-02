@@ -11,7 +11,7 @@
   </div>
   <div id="grid-content">
     <router-outlet></router-outlet>
-    <div class="got-top-item" (click)="scrollTop()">
+    <div class="got-top-item" #scrollEle (click)="scrollTop()"  >
       Top
     </div>
   </div>

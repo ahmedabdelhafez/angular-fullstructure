@@ -15,21 +15,6 @@
         <a class="dropdown-item" (click)="changeLangAndStyle('en')">English</a>
       </div>
     </div>
-    <!-- -->
-    <button mat-button [matMenuTriggerFor]="menuRef">
-      Theme
-    </button>
-
-    <mat-menu #menuRef="matMenu">
-      <button
-        mat-menu-item
-        *ngFor="let item of materialTheme"
-        (click)="chageTheme(item)"
-      >
-        {{ item.name | uppercase }}
-      </button>
-    </mat-menu>
-    <!-- -->
   </div>
 </div>
 

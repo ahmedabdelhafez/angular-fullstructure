@@ -1,17 +1,70 @@
-<div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Welcome to about more</h4>
-        <p class="card-text">this is my about more component thanks to visit us</p>
-        <br>
-        <h5 class="h5 text-center text-warning">User ID: {{userId}} User Name: {{userName}}</h5>
-      </div>
-    </div>
-    <br>
-    <button type="button" class="btn btn-primary" (click)="backToHome()">Back Home</button>
-    {{'hello' | translate}}
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Welcome to about more</h4>
+    <p class="card-text">
+      this is my about more component thanks to visit us
+    </p>
+    <br />
+    <h5 class="h5 text-center text-warning">
+      User ID: {{ userId }} User Name: {{ userName }}
+    </h5>
   </div>
 </div>
+<br />
+<button type="button" class="btn btn-primary" (click)="backToHome()">
+  Back Home
+</button>
+{{ "hello" | translate }}
 
-<p class="lead">{{'hello' | translate}}</p>
+<p class="lead">{{ "hello" | translate }}</p>
+
+<div class="grid-cont2">
+  <div class="cr1">
+    <circle-progress
+      [percent]="85"
+      [radius]="100"
+      [outerStrokeWidth]="16"
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#78C000'"
+      [innerStrokeColor]="'#C7E596'"
+      [animation]="true"
+      [animationDuration]="300"
+    ></circle-progress>
+  </div>
+  <div class="cr2">
+    <circle-progress
+      [percent]="85"
+      [radius]="100"
+      [outerStrokeWidth]="16"
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#78C000'"
+      [innerStrokeColor]="'#C7E596'"
+      [animation]="true"
+      [animationDuration]="300"
+    ></circle-progress>
+  </div>
+  <div class="cr3">
+    <circle-progress
+      [percent]="85"
+      [radius]="100"
+      [outerStrokeWidth]="16"
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#78C000'"
+      [innerStrokeColor]="'#C7E596'"
+      [animation]="true"
+      [animationDuration]="300"
+    ></circle-progress>
+  </div>
+  <div class="cr4">
+    <circle-progress
+      [percent]="85"
+      [radius]="100"
+      [outerStrokeWidth]="16"
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#78C000'"
+      [innerStrokeColor]="'#C7E596'"
+      [animation]="true"
+      [animationDuration]="300"
+    ></circle-progress>
+  </div>
+</div>

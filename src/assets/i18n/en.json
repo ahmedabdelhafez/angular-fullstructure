@@ -3,12 +3,16 @@
   "companyname": "Test website",
   "language": "Language",
   "name": "Name",
+  "generalMessage": {
+    "internetConnectionError": "Please check your internet connection and tray again",
+    "internetConnectionSuccess": "you are connected to internet"
+  },
   "config": {},
   "validation": {
     "required": "the {{value}} field is required",
     "notNumber": "the {{value}} must be a number",
-    "maxlength":"maxlength faild",
-    "notArabic":"this field must have arabic data only"
+    "maxlength": "maxlength faild",
+    "notArabic": "this field must have arabic data only"
   },
   "statuscode": {
     "200": "The request has succeeded",

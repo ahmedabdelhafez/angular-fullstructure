@@ -1,0 +1,19 @@
+.grid-cont2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: minmax(100px, auto);
+  grid-auto-flow: row;
+  grid-auto-rows: minmax(100px, auto);
+  gap: 5px 5px;
+  justify-items: center;
+  justify-content: center;
+
+  .cr1{
+      background-color: rosybrown;
+      border-radius: 10px;
+  }
+
+  .cr2{
+      background-color: sandybrown;
+  }
+}
