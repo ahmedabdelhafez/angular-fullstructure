@@ -40,3 +40,12 @@
     </mat-card>
   </mat-card-content>
 </mat-card>
+
+<button mat-mini-fab (click)="getAllPosts()">
+  Get Posts<mat-icon>home</mat-icon>
+</button>
+
+<mat-list>
+  <mat-list-item *ngFor="let item of postsData">{{ item.body }}</mat-list-item>
+</mat-list>
+

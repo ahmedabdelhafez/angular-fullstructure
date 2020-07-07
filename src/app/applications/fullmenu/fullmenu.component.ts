@@ -1,10 +1,8 @@
 import {
   Component,
   OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  PLATFORM_ID,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from "@angular/core";
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
@@ -17,20 +15,24 @@ import {
 } from "@angular/forms";
 import { CustomValidation } from "src/app/shared/validator/CustomValidation";
 import { TranslateService } from "@ngx-translate/core";
-
+import AWN from "awesome-notifications";
+import { HttpCall } from "src/app/services/HttpCall.service";
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
-// import * as $ from "jquery";
-declare var $: any;
+
 @Component({
   selector: "app-fullmenu",
   templateUrl: "./fullmenu.component.html",
   styleUrls: ["./fullmenu.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class FullmenuComponent implements OnInit {
-  import;
+  notifier = new AWN({ position: "bottom-right", animationDuration: 200 });
+
   constructor(
     private fb: FormBuilder,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private httpCall: HttpCall,
+    private cdr: ChangeDetectorRef
   ) {}
   allCity: any = [];
   arrLenght = 0;
@@ -135,6 +137,16 @@ export class FullmenuComponent implements OnInit {
         }
       }
     }
+  }
+
+  ///////
+  postsData = [];
+  getAllPosts() {
+    this.httpCall.getAll<any>("/posts").subscribe((data) => {
+      this.postsData = data;
+      this.cdr.detectChanges();
+      console.log(this.postsData);
+    });
   }
 
   // cityAsyncValidation(): AsyncValidatorFn {

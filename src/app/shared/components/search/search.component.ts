@@ -20,6 +20,10 @@ export class SearchComponent implements OnInit {
   constructor(private httpData: HttpCall) {}
 
   ngOnInit() {
+    this.searchFrombackend();
+  }
+
+  searchFrombackend(){
     this.searchTextChanged
       .pipe(
         debounceTime(1500),

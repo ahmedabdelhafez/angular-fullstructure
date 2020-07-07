@@ -33,6 +33,7 @@
               "./node_modules/animate.css/animate.min.css",
               "./node_modules/intro.js/minified/introjs.min.css",
               "./node_modules/intro.js/minified/introjs-rtl.min.css",
+              "./node_modules/awesome-notifications/dist/style.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -44,7 +45,8 @@
               "./node_modules/sweetalert2/dist/sweetalert2.all.min.js",
               "./node_modules/aos/dist/aos.js",
               "./node_modules/intro.js/minified/intro.min.js",
-              "./node_modules/quill/dist/quill.js"
+              "./node_modules/quill/dist/quill.js",
+              "./node_modules/awesome-notifications/dist/index.var.js"
             ],
             "es5BrowserSupport": true
           },
