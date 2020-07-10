@@ -54,6 +54,7 @@
     "angular-calendar": "^0.28.11",
     "animate.css": "^3.7.2",
     "aos": "^2.3.4",
+    "awesome-notifications": "^3.1.1",
     "blob-util": "^2.0.2",
     "bootstrap": "^4.3.1",
     "classlist.js": "^1.1.20150312",

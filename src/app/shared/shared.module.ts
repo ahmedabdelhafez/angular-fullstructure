@@ -24,6 +24,7 @@ import { NgCircleProgressModule } from "ng-circle-progress";
 import { FilterPipe } from "./pipes/filter.pipe";
 import { NgxPrintModule } from "ngx-print";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import { StaticNavbarDirective } from "./directive/static-navbar.directive";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -40,6 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
     CustomPopoverDirective,
     RtlDirective,
     FilterPipe,
+    StaticNavbarDirective,
   ],
   imports: [
     CommonModule,
@@ -87,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     NgCircleProgressModule,
     FilterPipe,
     NgxMaterialTimepickerModule,
+    StaticNavbarDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -43,6 +43,9 @@ import { Router, ActivatedRoute } from "@angular/router";
   ],
 })
 export class SideNavbarComponent implements OnInit, AfterViewInit {
+  @ViewChild("mainNavbar", { static: true }) mainNavbar: ElementRef<
+    HTMLElement
+  >;
   menuStateEn = "hide";
   menuStateAr = "hide";
   config: Configuration;
@@ -222,7 +225,10 @@ export class SideNavbarComponent implements OnInit, AfterViewInit {
   ) {}
 
   defaultTheme;
+
   ngOnInit() {
+  
+
     this.config = { classname: "myclass", rtlLayout: false };
     this.getTranslateRecursive(this.appRouterData);
     this.translate.setDefaultLang(this.defaultLang);
