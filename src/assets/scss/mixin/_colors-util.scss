@@ -1,6 +1,6 @@
-
-@mixin gradient($start-color, $end-color, $orientation) {
+@mixin background-gradient($start-color, $end-color, $orientation) {
   background: $start-color;
+
   @if $orientation == "vertical" {
     background: -webkit-linear-gradient(top, $start-color, $end-color);
     background: linear-gradient(to bottom, $start-color, $end-color);
@@ -17,7 +17,6 @@
     background: radial-gradient(ellipse at center, $start-color, $end-color);
   }
 }
-
 /****************************************************/
 /*
 example 

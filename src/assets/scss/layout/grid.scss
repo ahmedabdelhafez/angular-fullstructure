@@ -1,0 +1,16 @@
+@mixin gridContainer(
+  $initColumnSize: 200px,
+  $initRowSize: 0px,
+  $autoFlow: row
+) {
+  display: grid;
+  grid-template-columns: (auto-fit, minmax($initColumnSize, 1fr));
+  grid-template-rows: minmax($initRowSize, auto);
+  @if autoFlow == row {
+    grid-auto-flow: $auto-flow;
+    grid-auto-rows: minmax($initRowSize, auto);
+  } @else if $auto-flow == column {
+    grid-auto-flow: $auto-flow;
+    grid-auto-columns: $initColumnSize;
+  }
+}

@@ -18,7 +18,7 @@ export class HttpCall {
   ngOnInit() {}
 
   /**
-   * @description get all data from selected server user must pass the uri
+   * @description get all data from selected server user must pass the `uri`
    * @example getAll('/posts'), getAll('/employees)
    * @param uri `string`
    */
@@ -28,7 +28,13 @@ export class HttpCall {
     return this.http.get<T>(`${this.actionUrl}${uri ? uri : ""}`);
   }
 
-  public getOne<T>(uri: string, id: any): Observable<T> {
+  /**
+   * @description get one object from selected server user must pass the `uri`
+   * @example getOne('/posts','1'), getOne('/employees,1)
+   * @param uri `string`
+   * @param id `string`
+   */
+  public getOne<T>(uri: string, id: string): Observable<T> {
     return this.http.get<T>(`${this.actionUrl}${uri}${id ? `/${id}` : ""}`);
   }
 
@@ -42,8 +48,8 @@ export class HttpCall {
     });
   }
 
-  public post<T>(uri: string, postObject: any): Observable<T> {
-    return this.http.post<T>(`${this.actionUrl}${uri}`, postObject);
+  public post<T>(uri: string, objectTopost: T): Observable<T> {
+    return this.http.post<T>(`${this.actionUrl}${uri}`, objectTopost);
   }
 
   /**
@@ -52,14 +58,14 @@ export class HttpCall {
    * @param `updateObject` the object that you will send to end point api to update it, must contain the `id/s` for the object
    * @returns `Observable<T>`
    */
-  public update<T>(uri: string, updateObject: any): Observable<T> {
-    return this.http.put<T>(`${this.actionUrl}${uri}`, updateObject);
+  public update<T>(uri: string, objectToUpdate: T): Observable<T> {
+    return this.http.put<T>(`${this.actionUrl}${uri}`, objectToUpdate);
   }
 
-  public delete<T>(uri: string, id: any): Observable<T> {
-    if (typeof id != "string") {
-      throw new Error("id must be string");
+  public delete<T>(uri: string, id: T): Observable<T> {
+    if (typeof id === "string") {
+      return this.http.delete<T>(`${this.actionUrl}${uri}/` + id.toString());
     }
-    return this.http.delete<T>(`${this.actionUrl}${uri}/` + id.toString());
+    return this.http.delete<T>(`${this.actionUrl}${uri}`, id);
   }
 }

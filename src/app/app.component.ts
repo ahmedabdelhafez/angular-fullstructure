@@ -141,6 +141,12 @@ export class AppComponent
         );
       }
     });
+    ///////////////////////////
+    this.windowScroll$.subscribe((data) => {
+      console.log("page y : " + window.pageYOffset);
+
+      console.log(data);
+    });
   }
 
   ngAfterViewInit(): void {}

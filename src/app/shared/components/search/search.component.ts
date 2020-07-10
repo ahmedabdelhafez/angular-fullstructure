@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { distinctUntilChanged, debounceTime, switchMap } from "rxjs/operators";
 import { HttpCall } from "src/app/services/HttpCall.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-search",
@@ -17,19 +18,22 @@ export class SearchComponent implements OnInit {
   userName;
 
   searchTextChanged: Subject<string> = new Subject<string>();
-  constructor(private httpData: HttpCall) {}
+  constructor(
+    private httpData: HttpCall,
+    private activeRouter: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.searchFrombackend();
   }
 
-  searchFrombackend(){
+  searchFrombackend() {
     this.searchTextChanged
       .pipe(
         debounceTime(1500),
         distinctUntilChanged(),
         // start searching and change the  value
-        switchMap(() => this.httpData.getAll("posts"))
+        switchMap(() => this.httpData.getAll<any>("/posts" as string))
       )
       .subscribe((data: []) => {
         console.log("show data after 1.5 second");
