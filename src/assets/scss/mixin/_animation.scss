@@ -32,7 +32,7 @@ example:
 params:
 what: all or property name or multiple proeprty with comma (,) sperator
 */
-@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+@mixin transition($what: all, $time: 0.2s, $easing: ease-in-out) {
   -webkit-transition: $what $time $how;
   -moz-transition:    $what $time $how;
   -ms-transition:     $what $time $how;

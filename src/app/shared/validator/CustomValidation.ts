@@ -90,14 +90,14 @@ export class CustomValidation {
   static ismobilephone(control: AbstractControl): ValidationErrors | null {
     const val: string = control.value as string;
     if (
-      !validator.isMobilePhone(val === null ? "" : val, "en-AU", {
+      !validator.isMobilePhone(val === null ? "" : val, "ar-EG", {
         strictMode: false,
       })
     ) {
       return {
         notMobile: true,
         message:
-          "please add a valid australian phone code that starts with [0491]",
+          "please add a valid egyptian phone code that starts with [+20]",
       };
     }
     return null;

@@ -12,5 +12,7 @@
   } @else if $auto-flow == column {
     grid-auto-flow: $auto-flow;
     grid-auto-columns: $initColumnSize;
+    overflow: scroll;
+    overflow-y: hidden;
   }
 }

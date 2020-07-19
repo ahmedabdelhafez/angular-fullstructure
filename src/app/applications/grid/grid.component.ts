@@ -21,6 +21,7 @@ import { ActivatedRoute } from "@angular/router";
 
 import { MatDialog } from "@angular/material";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
+import { HttpCall } from 'src/app/services/HttpCall.service';
 
 // declare var $: any;
 
@@ -45,7 +46,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     private location: Location,
     private sanitize: DomSanitizer,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   separateDialCode = true;
@@ -53,8 +54,16 @@ export class GridComponent implements OnInit, AfterViewInit {
   imgBase: string[] = [];
   numberOfImages = 0;
   ngOnInit() {}
+  
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+ 
+  }
+
+  getKeyCode(event) {
+    console.log("key code after event");
+    console.log(event);
+  }
 
   async convertImageToBase64(event) {
     this.imgBase = await ImageUtil.convertImageToBase64(event);
