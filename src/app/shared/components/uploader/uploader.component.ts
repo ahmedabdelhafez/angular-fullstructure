@@ -4,7 +4,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  AfterViewInit
+  AfterViewInit,
 } from "@angular/core";
 import * as UppyCore from "@uppy/core";
 import * as Dashboard from "@uppy/dashboard";
@@ -14,16 +14,21 @@ import * as ProgressBar from "@uppy/progress-bar";
 @Component({
   selector: "app-uploader",
   templateUrl: "./uploader.component.html",
-  styleUrls: ["./uploader.component.scss"]
+  styleUrls: ["./uploader.component.scss"],
 })
 export class UploaderComponent implements OnInit, AfterViewInit {
   @Input("files") files: string | string[] = null;
+  @Input("endpointUrl") endpointUrl: string =
+    "http://localhost:3000/api/files/upload";
   @Input("allowedFormats") allowedFormats: string | string[];
+  @Input("minFiles") minFiles: number = 1;
+  @Input("maxFiles") maxFiles: number = 1;
   /**
    * @description the files that uploaded successfuly to  backend servers
    */
   @Output("uploadedData") uploadedData = new EventEmitter<any>();
   @Output("errorMessages") errorMessages = new EventEmitter<any>();
+  errorFiles = [];
   constructor() {}
 
   ngOnInit() {}
@@ -35,14 +40,15 @@ export class UploaderComponent implements OnInit, AfterViewInit {
   uppy;
   createUploader() {
     this.uppy = UppyCore({
+      id: "appUploader",
       autoProceed: false,
       locale: Arabic,
       restrictions: {
-        minNumberOfFiles: 2,
-        maxNumberOfFiles: 4,
-        allowedFileTypes: ["image/*", "video/*"]
+        minNumberOfFiles: this.minFiles,
+        maxNumberOfFiles: this.maxFiles,
+        allowedFileTypes: ["image/*", "video/*"],
       },
-      allowMultipleUploads: true
+      allowMultipleUploads: true,
     });
 
     this.uppy.use(Dashboard, {
@@ -61,31 +67,34 @@ export class UploaderComponent implements OnInit, AfterViewInit {
         {
           id: "caption",
           name: "Caption",
-          placeholder: "describe what the image is about"
-        }
+          placeholder: "describe what the image is about",
+        },
       ],
       browserBackButtonClose: true,
       hideRetryButton: false,
       width: "100%",
-      disableStatusBar: false
+      disableStatusBar: false,
     });
 
     this.uppy.use(XHRUpload, {
-      endpoint: "http://localhost:3000/api/files/upload",
+      endpoint: this.endpointUrl,
       method: "post",
       formData: true,
       bundle: false,
       fieldName: "imagefile",
-      metaFields: "imagefile"
+      metaFields: "imagefile",
     });
 
-    /// << After Files Uploaded >> ///
+    /// << After Files Added >> ///
 
-    this.uppy.on("file-added", file => {
+    this.uppy.on("file-added", (file) => {
       console.log("file added well");
       console.log(file);
     });
 
+    /**
+     * @description this event fire when upload has been success for file
+     */
     this.uppy.on("upload-success", (file, response) => {
       console.log("file after upload");
       console.log(file);
@@ -93,14 +102,19 @@ export class UploaderComponent implements OnInit, AfterViewInit {
       console.log(response);
     });
 
-    this.uppy.on("upload-error", err => {
+    /**
+     * @description this event fire when an error occured in any file
+     */
+    this.uppy.on("upload-error", (err) => {
       console.log("an error while upload file");
+      this.errorFiles.push(err);
     });
 
-    this.uppy.on("complete", res => {
+    this.uppy.on("complete", (res) => {
       console.log("all done and complete well ****************");
       console.log(res);
       this.uploadedData.emit(res);
+      this.errorMessages.emit(this.errorFiles);
     });
   }
 }

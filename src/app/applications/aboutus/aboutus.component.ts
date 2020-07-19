@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ViewportScroller } from "@angular/common";
 import { from, fromEvent } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
+import { AppAlert } from "src/app/shared/util/AppAlert";
 @Component({
   selector: "app-aboutus",
   templateUrl: "./aboutus.component.html",
@@ -54,7 +55,15 @@ export class AboutusComponent implements OnInit, AfterViewInit {
     this.router.navigate(["moreabout"], { relativeTo: this.activeRoute });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let x = await AppAlert.showError(
+      "an error here ya amr",
+      "error title",
+      2000
+    );
+    if (x) {
+      console.log("ok alert work fine");
+    }
     // const typed = new Typed('.typed-element', this.options);
     this.translateService.get("hello").subscribe((data) => {
       console.log("from about translation");
