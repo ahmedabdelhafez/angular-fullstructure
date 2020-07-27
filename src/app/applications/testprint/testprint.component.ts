@@ -1,4 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomValidation } from "src/app/shared/validator/CustomValidation";
 import { Router } from "@angular/router";
@@ -14,9 +21,9 @@ import {
 import { HttpCall } from "src/app/services/HttpCall.service";
 import { AppAlert } from "src/app/shared/util/AppAlert";
 import Swal from "sweetalert2";
-import { DateUtil } from "src/app/shared/util/DateUtil";
-
+import * as customAnimation from "../../animations/CustomAnimation";
 declare var $: any;
+
 @Component({
   selector: "app-testprint",
   templateUrl: "./testprint.component.html",
@@ -46,14 +53,29 @@ declare var $: any;
         // )
       ]),
     ]),
+    customAnimation.rotateIcon,
   ],
 })
-export class TestprintComponent implements OnInit {
+export class TestprintComponent implements OnInit, AfterViewInit {
+  iconState = "up";
+  flexGap = 10;
+
+  @ViewChild("flexContainer", { static: true }) flexContainer: ElementRef<
+    HTMLElement
+  >;
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private httpCall: HttpCall
+    private httpCall: HttpCall,
+    private render: Renderer2
   ) {}
+
+  rotateIcon() {
+    this.iconState === "up"
+      ? (this.iconState = "down")
+      : (this.iconState = "up");
+    console.log(this.iconState);
+  }
 
   ngOnInit() {
     this.createForm();
@@ -132,5 +154,10 @@ export class TestprintComponent implements OnInit {
     setTimeout(() => {
       this.state = "animateMe";
     }, 500);
+  }
+
+  ngAfterViewInit() {
+    let items = this.flexContainer.nativeElement;
+    console.log("flex childerdn count: " + items);
   }
 }

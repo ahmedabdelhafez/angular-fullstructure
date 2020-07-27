@@ -1,0 +1,9 @@
+<div
+  fxLayout="row wrap"
+  fxLayoutAlign="start stretch"
+  [fxLayoutGap]="flexGapSize"
+  id="appFlexContainer"
+  [ngStyle]="{ backgroundColor: bgColor }"
+>
+  <ng-content #flexContent></ng-content>
+</div>

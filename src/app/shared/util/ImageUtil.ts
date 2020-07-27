@@ -12,7 +12,7 @@ export class ImageUtil {
    * @description `imageToBase64` method is used to convert the image to base64 string
    */
 
-  static convertImageToBase64(fileObject) {
+  static convertImageToBase64(fileObject:any) {
     let allImagesBase64Array = [];
     let allFiles = fileObject.target.files;
     console.log("number of files: " + allFiles.length);

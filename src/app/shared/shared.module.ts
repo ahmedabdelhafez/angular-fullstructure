@@ -17,7 +17,6 @@ import { RolesDirective } from "../core/security/roles_directive/roles.directive
 import { CustomPopoverDirective } from "./directive/custom-popover.directive";
 import { RtlDirective } from "./directive/rtl.directive";
 import { QuillModule } from "ngx-quill";
-
 import { NgSelectModule } from "@ng-select/ng-select";
 import { Ng2FlatpickrModule } from "ng2-flatpickr";
 import { NgCircleProgressModule } from "ng-circle-progress";
@@ -25,10 +24,17 @@ import { FilterPipe } from "./pipes/filter.pipe";
 import { NgxPrintModule } from "ngx-print";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { StaticNavbarDirective } from "./directive/static-navbar.directive";
+import { MyinputComponent } from "./components/myinput/myinput.component";
+import { FilterViewerComponent } from "./components/filter-viewer/filter-viewer.component";
+import { PrintComponent } from "./components/print/print.component";
+import { TimerComponent } from "./components/timer/timer.component";
+import { CustomstepperComponent } from "./components/customstepper/customstepper.component";
+import { FlexComponent } from "./components/flex/flex.component";
+import { TableCustomComponent } from "./components/table-custom/table-custom.component";
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}
+// export function createTranslateLoader(http: HttpClient) {
+//   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+// }
 @NgModule({
   declarations: [
     ItemvalidationDirective,
@@ -42,6 +48,13 @@ export function createTranslateLoader(http: HttpClient) {
     RtlDirective,
     FilterPipe,
     StaticNavbarDirective,
+    MyinputComponent,
+    FilterViewerComponent,
+    PrintComponent,
+    TimerComponent,
+    CustomstepperComponent,
+    FlexComponent,
+    TableCustomComponent,
   ],
   imports: [
     CommonModule,
@@ -90,6 +103,13 @@ export function createTranslateLoader(http: HttpClient) {
     FilterPipe,
     NgxMaterialTimepickerModule,
     StaticNavbarDirective,
+    MyinputComponent,
+    FilterViewerComponent,
+    PrintComponent,
+    TimerComponent,
+    CustomstepperComponent,
+    FlexComponent,
+    TableCustomComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

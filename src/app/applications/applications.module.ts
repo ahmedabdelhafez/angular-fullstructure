@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { TeststyleComponent } from "./teststyle/teststyle.component";
 import { SharedModule } from "../shared/shared.module";
 import { TestprintComponent } from "./testprint/testprint.component";
-import { ComponentModule } from "../shared/components/components.module";
 import { FullmenuComponent } from "./fullmenu/fullmenu.component";
 import { MaterialModule } from "../shared/material.module";
 import { ObservableComponent } from "./observable/observable.component";
@@ -45,7 +44,6 @@ import { EventCalendarModule } from "../shared/components/event-calendar/event-c
   imports: [
     CommonModule,
     SharedModule,
-    ComponentModule,
     MaterialModule,
     BootstrapngxModule,
     DynamicgridModule,

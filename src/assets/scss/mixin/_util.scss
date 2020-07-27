@@ -69,23 +69,12 @@ truncate the text if it is long than the width or height of the box
 absoultue position with its property [top, right, bottom, left]
 
 */
-@mixin abs-position($top, $right, $bottom, $left) {
+@mixin abs-position($top: 0, $right: 0, $bottom: 0, $left: 0) {
   position: absolute;
   top: $top;
   right: $right;
   bottom: $bottom;
   left: $left;
-}
-
-@mixin position($position, $args) {
-  @each $o in top right bottom left {
-    $i: index($args, $o);
-    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number
-    {
-      #{$o}: nth($args, $i + 1);
-    }
-  }
-  position: $position;
 }
 
 // Positioning helpers
@@ -133,7 +122,7 @@ absoultue position with its property [top, right, bottom, left]
   padding-left: $left;
 }
 //Margin mixin
-@mixin margin($top, $right, $bottom, $left) {
+@mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
   margin-top: $top;
   margin-right: $right;
   margin-bottom: $bottom;

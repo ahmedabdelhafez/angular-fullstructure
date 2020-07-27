@@ -1,26 +1,48 @@
-<mat-toolbar color="primary">
-  <span class="fill-remaining-space">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <button mat-menu-item>
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>people_outline</mat-icon>
-        <span>Connecting</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>videocam</mat-icon>
-        <span>Let's talk</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
-  </span>
-  <span class="fill-remaining-space">Application Title</span>
-</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav
+    mode="over"
+    #sidenav
+    closed
+    position="start"
+    id="leftMenu"
+    appRtl
+  >
+    <ng-material-multilevel-menu
+      [configuration]="config"
+      [items]="appRouterData"
+    >
+    </ng-material-multilevel-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar
+      color="primary"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-between center"
+    >
+      <div>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Analysis Actions</span>
+      </div>
+      <span class="toolbar-spacer"></span>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdoenId"
+          data-toggle="dropdown"
+        >
+          {{ "language" | translate }}
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="changeLangAndStyle('ar')">Arabic</a>
+          <a class="dropdown-item" (click)="changeLangAndStyle('en')">English</a>
+        </div>
+      </div>
+    </mat-toolbar>
+    <div class="main-content">
+      <ng-content #appMainRouter></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

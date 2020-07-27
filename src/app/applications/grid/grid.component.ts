@@ -10,7 +10,6 @@ import {
 
 import { PostService } from "../../services/post.service";
 import { CityService } from "../../services/datasource_service/City.service";
-import { City } from "../../model/CityDataSource.interface";
 import { Location } from "@angular/common";
 import * as $ from "jquery";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -21,7 +20,9 @@ import { ActivatedRoute } from "@angular/router";
 
 import { MatDialog } from "@angular/material";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
-import { HttpCall } from 'src/app/services/HttpCall.service';
+import { FormOperation } from "src/app/core/model/FormOperation.iterface";
+import { FormGroup } from "@angular/forms";
+import { City } from 'src/app/core/model/CityDataSource.interface';
 
 // declare var $: any;
 
@@ -46,7 +47,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     private location: Location,
     private sanitize: DomSanitizer,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   separateDialCode = true;
@@ -54,11 +55,8 @@ export class GridComponent implements OnInit, AfterViewInit {
   imgBase: string[] = [];
   numberOfImages = 0;
   ngOnInit() {}
-  
 
-  ngAfterViewInit() {
- 
-  }
+  ngAfterViewInit() {}
 
   getKeyCode(event) {
     console.log("key code after event");

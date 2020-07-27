@@ -1,18 +1,46 @@
 @mixin gridContainer(
   $initColumnSize: 200px,
   $initRowSize: 0px,
-  $autoFlow: row
+  $autoFlow: row,
+  $rowGap: 5px,
+  $columnGap: 5px
 ) {
   display: grid;
   grid-template-columns: (auto-fit, minmax($initColumnSize, 1fr));
   grid-template-rows: minmax($initRowSize, auto);
+  grid-area: $rowGap $columnGap;
   @if autoFlow == row {
-    grid-auto-flow: $auto-flow;
+    grid-auto-flow: $autoFlow;
     grid-auto-rows: minmax($initRowSize, auto);
-  } @else if $auto-flow == column {
-    grid-auto-flow: $auto-flow;
+  } @else if $autoFlow == column {
+    grid-auto-flow: $autoFlow;
     grid-auto-columns: $initColumnSize;
     overflow: scroll;
     overflow-y: hidden;
   }
+}
+
+/// this mixin used to create grid row with default 12 column
+@mixin grid(
+  $columnCount: 12,
+  $initColumnSize: 1fr,
+  $initRowSize: 20px,
+  $rowGap: 5px,
+  $columnGap: 5px
+) {
+  display: grid;
+  grid-template-columns: repeat($columnCount, $initColumnSize);
+  grid-template-rows: minmax($initRowSize, auto);
+  gap: $rowGap $columnGap;
+}
+
+@mixin responsiveGrid() {
+}
+
+@mixin columnSize($columnCount: 1) {
+  grid-column: span $columnCount;
+}
+
+@mixin rowSize($rowCount: 1) {
+  grid-row: span $rowCount;
 }

@@ -11,6 +11,7 @@ import { ProfileComponent } from "./applications/profile/profile.component";
 import { GridComponent } from "./applications/grid/grid.component";
 import { SlidersComponent } from "./applications/sliders/sliders.component";
 import { MaterialTestComponent } from "./applications/material-test/material-test.component";
+import { PreloadStartegyService } from './core/preload-startegy.service';
 
 const routes: Routes = [
   {
@@ -87,6 +88,7 @@ const routes: Routes = [
       useHash: false,
       anchorScrolling: "enabled",
       scrollPositionRestoration: "disabled",
+      preloadingStrategy: PreloadStartegyService
     }),
   ],
   exports: [RouterModule],

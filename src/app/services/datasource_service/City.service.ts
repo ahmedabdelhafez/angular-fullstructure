@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { City } from "../../model/CityDataSource.interface";
+import { City } from "src/app/core/model/CityDataSource.interface";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class CityService {
   constructor(private http: HttpClient) {}
@@ -21,7 +21,7 @@ export class CityService {
         .set("filter", filter)
         .set("sortprder", sortOrder)
         .set("pagenumber", pageNumber.toString())
-        .set("pagesize", pageSize.toString())
+        .set("pagesize", pageSize.toString()),
     });
   }
 
@@ -29,11 +29,16 @@ export class CityService {
     return this.http.get<any>("http://localhost:3000/api/city/findall");
   }
 
-  getCityPage(page: number = 0, limit: number = 5) {
-    return this.http.get<City[]>("http://localhost:3000/api/city/citypagination", {
-      params: new HttpParams()
-        .set("page", page.toString())
-        .set("limit", limit.toString())
-    });
+  getCityPage(page: number = 0, limit: number = 5, sortColumnName?: string , sortDirection?:string) {
+    return this.http.get<City[]>(
+      "http://localhost:3000/api/city/citypagination",
+      {
+        params: new HttpParams()
+          .set("page", page.toString())
+          .set("limit", limit.toString())
+          .set('sortColumnName',sortColumnName)
+          .set('sortDirection',sortDirection),
+      }
+    );
   }
 }

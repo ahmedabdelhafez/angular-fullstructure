@@ -4,6 +4,8 @@ import {
   Renderer2,
   ViewChild,
   ElementRef,
+  AfterViewInit,
+  TemplateRef,
 } from "@angular/core";
 import { MediaObserver } from "@angular/flex-layout";
 import {
@@ -17,6 +19,9 @@ import {
   query,
   stagger,
 } from "@angular/animations";
+import { QUILL_CONFIG_TOKEN } from "ngx-quill";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { CdkStepper } from "@angular/cdk/stepper";
 
 @Component({
   selector: "app-material-test",
@@ -76,11 +81,8 @@ import {
           ":enter",
           [
             style({ opacity: 0, transform: "scale(0)" }), // start with this styles
-            stagger('0.2s', [
-              animate(
-                "0.5s",
-                style({ opacity: 1, transform: "scale(1)" })
-              ),
+            stagger("0.2s", [
+              animate("0.5s", style({ opacity: 1, transform: "scale(1)" })),
             ]),
           ],
           { optional: true }
@@ -89,10 +91,19 @@ import {
     ]),
   ],
 })
-export class MaterialTestComponent implements OnInit {
-  constructor(private media: MediaObserver) {}
+export class MaterialTestComponent implements OnInit, AfterViewInit {
+  @ViewChild("cdkStepper", { static: true }) cdkStepper: CdkStepper;
 
+  constructor(private media: MediaObserver, private fb: FormBuilder) {}
+  myform: FormGroup;
   dataElement = ["Football", "Courses", "Games", "Database", "Design"];
+
+  userIcon = [
+    { id: 0, icon: "home" },
+    { id: 1, icon: "add" },
+    { id: 2, icon: "remove" },
+  ];
+
   ngOnInit() {
     this.media.media$.subscribe((data) => {
       console.log("media beakpoints");
@@ -100,29 +111,14 @@ export class MaterialTestComponent implements OnInit {
     });
   }
 
-  mainMenuState = true;
-
-  showMainMenu() {
-    console.log("media method called");
-
-    this.mainMenuState === true
-      ? (this.mainMenuState = false)
-      : (this.mainMenuState = true);
+  nextItem() {
+    this.cdkStepper.next();
+    console.log("step number ", this.cdkStepper.selectedIndex);
+  }
+  prevItem() {
+    this.cdkStepper.previous();
+    console.log("step number ", this.cdkStepper.selectedIndex);
   }
 
-  animationState = "show";
-  showHide() {
-    this.animationState === "hide"
-      ? (this.animationState = "show")
-      : (this.animationState = "hide");
-  }
-
-  removeItem(idx) {
-    this.dataElement.splice(idx, 1);
-  }
-
-  reload() {
-    this.dataElement.length = 0;
-    this.dataElement = ["Football", "Courses", "Games", "Database", "Design"];
-  }
+  ngAfterViewInit() {}
 }

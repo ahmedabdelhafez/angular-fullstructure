@@ -1,11 +1,11 @@
-/** city interface equal to city model inthe database or income API */
+/** city interface equal to city model in the database or income API */
 export interface City {
   cityId: number;
   cityName: string;
   country: Country;
 }
 
-/** country interface equal to country model inthe database or income API */
+/** country interface equal to country model in the database or income API */
 export interface Country {
   countryId: number;
   countryName: string;
