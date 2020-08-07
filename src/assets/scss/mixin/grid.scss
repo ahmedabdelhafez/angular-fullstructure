@@ -23,13 +23,12 @@
 /// this mixin used to create grid row with default 12 column
 @mixin gridFixed(
   $columnCount: 12,
-  $initColumnSize: 1fr,
   $initRowSize: 20px,
   $rowGap: 5px,
   $columnGap: 5px
 ) {
   display: grid;
-  grid-template-columns: repeat($columnCount, $initColumnSize);
+  grid-template-columns: repeat($columnCount, 1fr);
   grid-template-rows: minmax($initRowSize, auto);
   gap: $rowGap $columnGap;
 }
@@ -52,11 +51,11 @@ and i will work with all screen you just need to initial it for your needs
   gap: $rowGap $columnGap;
 }
 
-@mixin columnSize($columnCount: 1) {
+@mixin gridColumnSize($columnCount: 1) {
   grid-column: span $columnCount;
 }
 
-@mixin rowSize($rowCount: 1) {
+@mixin gridRowSize($rowCount: 1) {
   grid-row: span $rowCount;
 }
 
