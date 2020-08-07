@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 import { FormOperation } from "src/app/core/model/FormOperation.iterface";
 import {
   RxwebValidators,
@@ -9,8 +9,20 @@ import {
   ResetFormType,
 } from "@rxweb/reactive-form-validators";
 import { CanComponentDeactivate } from "../../core/security/guard/candeactivate.guard";
-import { Observable } from "rxjs";
-import { UsersForm } from "../../shared/forms-models/users.class";
+import { Observable, of } from "rxjs";
+import { UsersForm, AddressForm } from "../../shared/forms-models/users.class";
+import { HttpCall } from "src/app/services/HttpCall.service";
+import {
+  distinctUntilChanged,
+  debounceTime,
+  switchMap,
+  tap,
+  concatMap,
+  mergeMap,
+  exhaustMap,
+  mergeAll,
+} from "rxjs/operators";
+import { isArray } from 'jquery';
 @Component({
   selector: "app-use-tabs",
   templateUrl: "./use-tabs.component.html",
@@ -38,22 +50,34 @@ export class UseTabsComponent
     },
   ];
 
-  constructor(private fb: FormBuilder, private formBuilder: RxFormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private formBuilder: RxFormBuilder,
+    private http: HttpCall
+  ) {}
+
+  empForm: FormGroup;
+
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (
-      this.empForm.get("username").invalid ||
-      this.empForm.get("email").invalid
+      this.empForm.get("username").errors ||
+      this.empForm.get("email").errors
     ) {
       return confirm("Your changes are unsaved!! Do you like to exit");
     }
     return true;
   }
+  postId = new FormControl('1');
   ngOnInit(): void {
+    let userForm = new UsersForm();
+    userForm.address = new AddressForm();
     // this.createForm();
-    this.empForm = <RxFormGroup>this.formBuilder.formGroup(UsersForm);
+    this.empForm = this.formBuilder.formGroup(userForm);
+
+    this.getdataFromServer();
   }
 
-  createForm<T>() {
+  createForm() {
     // this.empForm = this.fb.group({
     //   empid: [
     //     "",
@@ -115,15 +139,12 @@ export class UseTabsComponent
     } else {
       let data = formInstance.getRawValue();
 
-      let formdata = this.empForm.toFormData();
-      console.log(formdata);
-
       console.log(data);
     }
   }
   resetForm<T>(formInstance?: FormGroup) {
     formInstance.reset();
-    this.empForm.resetForm({ resetType: ResetFormType.ControlsOnly });
+    // this.empForm.resetForm({ resetType: ResetFormType.ControlsOnly });
   }
   updateData<T>(updateObject: T, id?: T) {
     throw new Error("Method not implemented.");
@@ -134,5 +155,36 @@ export class UseTabsComponent
   getFormValues<T>(formInstance?: FormGroup) {
     throw new Error("Method not implemented.");
   }
-  empForm: RxFormGroup;
+
+  bookForm: FormGroup = this.fb.group({
+    postId: this.postId,
+  });
+  getdataFromServer() {
+    this.postId.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        concatMap((postid) => {
+          if (!postid) {
+            return of([]);
+          } else {
+            console.log("changes id: ", postid);
+
+            return this.http.getOne("/posts", postid);
+          }
+        })
+      )
+      .subscribe(
+        (data) => {
+          if (isArray(data) && data.length === 0) {
+            console.log("no data");
+          }else{
+            console.log(data);
+          }
+        },
+        (err) => {
+          console.log("an erro here");
+        }
+      );
+  }
 }

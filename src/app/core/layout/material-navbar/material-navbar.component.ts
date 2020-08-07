@@ -173,18 +173,6 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
       },
       navigationExtras: { relativeTo: this.activatedRoute },
     },
-    {
-      label: "sliders",
-      data: { name: "sliders" },
-      link: "/sliders",
-      icon: "offline_pin",
-      onSelected: () => {
-        this.router.navigate(["/sliders"]);
-        this.menuStateAr = "hide";
-        this.menuStateEn = "hide";
-      },
-      navigationExtras: { relativeTo: this.activatedRoute },
-    },
   ];
 
   // Get Language On App Startup To Change The Full App Direction

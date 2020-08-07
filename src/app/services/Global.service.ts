@@ -1,4 +1,4 @@
-import { Injectable, Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpCall } from "./HttpCall.service";
 import { BehaviorSubject, Subject } from "rxjs";
 
@@ -8,12 +8,9 @@ import { BehaviorSubject, Subject } from "rxjs";
 export class GlobalService {
   menuState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   httpLoader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  
+
   //////////////////////
-  constructor(
-    private http: HttpCall,
-    @Inject("Window") private window: Window
-  ) {}
+  constructor(private http: HttpCall) {}
 
   get getMenuState() {
     return this.menuState.asObservable();
@@ -30,6 +27,4 @@ export class GlobalService {
   hide() {
     this.httpLoader.next(false);
   }
-
-
 }

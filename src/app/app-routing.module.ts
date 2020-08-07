@@ -9,7 +9,6 @@ import { FullmenuComponent } from "./applications/fullmenu/fullmenu.component";
 import { ObservableComponent } from "./applications/observable/observable.component";
 import { ProfileComponent } from "./applications/profile/profile.component";
 import { GridComponent } from "./applications/grid/grid.component";
-import { SlidersComponent } from "./applications/sliders/sliders.component";
 import { MaterialTestComponent } from "./applications/material-test/material-test.component";
 import { PreloadStartegyService } from "./core/preload-startegy.service";
 
@@ -98,11 +97,6 @@ const routes: Routes = [
     path: "grid",
     component: GridComponent,
     data: { breadcrumb: "/grid", title: "grid", state: "grid" },
-  },
-  {
-    path: "sliders",
-    component: SlidersComponent,
-    data: { breadcrumb: "/sliders", title: "sliders", state: "sliders" },
   },
 ];
 

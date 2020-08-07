@@ -75,7 +75,6 @@ export function loadConfigurations(configAppService: ConfigAppService) {
       },
     }),
     NgxIndexedDBModule.forRoot(dbConfig),
-    HammerModule,
   ],
   providers: [
     // HttpConfigService,

@@ -8,14 +8,16 @@
     "internetConnectionSuccess": "you are connected to internet"
   },
   "config": {},
-  "validation": {
-    "required": "the {{value}} field is required",
-    "notNumber": "the {{value}} must be a number",
-    "maxlength": "maxlength for item {{value}} is",
-    "alpha": "the {{value}} accpts charachter only",
-    "notArabic": "this field must have arabic data only"
+  "VALIDATION-MESSAGES": {
+    "required": "the {{itemName}} field is required",
+    "notNumber": "the {{itemName}} must be a number",
+    "maxlength": "maxlength for item {{itemName}} is",
+    "alpha": "the {{itemName}} accpts charachter only",
+    "notArabic": "this field must have arabic data only",
+    "email": "please enter a valida email",
+    "numeric": "this field accepts number only"
   },
-  "appcontrols":{"username":"username"},
+  "appcontrols": { "username": "username" },
   "statuscode": {
     "200": "The request has succeeded",
     "201": "resource created succefuly",
@@ -62,9 +64,9 @@
     "actions": "Actions",
     "image": "Image"
   },
-  "PAGES":{
-    "PAGE-INPUTS":{
-      "username":" username input item "
+  "PAGES": {
+    "PAGE-INPUTS": {
+      "username": " username input item "
     }
   }
 }

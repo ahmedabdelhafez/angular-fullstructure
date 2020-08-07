@@ -6,9 +6,15 @@
 >
   <ng-container *ngFor="let error of validateErrors; let i = index">
     <ng-container *ngIf="formInstance.get(controls).hasError(error)">
-      <span translate [translateParams]="{ value: errorTranslatePrefix+controlName | translate }">{{
-        errorMessages.get(error)
-      }}</span>
+      <p
+        class="app-text-error"
+        translate
+        [translateParams]="{
+          itemName: errorTranslatePrefix + controlName | translate
+        }"
+      >
+        {{ errorMessages.get(error) }}
+      </p>
     </ng-container>
   </ng-container>
 </ng-container>

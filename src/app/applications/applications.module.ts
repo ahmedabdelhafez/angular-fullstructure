@@ -9,7 +9,6 @@ import { ObservableComponent } from "./observable/observable.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { BootstrapngxModule } from "../shared/bootstrapngx.module";
 import { GridComponent } from "./grid/grid.component";
-import { SlidersComponent } from "./sliders/sliders.component";
 import { DynamicgridModule } from "../shared/dynamicgrid/dynamicgrid.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SwiperSliderModule } from "../shared/components/swiper-slider/swiper-slider.module";
@@ -35,7 +34,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ObservableComponent,
     ProfileComponent,
     GridComponent,
-    SlidersComponent,
     MaterialTestComponent,
     ItemviewComponent,
   ],
@@ -62,7 +60,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     TestprintComponent,
     ProfileComponent,
     GridComponent,
-    SlidersComponent,
     MaterialTestComponent,
   ],
   entryComponents: [],
