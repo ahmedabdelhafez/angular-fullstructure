@@ -1,6 +1,6 @@
 .full-spinner {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: darkseagreen;
+  background-color: darkseagreen;
 
   .load-wrapper {
     // height: 100px;
@@ -41,7 +41,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: darkblue;
+  background: seagreen;
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {

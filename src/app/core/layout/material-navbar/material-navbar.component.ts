@@ -12,10 +12,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Configuration, MultilevelNodes } from "ng-material-multilevel-menu";
 import { TranslateService } from "@ngx-translate/core";
 import { DOCUMENT } from "@angular/common";
-import { DateAdapter } from "@angular/material";
+import { DateAdapter } from "@angular/material/core";
 import { TranslationService } from "../../translation.service";
 import { ConfigAppService } from "src/app/services/ConfigApp.service";
-import { fromEvent, timer } from "rxjs";
 
 @Component({
   selector: "app-material-navbar",
@@ -145,6 +144,18 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
       icon: "offline_pin",
       onSelected: () => {
         this.router.navigate(["/grid"]);
+        this.menuStateAr = "hide";
+        this.menuStateEn = "hide";
+      },
+      navigationExtras: { relativeTo: this.activatedRoute },
+    },
+    {
+      label: "users",
+      data: { name: "users" },
+      link: "/users",
+      icon: "person",
+      onSelected: () => {
+        this.router.navigate(["/users"]);
         this.menuStateAr = "hide";
         this.menuStateEn = "hide";
       },

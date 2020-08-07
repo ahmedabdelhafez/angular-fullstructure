@@ -8,6 +8,7 @@
 }
 /*
 block must have width and height values set 
+the parent must have:  position:relative
 */
 @mixin center-item {
   position: absolute;
@@ -77,19 +78,6 @@ absoultue position with its property [top, right, bottom, left]
   left: $left;
 }
 
-// Positioning helpers
-@mixin absolute($args: "") {
-  @include position(absolute, $args);
-}
-
-@mixin fixed($args: "") {
-  @include position(fixed, $args);
-}
-
-@mixin relative($args: "") {
-  @include position(relative, $args);
-}
-
 /*
  this mixin is used to add the border for any element
  that allow to make border like: div , input
@@ -115,14 +103,14 @@ absoultue position with its property [top, right, bottom, left]
 }
 
 //Padding mixin
-@mixin padding($top: 0, $right: 0, $bottom: 0, $left: 0) {
+@mixin padding($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
   padding-top: $top;
   padding-right: $right;
   padding-bottom: $bottom;
   padding-left: $left;
 }
 //Margin mixin
-@mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
+@mixin margin($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
   margin-top: $top;
   margin-right: $right;
   margin-bottom: $bottom;
@@ -135,4 +123,30 @@ creat box on any div
 @mixin box($width, $height: $width) {
   width: $width;
   height: $height;
+}
+
+/*
+Rem units
+Implementing CSS rem units with pixel fallback.
+
+You must provide at least one value when using the mixin, 
+this value will be treated as the font-size and will be outputted as processed with the default base font-size (16)
+. Or you may provide a different base value if you wish to.
+*/
+
+@mixin font-size($size, $base: 16) {
+  font-size: $size; // fallback for old browsers
+  font-size: ($size / $base) * 1rem;
+}
+
+@mixin boxShadow($top, $left, $blur, $color) {
+  -webkit-box-shadow: $top $left $blur $color;
+  -moz-box-shadow: $top $left $blur $color;
+  box-shadow: $top $left $blur $color;
+}
+
+@mixin boxShadow-inset($top, $left, $blur, $color) {
+  -webkit-box-shadow: inset $top $left $blur $color;
+  -moz-box-shadow: inset $top $left $blur $color;
+  box-shadow: inset $top $left $blur $color;
 }

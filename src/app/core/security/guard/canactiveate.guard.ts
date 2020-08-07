@@ -6,7 +6,7 @@ import {
   CanActivate,
 } from "@angular/router";
 import { Observable } from "rxjs";
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { JwtModule } from "@auth0/angular-jwt";
 import { AppAlert } from "src/app/shared/util/AppAlert";
 @Injectable({
   providedIn: "root",

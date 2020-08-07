@@ -21,7 +21,7 @@
 }
 
 /// this mixin used to create grid row with default 12 column
-@mixin grid(
+@mixin gridFixed(
   $columnCount: 12,
   $initColumnSize: 1fr,
   $initRowSize: 20px,
@@ -34,7 +34,22 @@
   gap: $rowGap $columnGap;
 }
 
-@mixin responsiveGrid() {
+/*
+when using this mixin it's allow you to create responsive grid container 
+and i will work with all screen you just need to initial it for your needs
+*/
+
+@mixin gridResponsive(
+  $initColumnSize: 100px,
+  $initRowSize: 100px,
+  $rowGap: 5px,
+  $columnGap: 5px
+) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($initColumnSize, 1fr));
+  grid-template-rows: minmax($initRowSize, auto);
+  grid-auto-rows: minmax($initRowSize, auto);
+  gap: $rowGap $columnGap;
 }
 
 @mixin columnSize($columnCount: 1) {
@@ -43,4 +58,8 @@
 
 @mixin rowSize($rowCount: 1) {
   grid-row: span $rowCount;
+}
+
+@mixin gapSize($rowGap: 5px, $columnGap: 5px) {
+  gap: $rowGap $columnGap;
 }

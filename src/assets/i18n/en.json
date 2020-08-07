@@ -11,9 +11,11 @@
   "validation": {
     "required": "the {{value}} field is required",
     "notNumber": "the {{value}} must be a number",
-    "maxlength": "maxlength faild",
+    "maxlength": "maxlength for item {{value}} is",
+    "alpha": "the {{value}} accpts charachter only",
     "notArabic": "this field must have arabic data only"
   },
+  "appcontrols":{"username":"username"},
   "statuscode": {
     "200": "The request has succeeded",
     "201": "resource created succefuly",
@@ -49,6 +51,7 @@
     "profile": "Profile",
     "grid": "Grid CSS3",
     "sliders": "Slider",
+    "users": "Users",
     "materialtest": "Material Test"
   },
   "table-header": {
@@ -58,5 +61,10 @@
     "symbol": "Symbol",
     "actions": "Actions",
     "image": "Image"
+  },
+  "PAGES":{
+    "PAGE-INPUTS":{
+      "username":" username input item "
+    }
   }
 }

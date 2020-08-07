@@ -14,16 +14,14 @@ import { DynamicgridModule } from "../shared/dynamicgrid/dynamicgrid.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SwiperSliderModule } from "../shared/components/swiper-slider/swiper-slider.module";
 import { HttpcardModule } from "../shared/components/httpcard/httpcard.module";
-import { SwitchbuttonModule } from "../shared/custom_inputs/switchbutton/switchbutton.module";
-import { RadiobuttonModule } from "../shared/custom_inputs/radiobutton/radiobutton.module";
 import { DialogModule } from "../shared/components/dialog/dialog.module";
 import { UploaderModule } from "../shared/components/uploader/uploader.module";
-import { InboardCarouselModule } from "../shared/components/inboard-carousel/inboard-carousel.module";
 import { SearchModule } from "../shared/components/search/search.module";
 import { MaterialTestComponent } from "./material-test/material-test.component";
 import { ItemviewComponent } from "./grid/itemview/itemview.component";
 import { NgxPaginationModule } from "ngx-pagination";
 import { EventCalendarModule } from "../shared/components/event-calendar/event-calendar.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 // const route: Routes = [
 //   { path: '', component: TeststyleComponent }
@@ -51,15 +49,13 @@ import { EventCalendarModule } from "../shared/components/event-calendar/event-c
     ReactiveFormsModule,
     SwiperSliderModule,
     HttpcardModule,
-    SwitchbuttonModule,
-    RadiobuttonModule,
     DialogModule,
     UploaderModule,
-    InboardCarouselModule,
     BootstrapngxModule,
     SearchModule,
     NgxPaginationModule,
     EventCalendarModule,
+    FlexLayoutModule,
   ],
   exports: [
     TeststyleComponent,

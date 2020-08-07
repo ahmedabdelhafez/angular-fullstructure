@@ -29,8 +29,18 @@
     ></span
   >
 </div> -->
-<app-flexcontainer #flexContainer [bgColor]="'red'" [flexGap]="flexGap">
-  <div fxFlex="calc(25% - 20px)">
+<div
+  fxLayout="row wrap"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="20px grid"
+  class="my-flex-container mt-4"
+>
+  <div
+    fxFlex="1 1 calc(25% - 20px)"
+    *ngIf="state22"
+    [@enter]="state22"
+    [@leave]="!state22"
+  >
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -49,7 +59,37 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div
+    fxFlex="1 1 calc(25% - 20px)"
+    [@fadeInOnEnter]="{ value: 'enter', params: { duration: 1500, delay: 0 } }"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button color="accent" (click)="hideItem()">
+          Hide item
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div
+    fxFlex="1 1 calc(25% - 20px)"
+    [@fadeInOnEnter]="{
+      value: 'enter',
+      params: { duration: 2000, delay: 100 }
+    }"
+  >
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -68,7 +108,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div fxFlex="1 1calc(25% - 20px)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -87,7 +127,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div fxFlex="1 1 calc(25% - 20px)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -106,7 +146,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div fxFlex="1 1 calc(25% - 20px)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -125,7 +165,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div fxFlex="1 1calc(25% - 20px)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -144,7 +184,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div fxFlex="1 1 calc(25% - 20px)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -163,7 +203,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
+  <div fxFlex="1 1 calc(25% - 20px)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>title</mat-card-title>
@@ -182,236 +222,4 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-</app-flexcontainer>
-<app-flexcontainer [bgColor]="'green'"  [flexGap]="flexGap">
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div fxFlex="calc(25% - 20px)">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>title</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          laboriosam recusandae molestias, asperiores maiores tenetur quod!
-          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
-          dolorum, accusantium doloremque! A.
-        </div></mat-card-content
-      >
-      <mat-card-actions>
-        <button mat-button>Ok</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-</app-flexcontainer>
+</div>

@@ -346,8 +346,8 @@ $shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
 }
 
 .myclass {
-  background-color: lightgreen;
-  width: 50px;
+  background-color: rgb(0, 128, 0) !important;
+  color: rgb(255, 165, 0);
 }
 
 @keyframes loopExit {

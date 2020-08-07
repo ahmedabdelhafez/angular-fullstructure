@@ -18,7 +18,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { ActivatedRoute } from "@angular/router";
 
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import { FormOperation } from "src/app/core/model/FormOperation.iterface";
 import { FormGroup } from "@angular/forms";

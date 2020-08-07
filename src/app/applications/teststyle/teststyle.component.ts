@@ -12,12 +12,7 @@ import {
   transition,
   animate,
 } from "@angular/animations";
-import {
-  MatTable,
-  MatSort,
-  MatTableDataSource,
-  MatPaginator,
-} from "@angular/material";
+
 import { TranslateService } from "@ngx-translate/core";
 import { TranslationService } from "src/app/core/translation.service";
 import { of, merge } from "rxjs";
@@ -38,6 +33,9 @@ import {
 import { HttpCall } from "src/app/services/HttpCall.service";
 import { CityDataSource } from "./datasource/CityDataSource";
 import { CityService } from "../../services/datasource_service/City.service";
+import { MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 export interface PeriodicElement {
   name: string;

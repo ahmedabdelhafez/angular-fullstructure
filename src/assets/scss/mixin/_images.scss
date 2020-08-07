@@ -1,0 +1,7 @@
+@mixin circleImage($width, $height: $width, $objectFit: cover) {
+  width: $width;
+  height: $height;
+  img {
+    object-fit: cover;
+  }
+}

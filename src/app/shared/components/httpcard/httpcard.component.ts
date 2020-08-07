@@ -35,7 +35,7 @@ export class HttpcardComponent implements OnInit {
     this.posts
       .getPost(this.postId)
       .pipe(
-        delay(5000),
+        delay(3000),
         tap(e => {
           console.log("tap method works well");
           console.log(e);

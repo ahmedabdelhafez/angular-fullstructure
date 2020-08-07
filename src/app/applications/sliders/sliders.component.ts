@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import Swiper from "swiper";
 
-import { fadeIn, bounce, slideInRight, swing } from "ng-animate";
 import { trigger, transition, useAnimation } from "@angular/animations";
 
 @Component({
@@ -16,9 +15,7 @@ import { trigger, transition, useAnimation } from "@angular/animations";
   templateUrl: "./sliders.component.html",
   styleUrls: ["./sliders.component.scss"],
   animations: [
-    trigger("fadeIn", [transition("* => *", useAnimation(fadeIn))]),
-    trigger("slideInRight", [transition("* => *", useAnimation(slideInRight))]),
-    trigger("swing", [transition("* => *", useAnimation(swing))]),
+
   ],
 })
 export class SlidersComponent implements OnInit, AfterViewInit {
@@ -55,11 +52,11 @@ export class SlidersComponent implements OnInit, AfterViewInit {
   ];
   constructor(private el: ElementRef<HTMLElement>, private render: Renderer2) {}
 
-  @ViewChild("mainMenu", { static: false }) mainMenu: ElementRef<HTMLElement>;
-  @ViewChild("st", { static: false }) st: ElementRef<HTMLElement>;
-  @ViewChild("h2text", { static: false }) h2text: ElementRef<HTMLElement>;
-  @ViewChild("ptext", { static: false }) ptext: ElementRef<HTMLElement>;
-  @ViewChild("imgele", { static: false }) imgele: ElementRef<HTMLElement>;
+  @ViewChild("mainMenu") mainMenu: ElementRef<HTMLElement>;
+  @ViewChild("st") st: ElementRef<HTMLElement>;
+  @ViewChild("h2text") h2text: ElementRef<HTMLElement>;
+  @ViewChild("ptext") ptext: ElementRef<HTMLElement>;
+  @ViewChild("imgele") imgele: ElementRef<HTMLElement>;
 
   transitionSpeed = 1000;
   ngOnInit() {}
