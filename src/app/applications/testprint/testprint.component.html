@@ -1,40 +1,4 @@
-<button type="button" class="btn btn-primary" (click)="getAll()">
-  Get Posts
-</button>
-<button type="button" class="btn btn-danger" (click)="getOne()">
-  Posts With ID
-</button>
-
-<h1 [@showhide]="state" (@showhide.done)="onAnimationDone($event)">
-  How are you man
-  <span class="content">
-    <img
-      [src]="
-        '../../../assets/icons/200 App & Web Minimal Outline Icons/SVG/08.svg'
-      "
-      width="28"
-      height="28"
-      alt=""
-      srcset=""
-  /></span>
-  in you vision
-</h1>
-<h1 [@showhide]="state2">
-  How are you man
-  <span class="content">
-    <img
-      [src]="
-        '../../../assets/icons/200 App & Web Minimal Outline Icons/SVG/08.svg'
-      "
-      width="28"
-      height="28"
-      alt=""
-      srcset=""
-  /></span>
-  in you vision
-</h1>
-
-<div class="grid-cont">
+<!-- <div class="grid-cont">
   <div class="d1">
     <form [formGroup]="myform" (ngSubmit)="saveForm()">
       <mat-form-field>
@@ -59,23 +23,203 @@
     temporibus, quisquam repellat voluptas dolores eaque ducimus nulla mollitia
     modi velit necessitatibus magnam nobis harum voluptatibus. Dicta, earum eum?
   </div>
-</div>
-
-<!-- <div class="dropdown-main">
-  <h6>Select Any Data</h6>
-  <img
-    [src]="
-      '../../../assets/icons/200 App & Web Minimal Outline Icons/SVG/05.svg'
-    "
-    width="22"
-    height="22"
-    alt=""
-    srcset=""
-  />
-  <div class="dropdown-option">
-    <div class="myoption">option 1</div>
-    <div class="myoption">option 1</div>
-    <div class="myoption">option 1</div>
-    <div class="myoption">option 1</div>
-  </div>
+  <span
+    ><mat-icon [@rotateIcon]="iconState" (click)="rotateIcon()"
+      >arrow_drop_up</mat-icon
+    ></span
+  >
 </div> -->
+<div
+  fxLayout="row wrap"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="20px grid"
+  class="my-flex-container mt-4"
+>
+  <div
+    fxFlex="1 1 calc(25% - 20px)"
+    *ngIf="state22"
+    [@enter]="state22"
+    [@leave]="!state22"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div
+    fxFlex="1 1 calc(25% - 20px)"
+    [@fadeInOnEnter]="{ value: 'enter', params: { duration: 1500, delay: 0 } }"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button color="accent" (click)="hideItem()">
+          Hide item
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div
+    fxFlex="1 1 calc(25% - 20px)"
+    [@fadeInOnEnter]="{
+      value: 'enter',
+      params: { duration: 2000, delay: 100 }
+    }"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="1 1calc(25% - 20px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="1 1 calc(25% - 20px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="1 1 calc(25% - 20px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="1 1calc(25% - 20px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="1 1 calc(25% - 20px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="1 1 calc(25% - 20px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>title</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+          laboriosam recusandae molestias, asperiores maiores tenetur quod!
+          Iusto nam modi quisquam nostrum facere, perspiciatis saepe fuga in
+          dolorum, accusantium doloremque! A.
+        </div></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

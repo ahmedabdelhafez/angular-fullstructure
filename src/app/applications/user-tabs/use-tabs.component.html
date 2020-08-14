@@ -1,0 +1,123 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Rx Web Form validation</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="empForm" (ngSubmit)="saveForm(empForm)">
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="emp id" formControlName="empid" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="username" formControlName="username" />
+        <mat-error>
+          <app-error-validation
+            [formInstance]="empForm"
+            [controlName]="'username'"
+            [validateErrors]="['required', 'alpha']"
+            [errorsTranslatePrefix]="userInputTranslate"
+          ></app-error-validation>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="salary"
+          formControlName="salary"
+        />
+        <mat-error>
+          <app-error-validation
+            [formInstance]="empForm"
+            [controlName]="'salary'"
+            [validateErrors]="['required', 'numeric']"
+            [errorsTranslatePrefix]="userInputTranslate"
+          ></app-error-validation>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="email" formControlName="email" />
+        <mat-error>
+          <app-error-validation
+            [formInstance]="empForm"
+            [controlName]="'email'"
+            [validateErrors]="['required', 'email']"
+            [errorsTranslatePrefix]="userInputTranslate"
+          ></app-error-validation>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="password" formControlName="password" />
+        <mat-error *ngIf="empForm.get('password').invalid">
+          {{ empForm.get("password").errors | json }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="confirm password"
+          formControlName="confirmPassword"
+        />
+        <mat-error *ngIf="empForm.get('confirmPassword').invalid">
+          {{ empForm.get("confirmPassword").errors | json }}
+        </mat-error>
+      </mat-form-field>
+      <!-- nested group -->
+      <div formGroupName="address">
+        <mat-form-field>
+          <input matInput placeholder="city" formControlName="city" />
+          <mat-error>
+            {{ empForm.get("address.city").errors?.contains?.refValues }}
+          </mat-error>
+          <mat-error>
+            <app-error-validation
+              [formInstance]="empForm"
+              [controlName]="'city'"
+              [nestedGroupName]="'address'"
+              [validateErrors]="['required', 'email']"
+            ></app-error-validation>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="zipcode" formControlName="zipcode" />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button type="submit" [disabled]="empForm.invalid">
+        Save
+      </button>
+      <button mat-button (click)="resetForm(empForm)">
+        Reset
+      </button>
+      <button mat-button>
+        <span><i class="icon-alert-triangle-outline"></i></span>
+        Icons
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+
+<!-- tabs navigation -->
+<nav mat-tab-nav-bar>
+  <p
+    mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.link"
+    [routerLinkActive]="'activeLink'"
+  >
+    {{ link.label }}
+  </p>
+  <p mat-tab-link>Home</p>
+</nav>
+<div class="tab-child-container">
+  <router-outlet #usertabChildRouter></router-outlet>
+</div>
+
+<div>
+  <form [formGroup]="bookForm">
+    <mat-form-field>
+      <input matInput placeholder="get data from server" formControlName="postId" />
+    </mat-form-field>
+  </form>
+  
+</div>

@@ -3,6 +3,8 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
 } from "@angular/core";
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
@@ -13,10 +15,14 @@ import {
   Validators,
   AbstractControl,
 } from "@angular/forms";
-import { CustomValidation } from "src/app/shared/validator/CustomValidation";
 import { TranslateService } from "@ngx-translate/core";
-import AWN from "awesome-notifications";
 import { HttpCall } from "src/app/services/HttpCall.service";
+import { delay } from "rxjs/operators";
+import {
+  RxFormBuilder,
+  RxwebValidators,
+} from "@rxweb/reactive-form-validators";
+
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -26,8 +32,6 @@ import { HttpCall } from "src/app/services/HttpCall.service";
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class FullmenuComponent implements OnInit {
-  notifier = new AWN({ position: "bottom-right", animationDuration: 200 });
-
   constructor(
     private fb: FormBuilder,
     private translateService: TranslateService,
@@ -42,7 +46,7 @@ export class FullmenuComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.employeeForm.valueChanges.subscribe((data) => {
-      this.validateForm();
+      // this.validateForm();
     });
 
     this.translateService.onLangChange.subscribe((data) => {
@@ -52,13 +56,10 @@ export class FullmenuComponent implements OnInit {
 
   createForm() {
     this.employeeForm = this.fb.group({
-      empId: ["", [Validators.required]],
+      empId: ["", [Validators.required, Validators.maxLength(8)]],
       empName: ["", [Validators.required]],
       salary: ["", [Validators.required]],
-      address: this.fb.group({
-        city: ["", [Validators.required]],
-        town: ["", Validators.required],
-      }),
+      empImage: [""],
     });
   }
 
@@ -77,9 +78,28 @@ export class FullmenuComponent implements OnInit {
       alert("please complete the form");
     } else {
       let val = this.employeeForm.value;
-      console.log(val.getSalary);
-      console.log(val.getEmpName);
-      console.log(val.getEmail);
+      console.log(val);
+    }
+  }
+
+  uploadFile(event, formInstance: FormGroup, fileName: string = "avatar") {
+    const file = (event.target as HTMLInputElement).files[0];
+
+    // formInstance.patchValue({
+    //   avatar: file,
+    // });
+    // formInstance.get("avatar").updateValueAndValidity();
+    let obj = Object.create({});
+    obj[fileName] = file;
+    formInstance.get(fileName).patchValue(obj);
+    formInstance.get(fileName).updateValueAndValidity();
+  }
+
+  disableFOrm() {
+    if (this.employeeForm.disabled) {
+      this.employeeForm.enable();
+    } else {
+      this.employeeForm.disable();
     }
   }
 
@@ -142,11 +162,14 @@ export class FullmenuComponent implements OnInit {
   ///////
   postsData = [];
   getAllPosts() {
-    this.httpCall.getAll<any>("/posts").subscribe((data) => {
-      this.postsData = data;
-      this.cdr.detectChanges();
-      console.log(this.postsData);
-    });
+    this.httpCall
+      .getAll<any>("/posts")
+      .pipe(delay(3000))
+      .subscribe((data) => {
+        this.postsData = data;
+        this.cdr.detectChanges();
+        console.log(this.postsData);
+      });
   }
 
   // cityAsyncValidation(): AsyncValidatorFn {

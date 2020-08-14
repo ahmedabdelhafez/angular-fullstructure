@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,12 +29,12 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "./node_modules/swiper/css/swiper.min.css",
               "./node_modules/animate.css/animate.min.css",
               "./node_modules/intro.js/minified/introjs.min.css",
               "./node_modules/intro.js/minified/introjs-rtl.min.css",
-              "./node_modules/awesome-notifications/dist/style.css",
+              
               "src/styles.scss"
             ],
             "scripts": [
@@ -45,10 +46,8 @@
               "./node_modules/sweetalert2/dist/sweetalert2.all.min.js",
               "./node_modules/aos/dist/aos.js",
               "./node_modules/intro.js/minified/intro.min.js",
-              "./node_modules/quill/dist/quill.js",
-              "./node_modules/awesome-notifications/dist/index.var.js"
-            ],
-            "es5BrowserSupport": true
+              "./node_modules/quill/dist/quill.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,6 +71,10 @@
                   "type": "initial",
                   "maximumWarning": "20mb",
                   "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "200kb"
                 }
               ],
               "serviceWorker": true,
@@ -149,5 +152,8 @@
       }
     }
   },
-  "defaultProject": "angular-fullstructure"
+  "defaultProject": "angular-fullstructure",
+  "cli": {
+    "analytics": false
+  }
 }

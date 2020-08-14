@@ -1,62 +1,78 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomValidation } from "src/app/shared/validator/CustomValidation";
 import { Router } from "@angular/router";
-import {
-  trigger,
-  state,
-  animate,
-  style,
-  transition,
-  query,
-  group,
-} from "@angular/animations";
+
 import { HttpCall } from "src/app/services/HttpCall.service";
 import { AppAlert } from "src/app/shared/util/AppAlert";
 import Swal from "sweetalert2";
-import { DateUtil } from "src/app/shared/util/DateUtil";
-
+import * as customAnimation from "../../animations/CustomAnimation";
+import { NgxIndexedDBService } from "ngx-indexed-db";
+import {
+  fadeInOnEnterAnimation,
+  fadeOutOnLeaveAnimation,
+  slideInLeftOnEnterAnimation,
+  slideOutLeftOnLeaveAnimation,
+} from "angular-animations";
 declare var $: any;
+
 @Component({
   selector: "app-testprint",
   templateUrl: "./testprint.component.html",
   styleUrls: ["./testprint.component.scss"],
   animations: [
-    trigger("showhide", [
-      transition("* => animateMe", [
-        // hide the inner elements
-        query("h1 span img", style({ opacity: 0 })),
-        group([
-          // animate the inner elements in, one by one
-          query("h1 span img", animate("1s 100ms ease", style({ opacity: 1 }))),
-          query(
-            "h1 span img",
-            animate(
-              "1s ease",
-              style({ transform: "rotate(360deg) scale(1.2)" })
-            )
-          ),
-        ]),
-        // query(
-        //   ".content",
-        //   animate(
-        //     "2s ease-in-out",
-        //     style({ opacity: 1, transform: "rotate(180deg)" })
-        //   )
-        // )
-      ]),
-    ]),
+    customAnimation.rotateIcon,
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation(),
+    slideInLeftOnEnterAnimation({
+      anchor: "enter",
+      duration: 1000,
+      delay: 100,
+    }),
+    slideOutLeftOnLeaveAnimation({
+      anchor: "leave",
+      duration: 3000,
+      delay: 250,
+    }),
   ],
 })
-export class TestprintComponent implements OnInit {
+export class TestprintComponent implements OnInit, AfterViewInit {
+  iconState = "up";
+  state22 = true;
+  hideItem() {
+    if (this.state22 === false) {
+      this.state22 = true;
+    } else {
+      this.state22 = false;
+    }
+  }
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private httpCall: HttpCall
+    private httpCall: HttpCall,
+    private dbService: NgxIndexedDBService
   ) {}
 
-  ngOnInit() {
+  rotateIcon() {
+    this.iconState === "up"
+      ? (this.iconState = "down")
+      : (this.iconState = "up");
+    console.log(this.iconState);
+  }
+
+  async ngOnInit() {
     this.createForm();
+    await this.dbService
+      .getAll<any[]>("people")
+      .then((data) => {
+        console.table(data);
+        data.forEach((e) => {
+          console.log(e["email"]);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   myform: FormGroup;
@@ -125,12 +141,5 @@ export class TestprintComponent implements OnInit {
   state = "animateMe";
   state2 = "";
 
-  onAnimationDone(event) {
-    // console.log(event);
-    this.state2 = "animateMe";
-    this.state = "";
-    setTimeout(() => {
-      this.state = "animateMe";
-    }, 500);
-  }
+  ngAfterViewInit() {}
 }

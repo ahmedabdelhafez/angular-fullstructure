@@ -1,0 +1,8 @@
+@import "/src/assets/scss/mixin/mixin_dir";
+.mycont{
+    @include gridFixed(12,200px,5px,5px);
+
+    .d1{
+        @include gridColumnSize(4);
+    }
+}

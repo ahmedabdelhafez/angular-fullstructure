@@ -1,22 +1,20 @@
-<side-viewer></side-viewer>
-<!-- <app-loadingspinner></app-loadingspinner> -->
-<!-- <ngx-spinner [name]="'log1'"></ngx-spinner> -->
+<!-- <side-viewer></side-viewer>
 <div id="app-grid-container">
   <div id="grid-navbar">
     <app-side-navbar></app-side-navbar>
-    <!-- <app-navbar></app-navbar> -->
+    <app-material-navbar></app-material-navbar>
+
   </div>
   <div id="grid-crumb">
     <app-breadcrumb></app-breadcrumb>
   </div>
   <div id="grid-content">
     <router-outlet></router-outlet>
-    <div class="got-top-item" #scrollEle (click)="scrollTop()"  >
+    <div class="got-top-item" #scrollEle (click)="scrollTop()">
       Top
     </div>
   </div>
   <footer id="grid-footer">
-    <!-- <app-footer></app-footer> -->
     <h3>
       <span><b>My Site</b></span>
     </h3>
@@ -41,4 +39,13 @@
     height="50"
     alt=""
   />
-</ngx-spinner>
+</ngx-spinner> -->
+
+<app-material-navbar >
+  <router-outlet #mainRouter="outlet"></router-outlet>
+  <app-loadingspinner></app-loadingspinner>
+  <div class="got-top-item" #scrollEle (click)="scrollTop()">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </div>
+ 
+</app-material-navbar>

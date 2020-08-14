@@ -1,0 +1,22 @@
+.material-table-wrapper {
+  .mat-table {
+    overflow: auto;
+    max-height: 700px;
+  }
+
+  .mat-header-cell .mat-sort-header-sorted {
+    color: #0a0a0a;
+  }
+
+  md-pagination-wrapper {
+    width: auto !important;
+  }
+
+  md-row:nth-child(even) {
+    background-color: #edf1f5;
+  }
+
+  md-row:nth-child(odd) {
+    background-color: #fdfdfb;
+  }
+}

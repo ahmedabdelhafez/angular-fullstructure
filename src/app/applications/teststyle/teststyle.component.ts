@@ -12,15 +12,10 @@ import {
   transition,
   animate,
 } from "@angular/animations";
-import {
-  MatTable,
-  MatSort,
-  MatTableDataSource,
-  MatPaginator,
-} from "@angular/material";
+
 import { TranslateService } from "@ngx-translate/core";
 import { TranslationService } from "src/app/core/translation.service";
-import { of } from "rxjs";
+import { of, merge } from "rxjs";
 import {
   delay,
   finalize,
@@ -38,10 +33,9 @@ import {
 import { HttpCall } from "src/app/services/HttpCall.service";
 import { CityDataSource } from "./datasource/CityDataSource";
 import { CityService } from "../../services/datasource_service/City.service";
-import html2canvas from "html2canvas";
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
-(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+import { MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 export interface PeriodicElement {
   name: string;
@@ -88,7 +82,7 @@ export class TeststyleComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   st1: boolean = false;
 
-  displayedColumns: string[] = ["cityid", "cityname", "countryname"];
+  displayedColumns: string[] = ["cityId", "cityName", "countryName"];
   dataSource: CityDataSource;
   searchText: string = "";
   isLoading: boolean = false;
@@ -101,13 +95,17 @@ export class TeststyleComponent implements OnInit, AfterViewInit {
   ) {}
 
   myform: FormGroup;
+  sortObject: any;
   ngOnInit() {
     // this.isLoading = true;
+    // set default page size to 10 rows only
     this.paginator.pageSize = 10;
     this.dataSource = new CityDataSource(this.cityService);
     this.dataSource.getCityData(
       this.paginator.pageIndex,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      "cityId",
+      "desc"
     );
   }
 
@@ -116,17 +114,40 @@ export class TeststyleComponent implements OnInit, AfterViewInit {
       // set number of total city records in database
       this.paginator.length = data;
     });
-    // load data after paging
-    this.paginator.page
+    this.sort.sortChange.subscribe((data) => {
+      // <<reset paginator after sorting>> //
+      this.paginator.pageIndex = 0;
+      this.sortObject = data;
+      console.log(data);
+    });
+
+    // merge sort with paginator
+    merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-        tap(() =>
-          this.dataSource.getCityData(
-            this.paginator.pageIndex,
-            this.paginator.pageSize
-          )
-        )
+        tap((ele) => {
+          console.log("from tab"),
+            console.log(ele),
+            this.dataSource.getCityData(
+              this.paginator.pageIndex,
+              this.paginator.pageSize,
+              ele["active"],
+              ele["direction"]
+            );
+        })
       )
       .subscribe();
+
+    // load data after pagination change
+    // this.paginator.page
+    //   .pipe(
+    //     tap(() =>
+    //       this.dataSource.getCityData(
+    //         this.paginator.pageIndex,
+    //         this.paginator.pageSize
+    //       )
+    //     )
+    //   )
+    //   .subscribe();
   }
 
   getCurrentValue(row) {
@@ -167,34 +188,6 @@ export class TeststyleComponent implements OnInit, AfterViewInit {
             res(null);
           });
       }, 1500);
-    });
-  }
-
-  getAllCity() {
-    return this.cityService.getAlCity().subscribe((data) => {
-      console.log("all city data");
-      console.log(data);
-    });
-  }
-
-  printPdf() {
-    html2canvas(document.getElementById("mytable"), {
-      useCORS: true,
-      allowTaint: true,
-      // width: 300,
-      // height: 300,
-    }).then(async (data) => {
-      let doc = {
-        content: [
-          {
-            image: await data.toDataURL(),
-            width: 500,
-            // absolutePosition: { x: 0, y: 0 },
-          },
-          { text: "how are you man", relativePosition: { x: 0, y: 20 } },
-        ],
-      };
-      pdfMake.createPdf(doc).download("tablefile");
     });
   }
 }

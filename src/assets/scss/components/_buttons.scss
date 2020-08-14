@@ -1,3 +1,4 @@
+// rounded button style
 .inv-btn-rounded {
   padding: 10px 10px;
   border: none;
@@ -14,7 +15,7 @@
     background-color: green;
   }
 }
-
+// square button style
 .inv-btn-square {
   box-sizing: border-box;
   padding: 10px 10px;
@@ -32,5 +33,22 @@
   &:hover {
     box-sizing: border-box;
     border-bottom: 2px solid green;
+  }
+}
+
+
+/* style links */
+@mixin alink ($link, $visit, $hover, $active) {
+  a {
+    color: $link;
+    &:visited {
+      color: $visit;
+    }
+    &:hover {
+      color: $hover;   
+    }
+    &:active {
+      color: $active;
+    }
   }
 }

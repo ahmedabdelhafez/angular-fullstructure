@@ -9,7 +9,6 @@ import {
   AfterContentInit,
 } from "@angular/core";
 import * as _moment from "moment";
-import { AppAlert } from "./shared/util/AppAlert";
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
@@ -20,16 +19,10 @@ import {
   MAT_DATE_LOCALE,
 } from "@angular/material/core";
 import { TranslateService } from "@ngx-translate/core";
-import {
-  ActivatedRoute,
-  Router,
-  NavigationEnd,
-  RoutesRecognized,
-} from "@angular/router";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { filter, map } from "rxjs/operators";
 import { fromEvent, Subscription } from "rxjs";
-import { ConnectionService } from "ng-connection-service";
 
 declare var $: any;
 export const MY_FORMATS = {
@@ -65,6 +58,7 @@ export const MY_FORMATS = {
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
+  animations: [],
 })
 export class AppComponent
   implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
@@ -76,7 +70,6 @@ export class AppComponent
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private titleService: Title,
-    private connectionService: ConnectionService,
     private render: Renderer2
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
@@ -91,19 +84,8 @@ export class AppComponent
     });
   }
   scrollStatus = false;
-  @ViewChild("scrollEle", { static: false }) scrollEle: ElementRef;
+  @ViewChild("scrollEle") scrollEle: ElementRef;
   ngOnInit(): void {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof RoutesRecognized),
-        map((event: RoutesRecognized) => {
-          return event.state.root.firstChild.data;
-        })
-      )
-      .subscribe((customData) => {
-        console.log(customData);
-      });
-
     this.router.events
       .pipe(
         filter(
@@ -126,27 +108,25 @@ export class AppComponent
       });
 
     ///////////////////////////////
-    this.connectionService.monitor().subscribe((state) => {
-      if (state) {
-        AppAlert.showToastSuccess(
-          this.translate.instant("generalMessage.internetConnectionSuccess"),
-          null,
-          2000
-        );
-      } else {
-        AppAlert.showToastError(
-          this.translate.instant("generalMessage.internetConnectionError"),
-          null,
-          2000
-        );
-      }
-    });
-    ///////////////////////////
-    this.windowScroll$.subscribe((data) => {
-      console.log("page y : " + window.pageYOffset);
+    // this.connectionService.monitor().subscribe(async (state) => {
+    //   if (state) {
+    //     console.log("you connected well");
 
-      console.log(data);
-    });
+    //     await AppAlert.showToastSuccess(
+    //       this.translate.instant("generalMessage.internetConnectionSuccess"),
+    //       null,
+    //       2000
+    //     );
+    //   } else {
+    //     console.log('connection faild');
+
+    //     await AppAlert.showToastError(
+    //       this.translate.instant("generalMessage.internetConnectionError"),
+    //       null,
+    //       2000
+    //     );
+    //   }
+    // });
   }
 
   ngAfterViewInit(): void {}
@@ -155,10 +135,12 @@ export class AppComponent
     this.windowScroll$.subscribe((data) => {
       if (data.target["scrollingElement"]["scrollTop"] > 200) {
         this.scrollStatus = true;
+        this.render.removeClass(this.scrollEle.nativeElement, "hide-smooth");
         this.render.addClass(this.scrollEle.nativeElement, "show-smooth");
       } else {
         this.scrollStatus = false;
         this.render.removeClass(this.scrollEle.nativeElement, "show-smooth");
+        this.render.addClass(this.scrollEle.nativeElement, "hide-smooth");
       }
     });
   }

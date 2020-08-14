@@ -21,6 +21,7 @@ export class RequestLogService implements HttpInterceptor {
   ): import("rxjs").Observable<HttpEvent<any>> {
     this.globalService.show();
     ConsoleService.info(`Http Method: ${req.method.toUpperCase()}`);
+    ConsoleService.info(`Http URL: ${req.url}`);
     // ConsoleService.info(`Requested URL: ${req.url}`);
     // ConsoleService.info(`Requested URL With Params: ${req.urlWithParams}`);
     return next.handle(req).pipe(finalize(() => this.globalService.hide()));

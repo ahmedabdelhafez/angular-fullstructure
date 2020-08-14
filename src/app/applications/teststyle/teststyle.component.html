@@ -2,12 +2,21 @@
   <div class="row">
     <div class="col">
       <!-- start definig the table -->
-      <table mat-table matSort #table [dataSource]="dataSource" id="mytable">
+      <table
+        mat-table
+        #table
+        matSort
+        matSortActive="seqNo"
+        matSortDirection="asc"
+        matSortDisableClear
+        [dataSource]="dataSource"
+        id="mytable"
+      >
         <div class="spinner-container" *ngIf="dataSource.loading$ | async">
           <mat-spinner></mat-spinner>
         </div>
 
-        <ng-container matColumnDef="cityid">
+        <ng-container matColumnDef="cityId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "city id" }}
           </th>
@@ -20,7 +29,7 @@
             {{ row.cityId }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="cityname">
+        <ng-container matColumnDef="cityName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "city name" }}
           </th>
@@ -28,7 +37,7 @@
             {{ row.cityName }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="countryname">
+        <ng-container matColumnDef="countryName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "country name" }}
           </th>
@@ -54,7 +63,3 @@
     </div>
   </div>
 </div>
-<button type="button" class="btn btn-danger" (click)="printPdf()">Print</button>
-<button type="button" class="btn btn-primary" (click)="getAllCity()">
-  Get All City
-</button>

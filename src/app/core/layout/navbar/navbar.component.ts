@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { DOCUMENT } from "@angular/common";
-import { DateAdapter } from "@angular/material";
+import { DateAdapter } from "@angular/material/core";
 import { PostService } from "src/app/services/post.service";
 import { ConfigAppService } from "src/app/services/ConfigApp.service";
 import { fromEvent } from "rxjs";

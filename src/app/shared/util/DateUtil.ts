@@ -7,7 +7,7 @@ import { AppAlert } from "./AppAlert";
 enum DateLocale {
   AR = "ar",
   En = "en-Us",
-  FR = "fr"
+  FR = "fr",
 }
 export class DateUtil {
   constructor() {}
@@ -21,7 +21,7 @@ export class DateUtil {
         "MM-DD-YYYY",
         "MM/DD/YYYY",
         "YYYY-MM-DD",
-        "YYYY/MM/DD"
+        "YYYY/MM/DD",
       ],
       true
     ).isValid();
@@ -38,7 +38,7 @@ export class DateUtil {
       "hh:mm:ss",
       "HH:mm:ss",
       "hh:mm",
-      "HH:mm"
+      "HH:mm",
     ]).isValid();
     return checkTime;
   }
@@ -62,24 +62,21 @@ export class DateUtil {
         "YYYY/MM/DD hh:mm:ss a"
         @returns `boolean`
    */
-  static isDateTime(dateTimeVal) {
-    return moment(
-      dateTimeVal,
-      [
-        "DD-MM-YYYY hh:mm:ss",
-        "DD/MM/YYYY hh:mm:ss",
-        "MM-DD-YYYY hh:mm:ss",
-        "MM/DD/YYYY hh:mm:ss",
-        "YYYY-MM-DD hh:mm:ss",
-        "YYYY/MM/DD hh:mm:ss a",
-        "DD-MM-YYYY hh:mm:ss a",
-        "DD/MM/YYYY hh:mm:ss a",
-        "MM-DD-YYYY hh:mm:ss a",
-        "MM/DD/YYYY hh:mm:ss a",
-        "YYYY-MM-DD hh:mm:ss a",
-        "YYYY/MM/DD hh:mm:ss a"
-      ]
-    ).isValid();
+  static isDateTime(dateTimeVal): boolean {
+    return moment(dateTimeVal, [
+      "DD-MM-YYYY hh:mm:ss",
+      "DD/MM/YYYY hh:mm:ss",
+      "MM-DD-YYYY hh:mm:ss",
+      "MM/DD/YYYY hh:mm:ss",
+      "YYYY-MM-DD hh:mm:ss",
+      "YYYY/MM/DD hh:mm:ss a",
+      "DD-MM-YYYY hh:mm:ss a",
+      "DD/MM/YYYY hh:mm:ss a",
+      "MM-DD-YYYY hh:mm:ss a",
+      "MM/DD/YYYY hh:mm:ss a",
+      "YYYY-MM-DD hh:mm:ss a",
+      "YYYY/MM/DD hh:mm:ss a",
+    ]).isValid();
   }
 
   /**
@@ -101,7 +98,7 @@ export class DateUtil {
         "MM-DD-YYYY",
         "MM/DD/YYYY",
         "YYYY-MM-DD",
-        "YYYY/MM/DD"
+        "YYYY/MM/DD",
       ]).format(format);
     }
     return dateFormat;
@@ -174,7 +171,7 @@ export class DateUtil {
       "MM-DD-YYYY",
       "MM/DD/YYYY",
       "YYYY-MM-DD",
-      "YYYY/MM/DD"
+      "YYYY/MM/DD",
     ]);
     let endDate = moment(date2, [
       "DD-MM-YYYY",
@@ -182,13 +179,13 @@ export class DateUtil {
       "MM-DD-YYYY",
       "MM/DD/YYYY",
       "YYYY-MM-DD",
-      "YYYY/MM/DD"
+      "YYYY/MM/DD",
     ]);
     let duration = moment.duration(starteDate.diff(endDate));
     return humanDateTime(duration.asMilliseconds(), {
       language: locale,
       fallbacks: ["en"],
-      conjunction: locale === "ar" ? " و " : " and "
+      conjunction: locale === "ar" ? " و " : " and ",
     }).toString();
   }
   static getDiffernceBetweenDateTime(dateTime1, dateTime2, locale = "ar") {
@@ -212,39 +209,47 @@ export class DateUtil {
         3000
       );
     }
-    let starteDate = moment(dateTime1, [
-      "DD-MM-YYYY hh:mm:ss",
-      "DD/MM/YYYY hh:mm:ss",
-      "MM-DD-YYYY hh:mm:ss",
-      "MM/DD/YYYY hh:mm:ss",
-      "YYYY-MM-DD hh:mm:ss",
-      "YYYY/MM/DD hh:mm:ss a",
-      "DD-MM-YYYY hh:mm:ss a",
-      "DD/MM/YYYY hh:mm:ss a",
-      "MM-DD-YYYY hh:mm:ss a",
-      "MM/DD/YYYY hh:mm:ss a",
-      "YYYY-MM-DD hh:mm:ss a",
-      "YYYY/MM/DD hh:mm:ss a"
-    ],true);
-    let endDate = moment(dateTime2, [
-      "DD-MM-YYYY hh:mm:ss",
-      "DD/MM/YYYY hh:mm:ss",
-      "MM-DD-YYYY hh:mm:ss",
-      "MM/DD/YYYY hh:mm:ss",
-      "YYYY-MM-DD hh:mm:ss",
-      "YYYY/MM/DD hh:mm:ss a",
-      "DD-MM-YYYY hh:mm:ss a",
-      "DD/MM/YYYY hh:mm:ss a",
-      "MM-DD-YYYY hh:mm:ss a",
-      "MM/DD/YYYY hh:mm:ss a",
-      "YYYY-MM-DD hh:mm:ss a",
-      "YYYY/MM/DD hh:mm:ss a"
-    ],true);
+    let starteDate = moment(
+      dateTime1,
+      [
+        "DD-MM-YYYY hh:mm:ss",
+        "DD/MM/YYYY hh:mm:ss",
+        "MM-DD-YYYY hh:mm:ss",
+        "MM/DD/YYYY hh:mm:ss",
+        "YYYY-MM-DD hh:mm:ss",
+        "YYYY/MM/DD hh:mm:ss a",
+        "DD-MM-YYYY hh:mm:ss a",
+        "DD/MM/YYYY hh:mm:ss a",
+        "MM-DD-YYYY hh:mm:ss a",
+        "MM/DD/YYYY hh:mm:ss a",
+        "YYYY-MM-DD hh:mm:ss a",
+        "YYYY/MM/DD hh:mm:ss a",
+      ],
+      true
+    );
+    let endDate = moment(
+      dateTime2,
+      [
+        "DD-MM-YYYY hh:mm:ss",
+        "DD/MM/YYYY hh:mm:ss",
+        "MM-DD-YYYY hh:mm:ss",
+        "MM/DD/YYYY hh:mm:ss",
+        "YYYY-MM-DD hh:mm:ss",
+        "YYYY/MM/DD hh:mm:ss a",
+        "DD-MM-YYYY hh:mm:ss a",
+        "DD/MM/YYYY hh:mm:ss a",
+        "MM-DD-YYYY hh:mm:ss a",
+        "MM/DD/YYYY hh:mm:ss a",
+        "YYYY-MM-DD hh:mm:ss a",
+        "YYYY/MM/DD hh:mm:ss a",
+      ],
+      true
+    );
     let duration = moment.duration(starteDate.diff(endDate));
     return humanDateTime(duration.asMilliseconds(), {
       language: locale,
       fallbacks: ["en"],
-      conjunction: locale === "ar" ? " و " : " and "
+      conjunction: locale === "ar" ? " و " : " and ",
     }).toString();
   }
 
@@ -264,7 +269,7 @@ export class DateUtil {
     return humanDateTime(duration.asMilliseconds(), {
       language: locale,
       fallbacks: ["en"],
-      conjunction: locale === "ar" ? " و " : " and "
+      conjunction: locale === "ar" ? " و " : " and ",
     }).toString();
   }
 }

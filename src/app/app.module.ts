@@ -1,4 +1,4 @@
-import { BrowserModule, Title } from "@angular/platform-browser";
+import { BrowserModule, Title, HammerModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   NgModule,
@@ -19,9 +19,36 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { SideviewerModule } from "./shared/components/side-viewer/sideviewer.module";
 import { RequestLogService } from "./core/RequestLog.service";
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { createTranslateLoader } from './shared/shared.module';
-
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { NgxIndexedDBModule, DBConfig } from "ngx-indexed-db";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LoadingSpinnerService } from "./core/loading-spinner.service";
+import { HeaderJwtService } from "./core/security/header-jwt.service";
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}
+const dbConfig: DBConfig = {
+  name: "MyDb",
+  version: 1,
+  objectStoresMeta: [
+    {
+      store: "people",
+      storeConfig: { keyPath: "id", autoIncrement: true },
+      storeSchema: [
+        { name: "name", keypath: "name", options: { unique: false } },
+        { name: "email", keypath: "email", options: { unique: false } },
+      ],
+    },
+    {
+      store: "users",
+      storeConfig: { keyPath: "id", autoIncrement: true },
+      storeSchema: [
+        { name: "token", keypath: "token", options: { unique: false } },
+        { name: "username", keypath: "username", options: { unique: false } },
+      ],
+    },
+  ],
+};
 export function loadConfigurations(configAppService: ConfigAppService) {
   return () => configAppService.getConfig();
 }
@@ -47,6 +74,7 @@ export function loadConfigurations(configAppService: ConfigAppService) {
         deps: [HttpClient],
       },
     }),
+    NgxIndexedDBModule.forRoot(dbConfig),
   ],
   providers: [
     // HttpConfigService,
@@ -60,6 +88,16 @@ export function loadConfigurations(configAppService: ConfigAppService) {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestLogService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingSpinnerService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderJwtService,
       multi: true,
     },
     {

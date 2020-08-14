@@ -17,18 +17,24 @@ import { RolesDirective } from "../core/security/roles_directive/roles.directive
 import { CustomPopoverDirective } from "./directive/custom-popover.directive";
 import { RtlDirective } from "./directive/rtl.directive";
 import { QuillModule } from "ngx-quill";
-
 import { NgSelectModule } from "@ng-select/ng-select";
-import { Ng2FlatpickrModule } from "ng2-flatpickr";
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { FilterPipe } from "./pipes/filter.pipe";
 import { NgxPrintModule } from "ngx-print";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { StaticNavbarDirective } from "./directive/static-navbar.directive";
+import { FilterViewerComponent } from "./components/filter-viewer/filter-viewer.component";
+import { PrintComponent } from "./components/print/print.component";
+import { TimerComponent } from "./components/timer/timer.component";
+import { CustomstepperComponent } from "./components/customstepper/customstepper.component";
+import { TableCustomComponent } from "./components/table-custom/table-custom.component";
+import { ErrorValidationComponent } from "./components/error-validation/error-validation.component";
+import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators"; // <-- #2 import module
+import { NgxProgressModule } from '@kken94/ngx-progress';
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}
+// export function createTranslateLoader(http: HttpClient) {
+//   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+// }
 @NgModule({
   declarations: [
     ItemvalidationDirective,
@@ -42,6 +48,12 @@ export function createTranslateLoader(http: HttpClient) {
     RtlDirective,
     FilterPipe,
     StaticNavbarDirective,
+    FilterViewerComponent,
+    PrintComponent,
+    TimerComponent,
+    CustomstepperComponent,
+    TableCustomComponent,
+    ErrorValidationComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +66,6 @@ export function createTranslateLoader(http: HttpClient) {
     QuillModule.forRoot(),
     NgxMaterialTimepickerModule.setLocale("ar-AE"),
     NgSelectModule,
-    Ng2FlatpickrModule,
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 100,
@@ -65,6 +76,7 @@ export function createTranslateLoader(http: HttpClient) {
       animationDuration: 300,
     }),
     NgxPrintModule,
+    RxReactiveFormsModule,
   ],
   exports: [
     MaterialModule,
@@ -85,11 +97,17 @@ export function createTranslateLoader(http: HttpClient) {
     RtlDirective,
     QuillModule,
     NgSelectModule,
-    Ng2FlatpickrModule,
     NgCircleProgressModule,
     FilterPipe,
     NgxMaterialTimepickerModule,
     StaticNavbarDirective,
+    FilterViewerComponent,
+    PrintComponent,
+    TimerComponent,
+    CustomstepperComponent,
+    TableCustomComponent,
+    ErrorValidationComponent,
+    RxReactiveFormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

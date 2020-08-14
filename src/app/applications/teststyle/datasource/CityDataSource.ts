@@ -2,9 +2,10 @@ import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { CityService } from "../../../services/datasource_service/City.service";
 import { BehaviorSubject, Subject, of } from "rxjs";
 import { catchError, finalize, delay } from "rxjs/operators";
-import { City } from "../../../model/CityDataSource.interface";
+import { City } from "src/app/core/model/CityDataSource.interface";
 
 export class CityDataSource extends DataSource<any> {
+  dataSourceType: any;
   constructor(private cityService: CityService) {
     super();
   }
@@ -16,20 +17,20 @@ export class CityDataSource extends DataSource<any> {
   private isLoading = new BehaviorSubject<boolean>(false);
   public loading$ = this.isLoading.asObservable();
 
-  getCityData(pageIndex: number, pageSize: number) {
+  getCityData(
+    pageIndex: number,
+    pageSize: number,
+    sortColumnName: string,
+    sortDirection: string
+  ) {
     this.isLoading.next(true);
     this.cityService
-      .getCityPage(pageIndex, pageSize)
+      .getCityPage(pageIndex, pageSize, sortColumnName,sortDirection)
       .pipe(finalize(() => this.isLoading.next(false)))
-      .subscribe(
-        (data) => {
-          this.cityData.next(data["data"]);
-          this.countSubject.next(data["total"]); // get total rcords
-        }
-        // async (err) => {
-        //   await AppAlert.showError("you need to log to app to view data", ",2000");
-        // }
-      );
+      .subscribe((data) => {
+        this.cityData.next(data["data"]);
+        this.countSubject.next(data["total"]); // get total rcords
+      });
   }
 
   connect(

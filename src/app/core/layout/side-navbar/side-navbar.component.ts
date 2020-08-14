@@ -17,12 +17,12 @@ import {
 } from "@angular/animations";
 import { TranslateService } from "@ngx-translate/core";
 import { DOCUMENT, Location } from "@angular/common";
-import { DateAdapter } from "@angular/material";
 import { TranslationService } from "../../translation.service";
 import { ConfigAppService } from "../../../services/ConfigApp.service";
 import { fromEvent, timer } from "rxjs";
 import { Configuration, MultilevelNodes } from "ng-material-multilevel-menu";
 import { Router, ActivatedRoute } from "@angular/router";
+import { DateAdapter } from "@angular/material/core";
 @Component({
   selector: "app-side-navbar",
   templateUrl: "./side-navbar.component.html",
@@ -227,9 +227,13 @@ export class SideNavbarComponent implements OnInit, AfterViewInit {
   defaultTheme;
 
   ngOnInit() {
-  
-
-    this.config = { classname: "myclass", rtlLayout: false };
+    this.config = {
+      classname: "myclass",
+      rtlLayout: false,
+      fontColor: "rgb(255, 165, 0)",
+      backgroundColor: "rgb(0, 128, 0)",
+      selectedListFontColor:'oranged'
+    };
     this.getTranslateRecursive(this.appRouterData);
     this.translate.setDefaultLang(this.defaultLang);
     this.translate.use(this.defaultLang);

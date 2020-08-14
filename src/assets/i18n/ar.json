@@ -8,12 +8,16 @@
     "internetConnectionSuccess": "الأتصال بالأنترنت يعمل بنجاح"
   },
   "config": {},
-  "validation": {
-    "required": "حقل {{value}} يجب إدخال بياناته",
-    "notNumber": "حقل {{value}} يجب ان يحتوي ارقام فقط",
-    "maxlength": "لقد تعديت الحد المسموح للأرقام",
-    "notArabic": "هذا الحقل يجب ان يحتوي حروف عربي فقط"
+  "VALIDATION-MESSAGES": {
+    "required": "حقل {{itemName}} يجب إدخال بياناته",
+    "notNumber": "حقل {{itemName}} يجب ان يحتوي ارقام فقط",
+    "maxlength": "لقد تعديت الحد المسموح من الحروف لحقل {{itemName}} برجاء التعديل",
+    "alpha": "يجب ادخال احرف فقط في حقل {{itemName}}",
+    "notArabic": "هذا الحقل يجب ان يحتوي حروف عربي فقط",
+    "email":"برجاء إدخال بريد إلكتروني صحيح",
+    "numeric":"يجب إدخال ارقام فقط"
   },
+  "appcontrols":{"username":"اسم المستخدم"},
   "statuscode": {
     "200": "تم التنفيذ بنجاح",
     "201": "تم إنشاء العنصر ",
@@ -49,6 +53,7 @@
     "profile": "الملف الشخصي",
     "grid": "نظام شبكي",
     "sliders": "عارض صور",
+    "users": "المستخدمين",
     "materialtest": "تصميم ماتيريال"
   },
   "table-header": {
@@ -58,5 +63,10 @@
     "symbol": "الرمز",
     "actions": "عمليات",
     "image": "الصورة"
+  },
+  "PAGES":{
+    "PAGE-INPUTS":{
+      "username":"  إسم المستخدم "
+    }
   }
 }

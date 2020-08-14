@@ -9,24 +9,28 @@ import { FullmenuComponent } from "./applications/fullmenu/fullmenu.component";
 import { ObservableComponent } from "./applications/observable/observable.component";
 import { ProfileComponent } from "./applications/profile/profile.component";
 import { GridComponent } from "./applications/grid/grid.component";
-import { SlidersComponent } from "./applications/sliders/sliders.component";
 import { MaterialTestComponent } from "./applications/material-test/material-test.component";
+import { PreloadStartegyService } from "./core/preload-startegy.service";
 
 const routes: Routes = [
   {
     path: "",
     component: LoginComponent,
-    data: { breadcrumb: "/", title: "login page" },
+    data: { breadcrumb: "/", title: "login page", state: "home" },
   },
   {
     path: "login",
     component: LoginComponent,
-    data: { breadcrumb: "/login", title: "login page" },
+    data: { breadcrumb: "/login", title: "login page", state: "login" },
   },
   {
     path: "dashboard",
     component: DashboardComponent,
-    data: { breadcrumb: "/dashboard", title: "dashboard page" },
+    data: {
+      breadcrumb: "/dashboard",
+      title: "dashboard page",
+      state: "dashboard",
+    },
   },
   {
     path: "aboutus",
@@ -35,47 +39,64 @@ const routes: Routes = [
         (m) => m.AboutusModule
       ),
     canLoad: [],
-    data: { breadcrumb: "/aboutus", title: "about us" },
+    data: { breadcrumb: "/aboutus", title: "about us", state: "aboutus" },
+  },
+  {
+    path: "users",
+    loadChildren: () =>
+      import("./applications/user-tabs/user-tabs.module").then(
+        (m) => m.UserTabsModule
+      ),
+    canLoad: [],
+    data: { breadcrumb: "/users", title: "Users", state: "users" },
   },
   {
     path: "teststyle",
     component: TeststyleComponent,
-    data: { breadcrumb: "/teststyle", title: "style" },
+    data: { breadcrumb: "/teststyle", title: "style", state: "teststyle" },
   },
   {
     path: "testprint",
     component: TestprintComponent,
-    data: { breadcrumb: "/testprint", title: "print" },
+    data: { breadcrumb: "/testprint", title: "print", state: "testprint" },
   },
   {
     path: "observable",
     component: ObservableComponent,
-    data: { breadcrumb: "/observable", title: "observable" },
+    data: {
+      breadcrumb: "/observable",
+      title: "observable",
+      state: "observable",
+    },
   },
   {
     path: "fullmenu",
     component: FullmenuComponent,
-    data: { breadcrumb: "/fullmenu", title: "Full menu", canupdate: false },
+    data: {
+      breadcrumb: "/fullmenu",
+      title: "Full menu",
+      canupdate: false,
+      state: "fullmenu",
+    },
   },
   {
     path: "profile",
     component: ProfileComponent,
-    data: { breadcrumb: "/profile", title: "Profile" },
+    data: { breadcrumb: "/profile", title: "Profile", state: "profile" },
   },
   {
     path: "materialtest",
     component: MaterialTestComponent,
-    data: { breadcrumb: "/materialtest", title: "Material Test" },
+    data: {
+      breadcrumb: "/materialtest",
+      title: "Material Test",
+      state: "materialtest",
+    },
   },
   {
     path: "grid",
     component: GridComponent,
-    data: { breadcrumb: "/grid", title: "grid" },
-  },
-  {
-    path: "sliders",
-    component: SlidersComponent,
-    data: { breadcrumb: "/sliders", title: "sliders" },
+    data: { breadcrumb: "/grid", title: "grid", state: "grid" },
   },
 ];
 
@@ -87,6 +108,7 @@ const routes: Routes = [
       useHash: false,
       anchorScrolling: "enabled",
       scrollPositionRestoration: "disabled",
+      preloadingStrategy: PreloadStartegyService,
     }),
   ],
   exports: [RouterModule],

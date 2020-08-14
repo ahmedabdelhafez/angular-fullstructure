@@ -1,0 +1,32 @@
+<div class="stepper-header">
+  <!-- <div
+    class="dot-item"
+    *ngFor="let step of _steps; let i = index"
+    (click)="activeCurrentStep(i)"
+    [ngClass]="{'active-step ': selectedIndex === i}"
+  >
+    <span><mat-icon>{{userIcons[i]['icon']}}</mat-icon></span>
+  </div> -->
+  <ul>
+    <li
+      *ngFor="let step of _steps; let i = index"
+      (click)="activeCurrentStep(i)"
+      [ngClass]="{ 'active ': selectedIndex === i }"
+    >
+      {{ i + 1 }}
+    </li>
+  </ul>
+</div>
+<ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+
+<!-- This is the navigation bar of the stepper -->
+<footer>
+  <button mat-button cdkStepperPrevious>Previous</button>
+  <button
+    *ngFor="let step of _steps; let i = index"
+    (click)="activeCurrentStep(i)"
+  >
+    Step {{ i + 1 }}
+  </button>
+  <button mat-button cdkStepperNext>Next</button>
+</footer>

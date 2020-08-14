@@ -8,7 +8,9 @@ import { BehaviorSubject, Subject } from "rxjs";
 export class GlobalService {
   menuState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   httpLoader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpCall) {}
+
+  //////////////////////
+  constructor() {}
 
   get getMenuState() {
     return this.menuState.asObservable();
