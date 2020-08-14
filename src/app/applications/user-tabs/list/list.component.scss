@@ -1,8 +1,8 @@
-@import "../../../../assets/scss/mixin/mixin_dir";
+@import "/src/assets/scss/mixin/mixin_dir";
 .mycont{
     @include gridFixed(12,200px,5px,5px);
 
     .d1{
-        @include columnSize(4);
+        @include gridColumnSize(4);
     }
 }

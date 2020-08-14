@@ -46,7 +46,7 @@ export class FullmenuComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.employeeForm.valueChanges.subscribe((data) => {
-      this.validateForm();
+      // this.validateForm();
     });
 
     this.translateService.onLangChange.subscribe((data) => {
@@ -55,17 +55,12 @@ export class FullmenuComponent implements OnInit {
   }
 
   createForm() {
-    this.employeeForm = this.fb.group(
-      {
-        empId: ["", [Validators.required, Validators.maxLength(8)]],
-        empName: ["", [Validators.required]],
-        salary: ["", [Validators.required]],
-        address: this.fb.group({
-          city: ["", [Validators.required]],
-        }),
-      },
-      { updateOn: "change" }
-    );
+    this.employeeForm = this.fb.group({
+      empId: ["", [Validators.required, Validators.maxLength(8)]],
+      empName: ["", [Validators.required]],
+      salary: ["", [Validators.required]],
+      empImage: [""],
+    });
   }
 
   formErrors = {
@@ -83,11 +78,23 @@ export class FullmenuComponent implements OnInit {
       alert("please complete the form");
     } else {
       let val = this.employeeForm.value;
-      console.log(val.getSalary);
-      console.log(val.getEmpName);
-      console.log(val.getEmail);
+      console.log(val);
     }
   }
+
+  uploadFile(event, formInstance: FormGroup, fileName: string = "avatar") {
+    const file = (event.target as HTMLInputElement).files[0];
+
+    // formInstance.patchValue({
+    //   avatar: file,
+    // });
+    // formInstance.get("avatar").updateValueAndValidity();
+    let obj = Object.create({});
+    obj[fileName] = file;
+    formInstance.get(fileName).patchValue(obj);
+    formInstance.get(fileName).updateValueAndValidity();
+  }
+
   disableFOrm() {
     if (this.employeeForm.disabled) {
       this.employeeForm.enable();

@@ -101,7 +101,7 @@
   height: 40px;
   border-radius: 50%;
   background-color: red;
-  position: relative;
+  position: absolute;
   opacity: 0;
   bottom: 10px;
   right: 20px;
@@ -114,13 +114,13 @@
 
 .show-smooth {
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s 100ms ease-in-out;
 }
 
 
 .hide-smooth {
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.7s 50ms ease-in-out;
 }
 
 

@@ -10,7 +10,7 @@ export class GlobalService {
   httpLoader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   //////////////////////
-  constructor(private http: HttpCall) {}
+  constructor() {}
 
   get getMenuState() {
     return this.menuState.asObservable();

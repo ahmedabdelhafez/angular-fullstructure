@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class TranslationService {
   defaultLang =
@@ -26,6 +26,7 @@ export class TranslationService {
   constructor(private translateService: TranslateService) {}
 
   getTranslation(word: string | string[]) {
-    return this.translateService.instant(word);
+    // return this.translateService.instant(word);
+    return this.translateService.get(word).toPromise();
   }
 }
