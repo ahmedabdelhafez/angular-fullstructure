@@ -6,119 +6,74 @@ import {
   ElementRef,
   AfterViewInit,
   TemplateRef,
+  Inject,
 } from "@angular/core";
 import { MediaObserver } from "@angular/flex-layout";
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  group,
-  keyframes,
-  query,
-  stagger,
-} from "@angular/animations";
-import { QUILL_CONFIG_TOKEN } from "ngx-quill";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CdkStepper } from "@angular/cdk/stepper";
+
+import { DOCUMENT } from "@angular/common";
+import { RxFormGroup, RxFormBuilder } from "@rxweb/reactive-form-validators";
+import { MaterialColumn } from "src/app/shared/components/table-custom/table-types/MaterialColumn.interface";
+import { TableOptions } from "src/app/shared/components/table-custom/table-types/TableOptions.interface";
+import { PaginationPosition } from "src/app/shared/components/table-custom/table-types/PaginationPosition.interface";
+import { MatTable } from "@angular/material/table";
 
 @Component({
   selector: "app-material-test",
   templateUrl: "./material-test.component.html",
   styleUrls: ["./material-test.component.scss"],
-  animations: [
-    // trigger("addremove", [
-    //   transition(":enter", [
-    //     style({ transform: "translateY(-100px) ", opacity: 1 }),
-    //     animate("0.6s 0.40ms ease-in"),
-    //   ]),
-    //   transition(":leave", [
-    //     animate(
-    //       "1s 0.2s ease-out",
-    //       keyframes([
-    //         style({ transform: "translateX(100px)", offset: 0.6 }),
-    //         style({ transform: "translateY(-500px)", offset: 0.8 }),
-    //       ])
-    //     ),
-    //     // style({
-    //     //   transform: "translateY(-500px)",
-    //     //   opacity: 0,
-    //     // }),
-    //   ]),
-    // ]),
-    trigger("listAnimation", [
-      transition("* <=> *", [
-        // each time the binding value changes
-        query(
-          ":leave",
-          [
-            animate(
-              "1s 0.1s ease-in-out",
-              keyframes([
-                style({
-                  transform: "scale(1.3)",
-
-                  offset: 0.3,
-                }),
-                style({
-                  transform: "translateX(100px) scale(0.8)",
-                  opacity: 0.6,
-                  offset: 0.6,
-                }),
-                style({
-                  transform: "translateX(-500px) scale(0.5)",
-                  opacity: 0.2,
-                  offset: 0.8,
-                }),
-              ])
-            ),
-            // stagger(100, [animate("0.5s", style({ opacity: 0 }))])
-          ],
-          { optional: true }
-        ),
-        query(
-          ":enter",
-          [
-            style({ opacity: 0, transform: "scale(0)" }), // start with this styles
-            stagger("0.2s", [
-              animate("0.5s", style({ opacity: 1, transform: "scale(1)" })),
-            ]),
-          ],
-          { optional: true }
-        ),
-      ]),
-    ]),
-  ],
+  animations: [],
 })
 export class MaterialTestComponent implements OnInit, AfterViewInit {
-  @ViewChild("cdkStepper", { static: true }) cdkStepper: CdkStepper;
-
-  constructor(private media: MediaObserver, private fb: FormBuilder) {}
-  myform: FormGroup;
-  dataElement = ["Football", "Courses", "Games", "Database", "Design"];
-
-  userIcon = [
-    { id: 0, icon: "home" },
-    { id: 1, icon: "add" },
-    { id: 2, icon: "remove" },
+  users = [
+    { name: "ahmed", age: 24, salary: 25000 },
+    { name: "medo", age: 26, salary: 20000 },
+    { name: "koko", age: 20, salary: 18000 },
+    { name: "fofo", age: 21, salary: 30000 },
+    { name: "mohamed", age: 20, salary: 15000 },
+    { name: "ahmed", age: 22, salary: 22000 },
+    { name: "ali", age: 24, salary: 40000 },
+    { name: "hassan", age: 25, salary: 15000 },
+    { name: "zoz", age: 25, salary: 21000 },
+    { name: "toto", age: 28, salary: 33000 },
+    { name: "ziko", age: 29, salary: 22000 },
   ];
 
-  ngOnInit() {
-    this.media.media$.subscribe((data) => {
-      console.log("media beakpoints");
-      console.log(data);
-    });
-  }
+  tableColumns: MaterialColumn[] = [
+    { columnName: "name", visible: true },
+    { columnName: "age", visible: true },
+    { columnName: "salary", visible: true },
+  ];
 
-  nextItem() {
-    this.cdkStepper.next();
-    console.log("step number ", this.cdkStepper.selectedIndex);
-  }
-  prevItem() {
-    this.cdkStepper.previous();
-    console.log("step number ", this.cdkStepper.selectedIndex);
-  }
+  tableOptions: TableOptions = {
+    notDataMessage: "no data in array",
+    showPagination: true,
+    showDetailRow: false,
+    paginationPageSize: [1, 3, 5, 7, 8, 9],
+    pageSize: 7,
+    paginationPosition: PaginationPosition.CENTER,
+    paginationStyle: {
+      alignFlexSlef: "flex-end",
+      bgColor: "seagreen",
+      color: "blanchedalmond",
+    },
+    haveActions: false,
+    showFilter: true,
+    tableStyle: { bgColor: "green" },
+  };
+
+  empForm: RxFormGroup;
+  @ViewChild("mytable") mytable: MatTable<any>;
+
+  constructor(
+    private media: MediaObserver,
+    @Inject(DOCUMENT) private document: Document,
+    @Inject("window") private window: Window,
+    private fb: RxFormBuilder
+  ) {}
+
+  ngOnInit() {}
+
+  buildForm() {}
 
   ngAfterViewInit() {}
 }

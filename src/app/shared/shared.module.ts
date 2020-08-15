@@ -30,7 +30,7 @@ import { CustomstepperComponent } from "./components/customstepper/customstepper
 import { TableCustomComponent } from "./components/table-custom/table-custom.component";
 import { ErrorValidationComponent } from "./components/error-validation/error-validation.component";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators"; // <-- #2 import module
-import { NgxProgressModule } from '@kken94/ngx-progress';
+import { NgxProgressModule } from "@kken94/ngx-progress";
 
 // export function createTranslateLoader(http: HttpClient) {
 //   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");

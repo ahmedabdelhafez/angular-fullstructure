@@ -24,6 +24,7 @@ import { NgxIndexedDBModule, DBConfig } from "ngx-indexed-db";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoadingSpinnerService } from "./core/loading-spinner.service";
 import { HeaderJwtService } from "./core/security/header-jwt.service";
+import { windowFactory } from "./core/token/windowFactory";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -106,6 +107,7 @@ export function loadConfigurations(configAppService: ConfigAppService) {
       deps: [ConfigAppService],
       multi: true,
     },
+    { provide: "window", useFactory: windowFactory },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

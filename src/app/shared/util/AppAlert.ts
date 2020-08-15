@@ -11,66 +11,68 @@ export class AppAlert {
   static showToastError(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: true,
       position: "center",
       showCancelButton: false,
       showConfirmButton: false,
       timer: timeOut ? timeOut : 1500,
       icon: "error",
-      showClass: { popup: "animated fadeIn fast" }
+      showClass: { popup: "animated fadeIn fast" },
     });
   }
 
   static showToastInfo(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: true,
       position: "center",
       showConfirmButton: false,
       timer: timeOut ? timeOut : 1500,
       icon: "info",
-      showClass: { popup: "animated fadeIn fast" }
+      showClass: { popup: "animated fadeIn fast" },
     });
   }
 
   static showToastSuccess(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      background: "seagreen",
+      html: msg,
       toast: true,
       position: "center",
       showConfirmButton: false,
       timer: timeOut ? timeOut : 1500,
       icon: "success",
-      showClass: { popup: "animated fadeIn fast" }
+      showClass: { popup: "animated fadeIn fast" },
     });
   }
 
   static showToastWarning(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      background: "#ffa36c",
+      html: `<span style="color:#799351; padding:0px 5px;">${msg}</span>`,
       toast: true,
       position: "center",
       showConfirmButton: false,
       timer: timeOut ? timeOut : 1500,
       icon: "warning",
-      showClass: { popup: "animated fadeIn fast" }
+      showClass: { popup: "animated fadeIn fast" },
     });
   }
 
   static showToastQuestion(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: true,
       position: "center",
       showConfirmButton: false,
       timer: timeOut ? timeOut : 1500,
       icon: "question",
-      showClass: { popup: "animated fadeIn fast" }
+      showClass: { popup: "animated fadeIn fast" },
     });
   }
 
@@ -79,60 +81,60 @@ export class AppAlert {
   static showError(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: false,
       position: "center",
       showConfirmButton: false,
       icon: "error",
-      timer: timeOut ? timeOut : 1500
+      timer: timeOut ? timeOut : 1500,
     });
   }
 
   static showSuccess(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: false,
       position: "center",
       showConfirmButton: false,
       icon: "success",
-      timer: timeOut ? timeOut : 1500
+      timer: timeOut ? timeOut : 1500,
     });
   }
 
   static showInfo(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: false,
       position: "center",
       showConfirmButton: false,
       icon: "info",
-      timer: timeOut ? timeOut : 1500
+      timer: timeOut ? timeOut : 1500,
     });
   }
 
   static showWarning(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
       title: title,
-      text: msg,
+      html: msg,
       toast: false,
       position: "center",
       showConfirmButton: false,
       icon: "warning",
-      timer: timeOut ? timeOut : 1500
+      timer: timeOut ? timeOut : 1500,
     });
   }
 
   static showQuestion(msg: string, title?: string, timeOut?: number) {
     return Swal.fire({
-      text: msg,
+      html: msg,
       title: title,
       toast: false,
       position: "center",
       showConfirmButton: false,
       icon: "question",
-      timer: timeOut ? timeOut : 1500
+      timer: timeOut ? timeOut : 1500,
     });
   }
 
@@ -145,14 +147,37 @@ export class AppAlert {
     cancelButtonText?: string
   ) {
     return Swal.fire({
-      text: msg,
+      html: msg,
       title: title,
       position: "center",
       // timer: timeOut ? timeOut : 1500,
       showConfirmButton: true,
       showCancelButton: true,
       confirmButtonText: confirmButtonText ? confirmButtonText : "Yes",
-      cancelButtonText: cancelButtonText ? cancelButtonText : "No"
+      cancelButtonText: cancelButtonText ? cancelButtonText : "No",
+    });
+  }
+  ///////////////////// << Confirm Alert & Dialogs >>
+  static messageWithImage(
+    msg: string,
+    image: string,
+    title?: string,
+    // timeOut?: number,
+    confirmButtonText?: string,
+    cancelButtonText?: string
+  ) {
+    return Swal.fire({
+      // text: '<pre class="alertclass">' + msg + "</pre>",
+      html: `<span style="color:red">${msg}</span>`,
+      title: title,
+      position: "center",
+      // timer: timeOut ? timeOut : 1500,
+      showConfirmButton: true,
+      showCancelButton: true,
+      imageUrl: image,
+      imageAlt: "alert image",
+      confirmButtonText: confirmButtonText ? confirmButtonText : "Yes",
+      cancelButtonText: cancelButtonText ? cancelButtonText : "No",
     });
   }
 }

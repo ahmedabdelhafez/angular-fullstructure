@@ -15,6 +15,7 @@ import { DOCUMENT } from "@angular/common";
 import { DateAdapter } from "@angular/material/core";
 import { TranslationService } from "../../translation.service";
 import { ConfigAppService } from "src/app/services/ConfigApp.service";
+import { TranslationKeys } from "../../model/enums/Translation-Keys.enum";
 
 @Component({
   selector: "app-material-navbar",
@@ -176,9 +177,11 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
   ];
 
   // Get Language On App Startup To Change The Full App Direction
+   /** variable the stroe value after get ir from
+   *  default language from local storage on app start up */
   defaultLang =
-    localStorage.getItem("app-lang") !== null
-      ? localStorage.getItem("app-lang").toString()
+    localStorage.getItem(TranslationKeys.TRANSLATION_KEY) !== null
+      ? localStorage.getItem(TranslationKeys.TRANSLATION_KEY).toString()
       : "en";
   menuChangLang: string =
     localStorage.getItem("app-lang") !== null
@@ -190,10 +193,9 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private document: Document,
     private dateAdapter: DateAdapter<Date>,
     private translation: TranslationService,
-    private configAppService: ConfigAppService,
-    private render: Renderer2,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit() {
@@ -269,9 +271,10 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
 
   changeLangAndStyle(lang?: string) {
     // Add the selected language to the Local Storage
-    localStorage.setItem("app-lang", lang);
-    this.translate.setDefaultLang(lang);
-    this.translate.use(lang);
+    localStorage.setItem(TranslationKeys.TRANSLATION_KEY, lang);
+    // localStorage.setItem("app-lang", lang);
+    // this.translate.setDefaultLang(lang);
+    // this.translate.use(lang);
     ////////////////////////////////////
     ///// << Change the direction of the page >> /////
     if (lang === "ar") {
@@ -280,15 +283,15 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
         highlightOnSelect: false,
       };
       // this.getTranslateRecursive(this.appitems);
-      this.translation.setAppDefaultLang(lang);
-      this.dateAdapter.setLocale("ar");
+      this.translationService.setAppDefaultLang(lang);
+      this.dateAdapter.setLocale(lang);
       this.translate.setDefaultLang(lang);
       this.translate.use(lang);
       // this.document.getElementById("theme").setAttribute("href", "assets/bootstrap-rtl/bootstrap-rtl.min.css");
       // this line to change the dire of the index page
-      this.document.getElementById("htmlParent").setAttribute("dir", "rtl");
+      // this.document.getElementById("htmlParent").setAttribute("dir", "rtl");
       // this line to change the language
-      this.document.getElementById("htmlParent").setAttribute("lang", "ar");
+      // this.document.getElementById("htmlParent").setAttribute("lang", "ar");
     } else {
       this.config = {
         rtlLayout: false,
@@ -298,13 +301,13 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
       this.translation.setAppDefaultLang(lang);
       this.translate.setDefaultLang(lang);
       this.translate.use(lang);
-      this.dateAdapter.setLocale("en");
+      this.dateAdapter.setLocale(lang);
       // this.document.getElementById("theme").setAttribute("href","assets/bootstrap/css/bootstrap.min.css");
-      this.document.getElementById("theme").setAttribute("href", "");
+      // this.document.getElementById("theme").setAttribute("href", "");
       // this line to change the dire of the [index page]
-      this.document.getElementById("htmlParent").setAttribute("dir", "ltr");
+      // this.document.getElementById("htmlParent").setAttribute("dir", "ltr");
       // this line to change the language
-      this.document.getElementById("htmlParent").setAttribute("lang", "en-US");
+      // this.document.getElementById("htmlParent").setAttribute("lang", "en-US");
     }
   }
 

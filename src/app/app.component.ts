@@ -2,29 +2,27 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  Renderer2,
   ViewChild,
   ElementRef,
-  AfterViewInit,
-  AfterContentInit,
+  Inject,
 } from "@angular/core";
 import * as _moment from "moment";
+import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import {
-  MAT_MOMENT_DATE_FORMATS,
-  MomentDateAdapter,
-} from "@angular/material-moment-adapter";
-import {
+  MAT_DATE_LOCALE,
   DateAdapter,
   MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
 } from "@angular/material/core";
 import { TranslateService } from "@ngx-translate/core";
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
-import { Title } from "@angular/platform-browser";
+import { Title, Meta } from "@angular/platform-browser";
 import { filter, map } from "rxjs/operators";
 import { fromEvent, Subscription } from "rxjs";
+import { DOCUMENT } from "@angular/common";
+import { TranslationService } from "./core/translation.service";
+import { ConsoleService } from "./shared/util/ConsoleService";
+import { TranslationKeys } from "./core/model/enums/Translation-Keys.enum";
 
-declare var $: any;
 export const MY_FORMATS = {
   parse: {
     dateInput: "DD/MM/YYYY",
@@ -58,34 +56,48 @@ export const MY_FORMATS = {
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
-  animations: [],
 })
-export class AppComponent
-  implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
-  public subscriptions: Subscription[] = [];
+export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild("scrollEle") scrollEle: ElementRef;
   windowScroll$ = fromEvent(window, "scroll");
+  scrollStatus = false;
+
+  /** variable the stroe value after get ir from
+   *  default language from local storage on app start up */
+  defaultLang =
+    localStorage.getItem(TranslationKeys.TRANSLATION_KEY) !== null
+      ? localStorage.getItem(TranslationKeys.TRANSLATION_KEY).toString()
+      : "en";
+
   constructor(
     private translate: TranslateService,
     private dateAdapter: DateAdapter<Date>,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private titleService: Title,
-    private render: Renderer2
-  ) {
-    // this language will be used as a fallback when a translation isn't found in the current language
-    // this.translate.setDefaultLang('ar');
+    private metaService: Meta,
+    private translationService: TranslationService,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
+
+  ngOnInit(): void {
     // // the lang to use, if the lang isn't available, it will use the current loader to get them
-    // this.translate.use('ar');
+    // this.translate.use(this.defaultLang);
+    // this language will be used as a fallback when a translation isn't found in the current language
+    this.translate.setDefaultLang(this.defaultLang);
+    this.changeLanguage(this.defaultLang);
+
     ///change the language for material date picker
     this.translate.onDefaultLangChange.subscribe((data) => {
-      // console.log(data);
-      console.log("angular datepicker langugae changed");
+      // << change language on default language change >> //
+      this.changeLanguage(data["lang"]);
       this.dateAdapter.setLocale(data.lang);
     });
-  }
-  scrollStatus = false;
-  @ViewChild("scrollEle") scrollEle: ElementRef;
-  ngOnInit(): void {
+
+    /**
+     * @description add title to page title dynamically be getting it
+     * from router data of the activated component
+     */
     this.router.events
       .pipe(
         filter(
@@ -106,43 +118,68 @@ export class AppComponent
       .subscribe((title) => {
         this.titleService.setTitle(title);
       });
-
-    ///////////////////////////////
-    // this.connectionService.monitor().subscribe(async (state) => {
-    //   if (state) {
-    //     console.log("you connected well");
-
-    //     await AppAlert.showToastSuccess(
-    //       this.translate.instant("generalMessage.internetConnectionSuccess"),
-    //       null,
-    //       2000
-    //     );
-    //   } else {
-    //     console.log('connection faild');
-
-    //     await AppAlert.showToastError(
-    //       this.translate.instant("generalMessage.internetConnectionError"),
-    //       null,
-    //       2000
-    //     );
-    //   }
-    // });
   }
 
-  ngAfterViewInit(): void {}
+  /**
+   * @description change font when app start up or language change
+   */
+  // changeFontOnLanguageChange(lang: string) {
+  //   if (lang === 'ar') {
+  //     // << change font when language arabic to be 'Cairo' >> //
+  //     this.document.getElementById('appRootBody').style.fontFamily =
+  //       'Cairo, sans-serif';
+  //     ConsoleService.warning(
+  //       'language change from app compo compnent To > Cairo'
+  //     );
+  //   } else {
+  //     // << change font when language arabic to be 'Roboto' >> //
+  //     this.document.getElementById('appRootBody').style.fontFamily =
+  //       'Roboto, sans-serif ';
+  //     ConsoleService.warning(
+  //       'language change from app compo compnent To > Roboto'
+  //     );
+  //   }
+  // }
 
-  ngAfterContentInit(): void {
-    this.windowScroll$.subscribe((data) => {
-      if (data.target["scrollingElement"]["scrollTop"] > 200) {
-        this.scrollStatus = true;
-        this.render.removeClass(this.scrollEle.nativeElement, "hide-smooth");
-        this.render.addClass(this.scrollEle.nativeElement, "show-smooth");
-      } else {
-        this.scrollStatus = false;
-        this.render.removeClass(this.scrollEle.nativeElement, "show-smooth");
-        this.render.addClass(this.scrollEle.nativeElement, "hide-smooth");
-      }
-    });
+  /** @description this method is used to toggle between languages
+   *
+   */
+  changeLanguage(lang?: string) {
+    // Add the selected language to the Local Storage
+    localStorage.setItem(TranslationKeys.TRANSLATION_KEY, lang);
+    this.translate.setDefaultLang(lang);
+    this.translate.use(lang);
+    ////////////////////////////////////
+
+    if (lang === "ar") {
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang);
+      this.translationService.setAppDefaultLang(lang);
+      this.dateAdapter.setLocale("ar");
+      // this line to change the dire of the index page
+      this.document.getElementById("htmlParent").setAttribute("dir", "rtl");
+      // this line to change the language
+      this.document.getElementById("htmlParent").setAttribute("lang", "ar");
+      this.document
+        .getElementById("theme")
+        .setAttribute("href", "assets/bootstrap-rtl/bootstrap-rtl.min.css");
+
+      // change font to be cairo
+      // this.changeFontOnLanguageChange(lang);
+    } else {
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang);
+      this.translationService.setAppDefaultLang(lang);
+      this.dateAdapter.setLocale("en");
+      this.document
+        .getElementById("theme")
+        .setAttribute("href", "assets/bootstrap/css/bootstrap.min.css");
+      // this.document.getElementById('theme').setAttribute('href', '');
+      // this line to change the dire of the [index page]
+      this.document.getElementById("htmlParent").setAttribute("dir", "ltr");
+      // this line to change the language
+      this.document.getElementById("htmlParent").setAttribute("lang", "en-US");
+    }
   }
 
   private getTitle(route: ActivatedRoute): string | undefined {
