@@ -1,7 +1,7 @@
 export interface MaterialColumn {
   columnName: string;
   visible: boolean;
-  width?: string;
+  columnWidth?: string;
   fontColor?: string;
   bgColor?: string;
 }

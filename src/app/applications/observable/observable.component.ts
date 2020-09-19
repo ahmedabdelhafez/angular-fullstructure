@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ElementRef,
   ViewEncapsulation,
+  Inject,
 } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import {
@@ -24,7 +25,8 @@ import { GlobalService } from "src/app/services/Global.service";
 import { SideviewService } from "src/app/services/sideview.service";
 
 import { HttpCall } from "src/app/services/HttpCall.service";
-
+import { saveAs } from "file-saver";
+import { DOCUMENT } from "@angular/common";
 @Component({
   selector: "app-observable",
   templateUrl: "./observable.component.html",
@@ -100,6 +102,7 @@ export class ObservableComponent implements OnInit, OnDestroy {
 
   userId;
   userName;
+  allPosts: any[] = [];
 
   searchTextChanged: Subject<string> = new Subject<string>();
 
@@ -107,7 +110,8 @@ export class ObservableComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private httpData: HttpCall,
     private sideView: SideviewService,
-    private elem: ElementRef
+    private elem: ElementRef,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   public editor;
@@ -177,13 +181,30 @@ export class ObservableComponent implements OnInit, OnDestroy {
     //     .innerHTML;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.http
+      .get("https://jsonplaceholder.typicode.com/posts", { observe: "body" })
+      .subscribe((data: any[]) => {
+        this.allPosts = data;
+      });
+  }
+
+
 
   hideByHand() {
     let items = document.querySelectorAll("item-grid").forEach((e) => {
       console.log("item class");
       console.log(e.classList);
     });
+  }
+
+  viewState: boolean = false;
+  toggleView() {
+    if (this.viewState) {
+      this.viewState = false;
+    } else {
+      this.viewState = true;
+    }
   }
 
   ngOnDestroy(): void {

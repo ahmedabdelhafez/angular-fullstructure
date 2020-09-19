@@ -59,6 +59,6 @@ and i will work with all screen you just need to initial it for your needs
   grid-row: span $rowCount;
 }
 
-@mixin gapSize($rowGap: 5px, $columnGap: 5px) {
+@mixin gapSize($rowGap: 0px, $columnGap: 0px) {
   gap: $rowGap $columnGap;
 }

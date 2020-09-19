@@ -1,27 +1,49 @@
-<mat-card>
+<mat-card id="print-item">
   <mat-card-header>
     <mat-card-title>Rx Web Form validation</mat-card-title>
+    <button mat-button class="bg-warning" (click)="patchFormWithData()">Patch Full Form</button>
   </mat-card-header>
-  <form [formGroup]="empForm" (ngSubmit)="saveForm(empForm)">
+  <form [formGroup]="empForm" (ngSubmit)="saveForm()">
     <mat-card-content>
-      <mat-form-field>
+      <!-- <mat-form-field>
         <input matInput placeholder="emp id" formControlName="empid" />
-      </mat-form-field>
+      </mat-form-field> -->
+      <div>
+        <div class="form-group" id="empIdparent" name="empIdparent">
+          <input
+            reactiveitemvalidation
+            type="text"
+            class="form-control"
+            name="empId"
+            id="empId"
+            formControlName="empid"
+            placeholder="emp id"
+            autocomplete="off"
+          />
+        </div>
+      </div>
       <mat-form-field>
-        <input matInput placeholder="username" formControlName="username" />
-        <mat-error>
+        <input
+          reactiveitemvalidation
+          matInput
+          placeholder="username"
+          formControlName="username"
+          autocomplete="off"
+          id="userNameItem"
+        />
+        <!-- <mat-error>
           <app-error-validation
             [formInstance]="empForm"
             [controlName]="'username'"
-            [validateErrors]="['required', 'alpha']"
             [errorsTranslatePrefix]="userInputTranslate"
+            [rangeFromTo]="{ val1: 3 }"
           ></app-error-validation>
-        </mat-error>
+        </mat-error> -->
       </mat-form-field>
       <mat-form-field>
         <input
           matInput
-          type="text"
+          type="number"
           placeholder="salary"
           formControlName="salary"
         />
@@ -29,10 +51,21 @@
           <app-error-validation
             [formInstance]="empForm"
             [controlName]="'salary'"
-            [validateErrors]="['required', 'numeric']"
-            [errorsTranslatePrefix]="userInputTranslate"
           ></app-error-validation>
         </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="age" formControlName="age" />
+        <mat-error>
+          <app-error-validation
+            [formInstance]="empForm"
+            [controlName]="'age'"
+            [rangeFromTo]="{ val1: 25, val2: 40 }"
+          ></app-error-validation>
+        </mat-error>
+        <!-- <mat-error *ngIf="empForm.get('age').invalid">
+          {{ empForm.get("age").errors | json }}
+        </mat-error> -->
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="email" formControlName="email" />
@@ -57,8 +90,17 @@
           placeholder="confirm password"
           formControlName="confirmPassword"
         />
-        <mat-error *ngIf="empForm.get('confirmPassword').invalid">
+        <!-- <mat-error *ngIf="empForm.get('confirmPassword').invalid">
           {{ empForm.get("confirmPassword").errors | json }}
+        </mat-error> -->
+
+        <mat-error>
+          <app-error-validation
+            [formInstance]="empForm"
+            [controlName]="'confirmPassword'"
+            [validateErrors]="['required', 'compare']"
+            [compareField]="'password'"
+          ></app-error-validation>
         </mat-error>
       </mat-form-field>
       <!-- nested group -->
@@ -81,21 +123,86 @@
           <input matInput placeholder="zipcode" formControlName="zipcode" />
         </mat-form-field>
       </div>
+      <!-- form array elements -->
+      <mat-toolbar>
+        <button mat-button (click)="addCourse()">Add Course</button>
+      </mat-toolbar>
+      <ng-container
+        [formGroup]="coursesArray"
+        *ngFor="
+          let coursesArray of empForm.controls.courses['controls'];
+          let idx = index
+        "
+      >
+        <mat-card>
+          <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-card-title>item: #{{ idx }}</mat-card-title>
+            <button mat-button class="bg-danger" (click)="removeCourse(idx)">Remove</button>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="course id"
+                type="number"
+                formControlName="courseId"
+              />
+              <mat-error>
+                <app-error-validation
+                  [formInstance]="coursesArray"
+                  [controlName]="'courseId'"
+                ></app-error-validation>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="course name"
+                type="text"
+                formControlName="courseName"
+              />
+              <mat-error>
+                <app-error-validation
+                  [formInstance]="coursesArray"
+                  [controlName]="'courseName'"
+                ></app-error-validation>
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+      <!-- end form array -->
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button type="submit" [disabled]="empForm.invalid">
-        Save
-      </button>
-      <button mat-button (click)="resetForm(empForm)">
-        Reset
-      </button>
-      <button mat-button>
-        <span><i class="icon-alert-triangle-outline"></i></span>
-        Icons
-      </button>
+      <button mat-button type="submit">Save</button>
+      <button mat-button type="button" printSectionId="print-item" [useExistingCss]="true"  ngxPrint>Print</button>
+      <button mat-button (click)="resetForm(empForm)">Reset</button>
+      <!-- <button mat-button (click)="updateData()">
+       Fill Form
+      </button> -->
     </mat-card-actions>
   </form>
 </mat-card>
+
+<button mat-button (click)="openDialog(temp1)">Open Dialog</button>
+
+<ng-template #temp1>
+  <div
+    mat-dialog-title
+    class="bg-danger"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <span>hello how are you</span>
+    <button mat-mini-fab mat-dialog-close><mat-icon>close</mat-icon></button>
+  </div>
+  <p class="lead">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi nemo neque
+    maxime illum dignissimos, placeat pariatur excepturi dolore, cupiditate
+    libero a. Eos quo corrupti earum tempore laborum, beatae aspernatur
+    reiciendis.
+  </p>
+</ng-template>
 
 <!-- tabs navigation -->
 <nav mat-tab-nav-bar>
@@ -116,8 +223,11 @@
 <div>
   <form [formGroup]="bookForm">
     <mat-form-field>
-      <input matInput placeholder="get data from server" formControlName="postId" />
+      <input
+        matInput
+        placeholder="get data from server"
+        formControlName="postId"
+      />
     </mat-form-field>
   </form>
-  
 </div>

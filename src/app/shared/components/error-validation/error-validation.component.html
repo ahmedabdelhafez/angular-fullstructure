@@ -4,10 +4,66 @@
     (formInstance.get(controls).dirty || formInstance.get(controls).touched)
   "
 >
-  <ng-container *ngFor="let error of validateErrors; let i = index">
+  <p
+    *ngIf="
+      !compareField &&
+      !rangeFromTo &&
+      formInstance.get(controlName)?.hasError(firstErrorName)
+    "
+    class="app-text-error"
+    translate
+    [translateParams]="{
+      itemName: errorTranslatePrefix + controlName | translate,
+      compareField: errorTranslatePrefix + compareField | translate
+    }"
+  >
+    {{ errorMessages.get(firstErrorName) }}
+  </p>
+
+  <p
+    *ngIf="
+      compareField &&
+      !rangeFromTo &&
+      formInstance.get(controlName)?.hasError(firstErrorName)
+    "
+    class="app-text-error"
+    translate
+    [translateParams]="{
+      itemName: errorTranslatePrefix + controlName | translate,
+      compareField: errorTranslatePrefix + compareField | translate
+    }"
+  >
+    {{ errorMessages.get(firstErrorName) }}
+  </p>
+
+  <p
+    *ngIf="
+      rangeFromTo && formInstance.get(controlName)?.hasError(firstErrorName)
+    "
+    class="app-text-error"
+    translate
+    [translateParams]="{
+      itemName: errorTranslatePrefix + controlName | translate,
+      val1: rangeFromTo?.val1,
+      val2: rangeFromTo?.val2
+    }"
+  >
+    {{ errorMessages.get(firstErrorName) }}
+  </p>
+</ng-container>
+
+<!--  the original validator -->
+<!-- <ng-container
+  *ngIf="
+    formInstance.get(controls).invalid &&
+    (formInstance.get(controls).dirty || formInstance.get(controls).touched)
+  "
+>
+  <ng-container *ngFor="let error of allFormValidationErrors; let i = index">
     <ng-container *ngIf="formInstance.get(controls).hasError(error)">
       <p
-        class="app-text-error"
+        *ngIf="!compareField && !rangeFromTo"
+        class="main-error"
         translate
         [translateParams]="{
           itemName: errorTranslatePrefix + controlName | translate
@@ -15,6 +71,31 @@
       >
         {{ errorMessages.get(error) }}
       </p>
+
+      <p
+        *ngIf="compareField && !rangeFromTo"
+        class="main-error"
+        translate
+        [translateParams]="{
+          itemName: errorTranslatePrefix + controlName | translate,
+          compareField: errorTranslatePrefix + compareField | translate
+        }"
+      >
+        {{ errorMessages.get(error) }}
+      </p>
+
+      <p
+        *ngIf="rangeFromTo"
+        class="main-error"
+        translate
+        [translateParams]="{
+          itemName: errorTranslatePrefix + controlName | translate,
+          val1: rangeFromTo?.val1,
+          val2: rangeFromTo?.val2
+        }"
+      >
+        {{ errorMessages.get(error) }}
+      </p>
     </ng-container>
   </ng-container>
-</ng-container>
+</ng-container> -->

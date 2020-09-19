@@ -1,0 +1,119 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-devilblue: (
+  50: #e4eef2,
+  100: #bdd4df,
+  200: #91b8c9,
+  300: #649bb3,
+  400: #4385a3,
+  500: #227093,
+  600: #1e688b,
+  700: #195d80,
+  800: #145376,
+  900: #0c4164,
+  A100: #97d2ff,
+  A200: #64bbff,
+  A400: #31a5ff,
+  A700: #189aff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-warncolor: (
+  50: #f6e7e7,
+  100: #e8c4c4,
+  200: #d99c9c,
+  300: #ca7474,
+  400: #be5757,
+  500: #b33939,
+  600: #ac3333,
+  700: #a32c2c,
+  800: #9a2424,
+  900: #8b1717,
+  A100: #ffc1c1,
+  A200: #ff8e8e,
+  A400: #ff5b5b,
+  A700: #ff4141,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+/* For use in src/lib/core/theming/_palette.scss */
+$md-accentcolor: (
+  50: #fff6e8,
+  100: #ffe8c6,
+  200: #ffd8a1,
+  300: #ffc87b,
+  400: #ffbd5e,
+  500: #ffb142,
+  600: #ffaa3c,
+  700: #ffa133,
+  800: #ff982b,
+  900: #ff881d,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffe3ce,
+  A700: #ffd5b4,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$custom-theme-primary: mat-palette($md-devilblue, 900);
+$custom-theme-accent: mat-palette($md-accentcolor, A200, A100, A400);
+$custom-theme-warn: mat-palette($md-warncolor);
+//
+$custom-theme: mat-light-theme(
+  $custom-theme-primary,
+  $custom-theme-accent,
+  $custom-theme-warn
+);
+
+// << build the theme >> //
+@include angular-material-theme($custom-theme);

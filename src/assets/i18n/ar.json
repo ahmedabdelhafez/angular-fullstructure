@@ -12,12 +12,21 @@
     "required": "حقل {{itemName}} يجب إدخال بياناته",
     "notNumber": "حقل {{itemName}} يجب ان يحتوي ارقام فقط",
     "maxlength": "لقد تعديت الحد المسموح من الحروف لحقل {{itemName}} برجاء التعديل",
+    "minlength": "يجب إدخال اقل عدد للأحرف {{itemName}} برجاء التعديل",
+    "maxLength": "برجاء  تعديل حقل {{itemName}} يجب إدخال بيانات  اقل من {{val1}} أحرف",
+    "minLength": "برجاء  تعديل حقل {{itemName}} يجب إدخال بيانات  اكثر من {{val1}} أحرف",
     "alpha": "يجب ادخال احرف فقط في حقل {{itemName}}",
     "notArabic": "هذا الحقل يجب ان يحتوي حروف عربي فقط",
-    "email":"برجاء إدخال بريد إلكتروني صحيح",
-    "numeric":"يجب إدخال ارقام فقط"
+    "email": "برجاء إدخال بريد إلكتروني صحيح",
+    "numeric": "يجب إدخال ارقام فقط",
+    "compare": "field {{itemName}} is not compatible with {{compareField}}",
+    "range": "field {{itemName}} must between {{val1}} and {{val2}}"
   },
-  "appcontrols":{"username":"اسم المستخدم"},
+  "appcontrols": {
+    "username": "اسم المستخدم",
+    "salary": "الراتب",
+    "empId": "كود الموظف"
+  },
   "statuscode": {
     "200": "تم التنفيذ بنجاح",
     "201": "تم إنشاء العنصر ",
@@ -37,7 +46,8 @@
     "moreabout": "معلومات اكثر",
     "observable": "بيانات لحظية",
     "grid": "نظام شبكي",
-    "sliders": "عارض صور",
+    "slider": "عارض الصور",
+    "dragdrop": "سحب و إفلات",
     "materialtest": "تصميم ماتيريال",
     "aboutemp": "معلومات موظف"
   },
@@ -52,7 +62,7 @@
     "observable": "بيانات لحظية",
     "profile": "الملف الشخصي",
     "grid": "نظام شبكي",
-    "sliders": "عارض صور",
+    "slider": "عارض صور",
     "users": "المستخدمين",
     "materialtest": "تصميم ماتيريال"
   },
@@ -64,9 +74,9 @@
     "actions": "عمليات",
     "image": "الصورة"
   },
-  "PAGES":{
-    "PAGE-INPUTS":{
-      "username":"  إسم المستخدم "
+  "PAGES": {
+    "PAGE-INPUTS": {
+      "username": "  إسم المستخدم "
     }
   }
 }

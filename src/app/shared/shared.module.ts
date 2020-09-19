@@ -24,14 +24,15 @@ import { NgxPrintModule } from "ngx-print";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { StaticNavbarDirective } from "./directive/static-navbar.directive";
 import { FilterViewerComponent } from "./components/filter-viewer/filter-viewer.component";
-import { PrintComponent } from "./components/print/print.component";
 import { TimerComponent } from "./components/timer/timer.component";
 import { CustomstepperComponent } from "./components/customstepper/customstepper.component";
-import { TableCustomComponent } from "./components/table-custom/table-custom.component";
 import { ErrorValidationComponent } from "./components/error-validation/error-validation.component";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators"; // <-- #2 import module
 import { NgxProgressModule } from "@kken94/ngx-progress";
-
+import { DragAndDropModule } from "angular-draggable-droppable";
+import { DndModule } from "ngx-drag-drop";
+import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
+import { ReactiveitemvalidationDirective } from "./directive/reactive-item-validation.directive";
 // export function createTranslateLoader(http: HttpClient) {
 //   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 // }
@@ -49,11 +50,11 @@ import { NgxProgressModule } from "@kken94/ngx-progress";
     FilterPipe,
     StaticNavbarDirective,
     FilterViewerComponent,
-    PrintComponent,
     TimerComponent,
     CustomstepperComponent,
-    TableCustomComponent,
     ErrorValidationComponent,
+    ItemvalidationDirective,
+    ReactiveitemvalidationDirective,
   ],
   imports: [
     CommonModule,
@@ -77,6 +78,9 @@ import { NgxProgressModule } from "@kken94/ngx-progress";
     }),
     NgxPrintModule,
     RxReactiveFormsModule,
+    DragAndDropModule,
+    DndModule,
+    NgxPageScrollCoreModule.forRoot({ duration: 2500 }),
   ],
   exports: [
     MaterialModule,
@@ -102,12 +106,15 @@ import { NgxProgressModule } from "@kken94/ngx-progress";
     NgxMaterialTimepickerModule,
     StaticNavbarDirective,
     FilterViewerComponent,
-    PrintComponent,
     TimerComponent,
     CustomstepperComponent,
-    TableCustomComponent,
     ErrorValidationComponent,
     RxReactiveFormsModule,
+    ItemvalidationDirective,
+    ReactiveitemvalidationDirective,
+    DragAndDropModule,
+    DndModule,
+    NgxPrintModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

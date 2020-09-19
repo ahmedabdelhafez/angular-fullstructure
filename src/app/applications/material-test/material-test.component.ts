@@ -16,6 +16,8 @@ import { MaterialColumn } from "src/app/shared/components/table-custom/table-typ
 import { TableOptions } from "src/app/shared/components/table-custom/table-types/TableOptions.interface";
 import { PaginationPosition } from "src/app/shared/components/table-custom/table-types/PaginationPosition.interface";
 import { MatTable } from "@angular/material/table";
+import { HttpClient } from "@angular/common/http";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-material-test",
@@ -24,41 +26,62 @@ import { MatTable } from "@angular/material/table";
   animations: [],
 })
 export class MaterialTestComponent implements OnInit, AfterViewInit {
-  users = [
-    { name: "ahmed", age: 24, salary: 25000 },
-    { name: "medo", age: 26, salary: 20000 },
-    { name: "koko", age: 20, salary: 18000 },
-    { name: "fofo", age: 21, salary: 30000 },
-    { name: "mohamed", age: 20, salary: 15000 },
-    { name: "ahmed", age: 22, salary: 22000 },
-    { name: "ali", age: 24, salary: 40000 },
-    { name: "hassan", age: 25, salary: 15000 },
-    { name: "zoz", age: 25, salary: 21000 },
-    { name: "toto", age: 28, salary: 33000 },
-    { name: "ziko", age: 29, salary: 22000 },
-  ];
-
+  users: any = [];
   tableColumns: MaterialColumn[] = [
-    { columnName: "name", visible: true },
-    { columnName: "age", visible: true },
-    { columnName: "salary", visible: true },
+    { columnName: "userId", visible: true, columnWidth: "50px" },
+    { columnName: "id", visible: true, columnWidth: "100px" },
+    { columnName: "title", visible: true, columnWidth: "200px" },
+    { columnName: "body", visible: true, columnWidth: "200px" },
   ];
 
   tableOptions: TableOptions = {
     notDataMessage: "no data in array",
+    showExportButtons: true,
     showPagination: true,
     showDetailRow: false,
     paginationPageSize: [1, 3, 5, 7, 8, 9],
-    pageSize: 7,
+    pageSize: 10,
     paginationPosition: PaginationPosition.CENTER,
     paginationStyle: {
       alignFlexSlef: "flex-end",
-      bgColor: "seagreen",
-      color: "blanchedalmond",
+      bgColor: "#fdebd3",
+      color: "#264e70",
     },
-    haveActions: false,
+    haveActions: true,
+    actionsButtonsMethods: {
+      add: {
+        actionButtonName: "Add Emp",
+        actionButtonMethod: function () {
+          console.log("add emp works fine");
+        },
+      },
+      edit: {
+        actionButtonName: "Edit Emp",
+        actionButtonMethod: function () {
+          console.log("edit emp button works fine");
+        },
+      },
+      remove: {
+        actionButtonName: "Remove Emp",
+        actionButtonMethod: function () {
+          console.log("edit emp button works fine");
+        },
+      },
+    },
     showFilter: true,
-    tableStyle: { bgColor: "green" },
+    tableStyle: { bgColor: "#fdebd3" },
+    headerCellStyle: {
+      bgColor: "#fdebd3",
+      color: "#264e70",
+      alignText: "center",
+      fontSize: "20px",
+    },
+    rowsCellStyle: {
+      bgColor: "#f9b4ab",
+      color: "#264e70",
+      alignText: "center",
+      fontSize: "16px",
+    },
   };
 
   empForm: RxFormGroup;
@@ -68,10 +91,19 @@ export class MaterialTestComponent implements OnInit, AfterViewInit {
     private media: MediaObserver,
     @Inject(DOCUMENT) private document: Document,
     @Inject("window") private window: Window,
-    private fb: RxFormBuilder
+    private fb: RxFormBuilder,
+    private http: HttpClient
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.http
+      .get("https://jsonplaceholder.typicode.com/posts", {
+        observe: "body",
+      })
+      .subscribe((data) => {
+        this.users = data;
+      });
+  }
 
   buildForm() {}
 

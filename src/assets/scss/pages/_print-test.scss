@@ -1,0 +1,17 @@
+.grid-items {
+  #itemId .input-item {
+    // grid-column: span 3;
+    background-color: red !important;
+    &::placeholder {
+      color: burlywood;
+      font-size: 10px;
+    }
+    &:focus {
+      background-color: deepskyblue !important;
+    }
+  }
+
+  #salaryItem .input-item {
+    background-color: green !important;
+  }
+}

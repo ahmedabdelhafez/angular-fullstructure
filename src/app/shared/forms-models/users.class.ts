@@ -9,12 +9,21 @@ import {
   propObject,
   prop,
   contains,
+  range,
+  minLength,
+  propArray,
+  date,
+  maxDate,
+  greaterThan,
+  lessThan,
 } from "@rxweb/reactive-form-validators";
+
+/// address model
 
 export class AddressForm {
   @prop()
   @required({ message: "this field is required" })
-  @contains({value:'#@$%'})
+  @alpha()
   city: string;
 
   @prop()
@@ -22,10 +31,21 @@ export class AddressForm {
   zipcode: number;
 }
 
+export class Courses {
+  @required()
+  @prop()
+  courseId: number;
+  @required()
+  @prop()
+  @alpha()
+  courseName: string;
+}
+
 export class UsersForm {
   constructor() {}
 
   @required({ message: "this field is required" })
+  @numeric({})
   @prop()
   empid: number;
 
@@ -35,7 +55,9 @@ export class UsersForm {
       ele.empid > 5;
     },
   })
-  @prop()
+  @minLength({ value: 3 })
+  @required()
+  // @prop()
   username: string;
 
   @required()
@@ -45,7 +67,17 @@ export class UsersForm {
     message: "enter a valida slary",
   })
   @prop()
-  salary: string;
+  salary: number;
+
+  @required()
+  @range({
+    minimumNumber: 18,
+    maximumNumber: 40,
+    disableExpression: (ele) => {
+      ele.salary > 5000;
+    },
+  })
+  age: number;
 
   @email({
     disableExpression: (ele) => {
@@ -72,8 +104,32 @@ export class UsersForm {
   @compare({ fieldName: "password" })
   confirmPassword: string;
 
+  @required()
+  @date()
+  @lessThan({fieldName:'endDate'})
+  startDate: Date;
+  
+  @required()
+  @date()
+  @greaterThan({ fieldName: "startDate" })
+  endDate: Date;
+
   @propObject(AddressForm)
   address: AddressForm;
-}
 
-/// address model
+  @propArray(Courses)
+  courses: Array<Courses>;
+
+  ///////////// << getter & setter >> ///////////////
+  get getEmpId() {
+    return this.empid;
+  }
+
+  get getUsername() {
+    return this.username;
+  }
+
+  get getEmail() {
+    return this.email;
+  }
+}

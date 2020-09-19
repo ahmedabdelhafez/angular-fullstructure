@@ -1,17 +1,19 @@
 import * as moment from "moment";
-// import momentDurationFormatSetup from "moment-duration-format";
-// momentDurationFormatSetup(moment);
 import * as humanDateTime from "humanize-duration";
 import { AppAlert } from "./AppAlert";
 
-enum DateLocale {
+export enum DateLocale {
   AR = "ar",
-  En = "en-Us",
+  En = "en",
   FR = "fr",
+  IT = "it",
 }
 export class DateUtil {
   constructor() {}
 
+  /**
+   * @description check if the parsed date is a valid date
+   */
   static isValidDate(date) {
     let checkDate = moment(
       date,
@@ -27,19 +29,24 @@ export class DateUtil {
     ).isValid();
     return checkDate;
   }
+  /**
+   * @description check if the parsed full time in format `hh:mm:ss a | HH:mm:ss a`  is valid
+   */
 
   static isValidFullTime(time) {
     let checkTime = moment(time, ["hh:mm:ss a", "HH:mm:ss a"], true).isValid();
     return checkTime;
   }
 
+  /**
+   * check if the parsed time is valid
+   */
   static isValidTime(time) {
-    let checkTime = moment(time, [
-      "hh:mm:ss",
-      "HH:mm:ss",
-      "hh:mm",
-      "HH:mm",
-    ]).isValid();
+    let checkTime = moment(
+      time,
+      ["hh:mm:ss", "HH:mm:ss", "hh:mm", "HH:mm"],
+      true
+    ).isValid();
     return checkTime;
   }
 
@@ -108,7 +115,7 @@ export class DateUtil {
    * @param locale  the locale for the user
    * @default 'ar'
    */
-  static getWeekDays(locale = "en") {
+  static getWeekDays(locale: DateLocale) {
     moment.locale(locale);
     return moment.weekdays();
   }
@@ -120,6 +127,23 @@ export class DateUtil {
   static getYearMonths(locale = "en") {
     moment.locale(locale);
     return moment.weekdays();
+  }
+  /**
+   * @description return the day number in year such as `05 of january` is the 5t day in the year
+   */
+  getDayNumberInYear(date: string) {
+    return moment(
+      date,
+      [
+        "DD-MM-YYYY",
+        "DD/MM/YYYY",
+        "MM-DD-YYYY",
+        "MM/DD/YYYY",
+        "YYYY-MM-DD",
+        "YYYY/MM/DD",
+      ],
+      true
+    ).dayOfYear();
   }
 
   /**
@@ -150,8 +174,12 @@ export class DateUtil {
     return months;
   }
 
-  static getDiffernceBetweenDates(date1, date2, locale = "ar") {
-    if (!DateUtil.isValidDate(date1) && !DateUtil.isValidDate(date2)) {
+  static getDiffernceBetweenDates(
+    dateStart: string,
+    dateEnd: string,
+    locale: DateLocale = DateLocale.En
+  ) {
+    if (!DateUtil.isValidDate(dateStart) && !DateUtil.isValidDate(dateEnd)) {
       AppAlert.showToastError(
         `please enter a valida date in any of this format [
         "DD-MM-YYYY",
@@ -165,30 +193,46 @@ export class DateUtil {
         3000
       );
     }
-    let starteDate = moment(date1, [
-      "DD-MM-YYYY",
-      "DD/MM/YYYY",
-      "MM-DD-YYYY",
-      "MM/DD/YYYY",
-      "YYYY-MM-DD",
-      "YYYY/MM/DD",
-    ]);
-    let endDate = moment(date2, [
-      "DD-MM-YYYY",
-      "DD/MM/YYYY",
-      "MM-DD-YYYY",
-      "MM/DD/YYYY",
-      "YYYY-MM-DD",
-      "YYYY/MM/DD",
-    ]);
-    let duration = moment.duration(starteDate.diff(endDate));
+    let vStarteDate = moment(
+      dateStart,
+      [
+        "DD-MM-YYYY",
+        "DD/MM/YYYY",
+        "MM-DD-YYYY",
+        "MM/DD/YYYY",
+        "YYYY-MM-DD",
+        "YYYY/MM/DD",
+      ],
+      true
+    );
+    let vEndDate = moment(
+      dateEnd,
+      [
+        "DD-MM-YYYY",
+        "DD/MM/YYYY",
+        "MM-DD-YYYY",
+        "MM/DD/YYYY",
+        "YYYY-MM-DD",
+        "YYYY/MM/DD",
+      ],
+      true
+    );
+    let duration = moment.duration(vStarteDate.diff(vEndDate));
     return humanDateTime(duration.asMilliseconds(), {
       language: locale,
       fallbacks: ["en"],
-      conjunction: locale === "ar" ? " و " : " and ",
+      conjunction: locale === DateLocale.AR ? " و " : " and ",
     }).toString();
   }
-  static getDiffernceBetweenDateTime(dateTime1, dateTime2, locale = "ar") {
+
+  /**
+   * @description get differnce between full two date and time
+   */
+  static getDiffernceBetweenDateTime(
+    dateTime1,
+    dateTime2,
+    locale: DateLocale = DateLocale.En
+  ) {
     if (!DateUtil.isDateTime(dateTime1) || !DateUtil.isDateTime(dateTime2)) {
       AppAlert.showToastError(
         `please enter a valida date in any of this format [
@@ -249,11 +293,15 @@ export class DateUtil {
     return humanDateTime(duration.asMilliseconds(), {
       language: locale,
       fallbacks: ["en"],
-      conjunction: locale === "ar" ? " و " : " and ",
+      conjunction: locale === DateLocale.AR ? " و " : " and ",
     }).toString();
   }
 
-  static getDiffernceBetweenTime(time1, time2, locale: string = "ar"): string {
+  static getDiffernceBetweenTime(
+    time1,
+    time2,
+    locale: DateLocale = DateLocale.En
+  ): string {
     let startTime = moment(time1, "HH:mm:ss a");
     let endTime = moment(time2, "HH:mm:ss a");
     let duration = moment.duration(endTime.diff(startTime));
@@ -269,7 +317,7 @@ export class DateUtil {
     return humanDateTime(duration.asMilliseconds(), {
       language: locale,
       fallbacks: ["en"],
-      conjunction: locale === "ar" ? " و " : " and ",
+      conjunction: locale === DateLocale.AR ? " و " : " and ",
     }).toString();
   }
 }

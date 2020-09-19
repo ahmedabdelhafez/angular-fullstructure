@@ -123,9 +123,23 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
       hidden: false,
     },
     {
+      label: "slider",
+      data: { name: "slider" },
+      link: "/slider",
+      onSelected: () => {
+        this.router.navigate(["/slider"]);
+        this.menuStateAr = "hide";
+        this.menuStateEn = "hide";
+      },
+      navigationExtras: {
+        relativeTo: this.activatedRoute,
+      },
+      icon: "star_rate",
+      hidden: false,
+    },
+    {
       label: "observable",
       data: { name: "observable" },
-
       link: "/observable",
       onSelected: () => {
         this.router.navigate(["/observable"]);
@@ -174,10 +188,23 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
       },
       navigationExtras: { relativeTo: this.activatedRoute },
     },
+    {
+      label: "Drag Drop",
+      data: { name: "dragdrop" },
+      link: "/teststyle",
+      icon: "drag_indicator",
+      activeIcon: "drag_indicator",
+      onSelected: () => {
+        this.router.navigate(["/dragdrop"]);
+        this.menuStateAr = "hide";
+        this.menuStateEn = "hide";
+      },
+      navigationExtras: { relativeTo: this.activatedRoute },
+    },
   ];
 
   // Get Language On App Startup To Change The Full App Direction
-   /** variable the stroe value after get ir from
+  /** variable the stroe value after get ir from
    *  default language from local storage on app start up */
   defaultLang =
     localStorage.getItem(TranslationKeys.TRANSLATION_KEY) !== null

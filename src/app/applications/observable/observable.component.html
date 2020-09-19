@@ -11,10 +11,54 @@
 <button type="button" class="btn btn-primary" (click)="printQuill()">
   save quill
 </button> -->
+<!-- <app-header-section>
+  <ng-container *ngIf="viewState">
+    <ng-container *ngTemplateOutlet="firstData"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="!viewState">
+    <ng-container *ngTemplateOutlet="secondData"></ng-container>
+  </ng-container>
+</app-header-section>
 
-<div class="mybox">
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat et error
-  expedita? Aspernatur consectetur adipisci minus voluptatibus ipsam deserunt,
-  error sapiente, laudantium iure eos fugiat accusantium? Accusantium ipsa eos
-  cumque.
-</div>
+<ng-template #firstData>
+  <div class="mydata">
+    <mat-form-field>
+      <input matInput placeholder="label" value="value" />
+    </mat-form-field>
+    <button mat-button>text</button>
+  </div>
+</ng-template>
+<ng-template #secondData>
+  <mat-select placeholder="Placeholder">
+    <mat-option>
+      hello
+    </mat-option>
+    <mat-option>
+      hello
+    </mat-option>
+    <mat-option>
+      hello
+    </mat-option>
+  </mat-select>
+</ng-template>
+
+<button mat-button (click)="toggleView()">Toggle</button> -->
+
+<table class="table" id="postsDataTable">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>user id</th>
+      <th>title</th>
+      <th>body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allPosts">
+      <td>{{ item.id }}</td>
+      <td>{{ item.userId }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.body }}</td>
+    </tr>
+  </tbody>
+</table>
