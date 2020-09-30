@@ -1,3 +1,4 @@
+import { AbstractControl } from "@angular/forms";
 import {
   required,
   numeric,
@@ -16,6 +17,9 @@ import {
   maxDate,
   greaterThan,
   lessThan,
+  elementClass,
+  error,
+  disable,
 } from "@rxweb/reactive-form-validators";
 
 /// address model
@@ -45,18 +49,29 @@ export class UsersForm {
   constructor() {}
 
   @required({ message: "this field is required" })
-  @numeric({})
+  @numeric()
   @prop()
   empid: number;
 
-  @alpha({
-    message: "this field must be string",
-    disableExpression: (ele) => {
-      ele.empid > 5;
+  @error({
+    conditionalExpression: function (control: AbstractControl) {
+      return this.action === "submit";
     },
   })
+  @alpha({
+    message: "this field must be string",
+  })
   @minLength({ value: 3 })
-  @required()
+  @required({
+    conditionalExpression:  (ele) =>{
+      return ele.empid == 10;
+    },
+  })
+  @disable({
+    conditionalExpression: function (control: AbstractControl) {
+      return this.empid > 50;
+    },
+  })
   // @prop()
   username: string;
 
@@ -106,9 +121,9 @@ export class UsersForm {
 
   @required()
   @date()
-  @lessThan({fieldName:'endDate'})
+  @lessThan({ fieldName: "endDate" })
   startDate: Date;
-  
+
   @required()
   @date()
   @greaterThan({ fieldName: "startDate" })

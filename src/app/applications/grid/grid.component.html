@@ -1,42 +1,52 @@
 <div class="grid-item-container">
-  <div class="item1">item1</div>
-  <div class="item2">item2</div>
-  <div class="item3">item3</div>
-  <div class="item4" appRtl>
-    <button mat-mini-fab (click)="showEvents(calEvent)">
-      <mat-icon>event</mat-icon>
-    </button>
-  </div>
-  <div class="item5">
-    <input
-      type="file"
-      name="img"
-      id="img"
-      multiple
-      (change)="convertImageToBase64($event)"
-    />
-    <!-- <div class="img-item">
-      <img [src]="imgBase" alt="" *ngIf="imgBase" />
-    </div> -->
+  <div class="grid-wrapper">
+    <div class="item1">
+      item 1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic,
+      inventore? Laborum nostrum, non molestias repellat tempore voluptatibus,
+      natus accusantium a eaque doloribus, maiores corrupti laudantium nulla
+      nemo vitae quaerat ducimus.
+    </div>
+    <div class="item2">
+      item 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
+    <div class="item3">
+      item 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
+    <div class="item4">
+      item 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
+    <div class="item3">
+      item 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
+    <div class="item4">
+      item 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
+    <div class="item3">
+      item 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
+    <div class="item4">
+      item 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+      repellendus ex hic veritatis illo? Nobis inventore exercitationem quod
+      voluptatibus eveniet obcaecati aut odio, alias, in minus consequatur
+      commodi. Commodi, eveniet!
+    </div>
   </div>
 </div>
-
-<div class="img-grid">
-  <div class="img-cont">
-    <h4>Number Of Images</h4>
-    <h2>{{ imgBase ? imgBase.length : 0 }}</h2>
-  </div>
-
-  <ng-container *ngIf="imgBase">
-    <ng-container *ngFor="let img of imgBase">
-      <div class="img-item">
-        <img [src]="img" alt="" />
-      </div>
-    </ng-container>
-  </ng-container>
-</div>
-
-<ng-template #calEvent>
-  <app-event-calendar></app-event-calendar>
-</ng-template>
-

@@ -1,3 +1,4 @@
+@import "../../../../assets/scss/mixin/mixin_dir";
 .material-table-wrapper {
   width: 100%;
   display: flex;
@@ -8,10 +9,20 @@
   .material-table-header-wrapper {
     width: 100%;
     padding: 10px 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: flex-start;
+    // align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-rows: auto;
+    gap: 5px 5px;
+
+    .btn-export-style {
+      outline: none !important;
+      background-color: #03045e;
+      color: #90e0ef;
+    }
   }
   // style for full material table
   .mat-table {
@@ -144,12 +155,33 @@
   // }
 
   .action-buttons-wrapper {
-    min-width: 50px;
+    min-width: 200px;
     padding: 5px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+
+    @include phone {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .btn-action-item {
+      outline: none;
+      background-color: #03045e;
+      color: white;
+      flex: 1 1 100px;
+      margin: 0px 5px;
+      @include phone {
+        flex: 1 1 50%;
+        margin: 0px;
+      }
+    }
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    // grid-template-rows: auto;
+    // gap: 5px 5px;
   }
 }
 // ######################################################

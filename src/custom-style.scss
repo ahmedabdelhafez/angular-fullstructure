@@ -1,6 +1,5 @@
 @import "~@angular/material/theming";
 
-@include mat-core();
 
 /* For use in src/lib/core/theming/_palette.scss */
 $md-devilblue: (
@@ -14,8 +13,8 @@ $md-devilblue: (
   700: #195d80,
   800: #145376,
   900: #0c4164,
-  A100: #97d2ff,
-  A200: #64bbff,
+  A100: #195d80,
+  A200: #2f2f30,
   A400: #31a5ff,
   A700: #189aff,
   contrast: (
@@ -105,8 +104,8 @@ $md-accentcolor: (
   ),
 );
 
-$custom-theme-primary: mat-palette($md-devilblue, 900);
-$custom-theme-accent: mat-palette($md-accentcolor, A200, A100, A400);
+$custom-theme-primary: mat-palette($md-devilblue, 900, 800, 700);
+$custom-theme-accent: mat-palette($md-accentcolor, A200, A300, A400);
 $custom-theme-warn: mat-palette($md-warncolor);
 //
 $custom-theme: mat-light-theme(
@@ -114,6 +113,30 @@ $custom-theme: mat-light-theme(
   $custom-theme-accent,
   $custom-theme-warn
 );
+
+// << customize typography >> //
+
+$app-typography: mat-typography-config(
+  $font-family: 'Cairo, Roboto, sans-serif',
+  $display-4: mat-typography-level(112px, 112px, 300),
+  $display-3: mat-typography-level(56px, 56px, 400),
+  $display-2: mat-typography-level(45px, 48px, 400),
+  $display-1: mat-typography-level(34px, 40px, 400),
+  $headline: mat-typography-level(24px, 32px, 400),
+  $title: mat-typography-level(20px, 32px, 500),
+  $subheading-2: mat-typography-level(16px, 28px, 400),
+  $subheading-1: mat-typography-level(15px, 24px, 400),
+  $body-2: mat-typography-level(14px, 24px, 500),
+  $body-1: mat-typography-level(14px, 20px, 400),
+  $caption: mat-typography-level(12px, 20px, 400),
+  $button: mat-typography-level(14px, 14px, 500),
+  // Line-height must be unit-less fraction of the font-size.
+  $input: mat-typography-level(16px, 1.25, 400),
+);
+
+@include mat-base-typography($app-typography);
+// Override the typography in the core CSS.
+@include mat-core($app-typography);
 
 // << build the theme >> //
 @include angular-material-theme($custom-theme);

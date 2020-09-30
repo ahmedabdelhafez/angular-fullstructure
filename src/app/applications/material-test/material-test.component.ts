@@ -37,6 +37,7 @@ export class MaterialTestComponent implements OnInit, AfterViewInit {
   tableOptions: TableOptions = {
     notDataMessage: "no data in array",
     showExportButtons: true,
+    exportFileName: "'ملف بيانات'",
     showPagination: true,
     showDetailRow: false,
     paginationPageSize: [1, 3, 5, 7, 8, 9],
@@ -50,19 +51,19 @@ export class MaterialTestComponent implements OnInit, AfterViewInit {
     haveActions: true,
     actionsButtonsMethods: {
       add: {
-        actionButtonName: "Add Emp",
+        actionButtonName: "Add",
         actionButtonMethod: function () {
           console.log("add emp works fine");
         },
       },
       edit: {
-        actionButtonName: "Edit Emp",
+        actionButtonName: "Edit",
         actionButtonMethod: function () {
           console.log("edit emp button works fine");
         },
       },
       remove: {
-        actionButtonName: "Remove Emp",
+        actionButtonName: "Remove",
         actionButtonMethod: function () {
           console.log("edit emp button works fine");
         },
@@ -71,14 +72,14 @@ export class MaterialTestComponent implements OnInit, AfterViewInit {
     showFilter: true,
     tableStyle: { bgColor: "#fdebd3" },
     headerCellStyle: {
-      bgColor: "#fdebd3",
-      color: "#264e70",
+      bgColor: "#48CAE4",
+      color: "#03045E",
       alignText: "center",
       fontSize: "20px",
     },
     rowsCellStyle: {
-      bgColor: "#f9b4ab",
-      color: "#264e70",
+      bgColor: "#CAF0F8",
+      color: "#7D8597",
       alignText: "center",
       fontSize: "16px",
     },

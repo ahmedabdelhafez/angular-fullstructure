@@ -47,16 +47,16 @@ this is a font face mixin to load the font but it have a fixed entry point
 }
 
 @font-face {
-  font-family: "cairo";
+  font-family: "Cairo";
   src: url("/assets/fonts/cairo/Cairo-Regular.ttf");
 }
 
 @font-face {
-  font-family: "cairo-bold";
+  font-family: "Cairo-bold";
   src: url("/assets/fonts/cairo/Cairo-Bold.ttf");
 }
 
 @font-face {
-  font-family: "cairo-light";
+  font-family: "Cairo-light";
   src: url("/assets/fonts/cairo/Cairo-Light.ttf");
 }

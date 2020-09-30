@@ -18,9 +18,19 @@
 
   #itemId {
     grid-column: span 4;
+    .custom-input-wrapper {
+      .input-item {
+        background-color: chocolate;
+      }
+    }
   }
 
   .salary-wrapper {
     grid-column: span 6;
+    #salaryItem {
+      .custom-input-wrapper .input-item {
+        background-color: yellowgreen !important;
+      }
+    }
   }
 }

@@ -8,6 +8,8 @@ export interface TableOptions {
   showPagination?: boolean;
   /** this option allow user to see the export buttons allow exports `PDF - EXCEL - CSV - TXT` */
   showExportButtons?: boolean;
+  /** exported file name */
+  exportFileName?: string;
   /** show expanded detail row  */
   showDetailRow?: boolean;
   /** paginator position option have three options `CENTER`,`LEFT`, 'RIGHT' */

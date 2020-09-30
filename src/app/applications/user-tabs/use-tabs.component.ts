@@ -123,12 +123,14 @@ export class UseTabsComponent
         { courseId: 2, courseName: "html" },
       ],
     };
-    this.empForm.patchValue(x);
-    let arr = this.empForm.get("courses") as RxFormArray;
+    // this.empForm.patchValue(x);
+    // let arr = this.empForm.get("courses") as RxFormArray;
 
-    x.courses.forEach((ele, idx) => {
-      arr.push(this.formBuilder.group(ele));
-    });
+    // x.courses.forEach((ele, idx) => {
+    //   arr.push(this.formBuilder.group(ele));
+    // });
+
+    this.empForm.patchModelValue({ ...x });
   }
 
   createForm(): any {
@@ -219,6 +221,11 @@ export class UseTabsComponent
   }
   getFormValues(formInstance?: FormGroup): any {
     throw new Error("Method not implemented.");
+  }
+
+  getAllErrors() {
+    let msg = this.empForm.getErrorSummary(true);
+    console.log(msg);
   }
 
   bookForm: FormGroup = this.formBuilder.group({

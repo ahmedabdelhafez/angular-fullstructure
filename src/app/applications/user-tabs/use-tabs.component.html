@@ -1,7 +1,9 @@
 <mat-card id="print-item">
   <mat-card-header>
     <mat-card-title>Rx Web Form validation</mat-card-title>
-    <button mat-button class="bg-warning" (click)="patchFormWithData()">Patch Full Form</button>
+    <button mat-button class="bg-warning" (click)="patchFormWithData()">
+      Patch Full Form
+    </button>
   </mat-card-header>
   <form [formGroup]="empForm" (ngSubmit)="saveForm()">
     <mat-card-content>
@@ -24,21 +26,15 @@
       </div>
       <mat-form-field>
         <input
-          reactiveitemvalidation
           matInput
           placeholder="username"
           formControlName="username"
           autocomplete="off"
           id="userNameItem"
         />
-        <!-- <mat-error>
-          <app-error-validation
-            [formInstance]="empForm"
-            [controlName]="'username'"
-            [errorsTranslatePrefix]="userInputTranslate"
-            [rangeFromTo]="{ val1: 3 }"
-          ></app-error-validation>
-        </mat-error> -->
+        <mat-error>
+          {{ empForm.controls.username["errorMessage"] }}
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <input
@@ -137,7 +133,9 @@
         <mat-card>
           <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
             <mat-card-title>item: #{{ idx }}</mat-card-title>
-            <button mat-button class="bg-danger" (click)="removeCourse(idx)">Remove</button>
+            <button mat-button class="bg-danger" (click)="removeCourse(idx)">
+              Remove
+            </button>
           </mat-card-header>
           <mat-card-content>
             <mat-form-field>
@@ -175,8 +173,17 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button type="submit">Save</button>
-      <button mat-button type="button" printSectionId="print-item" [useExistingCss]="true"  ngxPrint>Print</button>
+      <button
+        mat-button
+        type="button"
+        printSectionId="print-item"
+        [useExistingCss]="true"
+        ngxPrint
+      >
+        Print
+      </button>
       <button mat-button (click)="resetForm(empForm)">Reset</button>
+      <button mat-button (click)="getAllErrors()">Error Summry</button>
       <!-- <button mat-button (click)="updateData()">
        Fill Form
       </button> -->

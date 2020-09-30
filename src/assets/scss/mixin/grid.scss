@@ -1,25 +1,3 @@
-@mixin gridContainer(
-  $initColumnSize: 200px,
-  $initRowSize: 0px,
-  $autoFlow: row,
-  $rowGap: 5px,
-  $columnGap: 5px
-) {
-  display: grid;
-  grid-template-columns: (auto-fit, minmax($initColumnSize, 1fr));
-  grid-template-rows: minmax($initRowSize, auto);
-  grid-area: $rowGap $columnGap;
-  @if autoFlow == row {
-    grid-auto-flow: $autoFlow;
-    grid-auto-rows: minmax($initRowSize, auto);
-  } @else if $autoFlow == column {
-    grid-auto-flow: $autoFlow;
-    grid-auto-columns: $initColumnSize;
-    overflow: scroll;
-    overflow-y: hidden;
-  }
-}
-
 /// this mixin used to create grid row with default 12 column
 @mixin gridFixed(
   $columnCount: 12,

@@ -1,4 +1,9 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { tap, debounceTime } from "rxjs/operators";
 import { MatDialog } from "@angular/material/dialog";
@@ -15,7 +20,7 @@ import {
   selector: "app-testprint",
   templateUrl: "./testprint.component.html",
   styleUrls: ["./testprint.component.scss"],
-  animations: [],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TestprintComponent implements OnInit, AfterViewInit {
   myForm: FormGroup;
@@ -37,9 +42,7 @@ export class TestprintComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    
-  }
+  ngAfterViewInit() {}
 
   ParsePhone() {
     const phoneNumber = parsePhoneNumberFromString(

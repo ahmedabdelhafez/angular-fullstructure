@@ -6,19 +6,22 @@
   >
     <button
       mat-raised-button
-      (click)="exporterElement.exportTable('json', { fileName: fileName })"
+      class="btn-export-style"
+      (click)="exporterElement.exportTable('json', { fileName: tableOptions.exportFileName })"
     >
       To JSON
     </button>
     <button
       mat-raised-button
-      (click)="exporterElement.exportTable('xlsx', { fileName: fileName })"
+      class="btn-export-style"
+      (click)="exporterElement.exportTable('xlsx', { fileName: tableOptions.exportFileName })"
     >
       To Excel
     </button>
     <button
       mat-raised-button
-      (click)="exporterElement.exportTable('csv', { fileName: fileName })"
+      class="btn-export-style"
+      (click)="exporterElement.exportTable('csv', { fileName: tableOptions.exportFileName })"
     >
       To CSV
     </button>
@@ -72,6 +75,7 @@
             {{ row[col] }}
           </td>
         </ng-container>
+        <!-- if table have action column option -->
         <ng-container *ngIf="col === 'actions'">
           <td
             mat-cell
@@ -173,13 +177,13 @@
 <!-- table actions buttons  -->
 <ng-template #actionButtonsTemplate let-btnActions="btnActions">
   <div class="action-buttons-wrapper">
-    <button mat-button (click)="btnActions.add.actionButtonMethod()">
+    <button mat-button class="btn-action-item" (click)="btnActions.add.actionButtonMethod()">
       {{ btnActions.add.actionButtonName }}
     </button>
-    <button mat-button (click)="btnActions.edit.actionButtonMethod()">
+    <button mat-button class="btn-action-item" (click)="btnActions.edit.actionButtonMethod()">
       {{ btnActions.edit.actionButtonName }}
     </button>
-    <button mat-button (click)="btnActions.remove.actionButtonMethod()">
+    <button mat-button class="btn-action-item" (click)="btnActions.remove.actionButtonMethod()">
       {{ btnActions.remove.actionButtonName }}
     </button>
   </div>

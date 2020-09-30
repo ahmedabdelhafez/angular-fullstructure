@@ -27,6 +27,7 @@ import { Subject } from "rxjs";
       multi: true,
     },
   ],
+  
 })
 export class CustomFormInputComponent implements OnInit, ControlValueAccessor {
   constructor() {}
