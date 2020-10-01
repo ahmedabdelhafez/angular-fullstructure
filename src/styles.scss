@@ -32,7 +32,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: cairo;
+  font-family: "Cairo";
 }
 
 .rtl-item {
@@ -95,5 +95,3 @@ $someColor: seagreen;
 // button:not(.timepicker-dial__item) {
 //   color: $someColor !important;
 // }
-
-

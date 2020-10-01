@@ -22,10 +22,12 @@ export class HttpCall {
    * @example getAll('/posts'), getAll('/employees)
    * @param uri `string`
    */
-  public getAll<T>(uri?: string): Observable<T> {
+  public getAll<T>(uri?: string, queryParams?: any): Observable<T> {
     console.log(this.config.server2);
 
-    return this.http.get<T>(`${this.actionUrl}${uri ? uri : ""}`);
+    return this.http.get<T>(`${this.actionUrl}${uri ? uri : ""}`, {
+      params: queryParams ? queryParams : {},
+    });
   }
 
   /**
@@ -34,22 +36,10 @@ export class HttpCall {
    * @param uri `string`
    * @param id `string`
    */
-  public getOne<T>(uri: string, id: string): Observable<T> {
-    return this.http.get<T>(`${this.actionUrl}${uri}${id ? `/${id}` : ""}`);
-  }
-
-  public getOneByQuery<T>(
-    uri: string,
-    queryParams?: any,
-    id?: any
-  ): Observable<T> {
-    return this.http.get<T>(`${this.actionUrl}${uri}/${id ? id : ""}`, {
-      params: queryParams ? queryParams : {},
+  public getOne<T>(uri: string, id: string, queryparams?: any): Observable<T> {
+    return this.http.get<T>(`${this.actionUrl}${uri}${id ? `/${id}` : ""}`, {
+      params: queryparams ? queryparams : {},
     });
-  }
-
-  public post<T>(uri: string, objectTopost: T): Observable<T> {
-    return this.http.post<T>(`${this.actionUrl}${uri}`, objectTopost);
   }
 
   /**

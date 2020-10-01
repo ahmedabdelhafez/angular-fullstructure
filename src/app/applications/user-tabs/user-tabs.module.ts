@@ -8,7 +8,8 @@ import { ListComponent } from "./list/list.component";
 import { EditComponent } from "./edit/edit.component";
 import { MaterialModule } from "../../shared/material.module";
 import { HttpcardModule } from "src/app/shared/components/httpcard/httpcard.module";
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from "src/app/shared/shared.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UserTabsRoutingModule,
     MaterialModule,
     HttpcardModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule,
   ],
   exports: [],
 })

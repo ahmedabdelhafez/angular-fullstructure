@@ -1,3 +1,4 @@
+import { AbstractControl } from "@angular/forms";
 import {
   required,
   numeric,
@@ -9,12 +10,27 @@ import {
   propObject,
   prop,
   contains,
+  range,
+  minLength,
+  propArray,
+  date,
+  maxDate,
+  greaterThan,
+  lessThan,
+  elementClass,
+  minNumber,
+  error,
+  disable,
+  alphaNumeric,
+  json,
 } from "@rxweb/reactive-form-validators";
+
+/// address model
 
 export class AddressForm {
   @prop()
   @required({ message: "this field is required" })
-  @contains({value:'#@$%'})
+  @alpha()
   city: string;
 
   @prop()
@@ -22,20 +38,44 @@ export class AddressForm {
   zipcode: number;
 }
 
+export class Courses {
+  @required()
+  @prop()
+  courseId: number;
+  @required()
+  @prop()
+  @alpha()
+  courseName: string;
+}
+
 export class UsersForm {
   constructor() {}
 
   @required({ message: "this field is required" })
+  @numeric()
   @prop()
   empid: number;
 
+  // @error({
+  //   conditionalExpression: function (control: AbstractControl) {
+  //     return this.username === "ahmed";
+  //   },
+  // })
   @alpha({
     message: "this field must be string",
-    disableExpression: (ele) => {
-      ele.empid > 5;
+  })
+  @minLength({ value: 3 })
+  @required({
+    conditionalExpression: (ele) => {
+      return ele.empid == 10;
     },
   })
-  @prop()
+  @disable({
+    conditionalExpression: function (control: AbstractControl) {
+      return this.empid > 50;
+    },
+  })
+  // @prop()
   username: string;
 
   @required()
@@ -45,7 +85,23 @@ export class UsersForm {
     message: "enter a valida slary",
   })
   @prop()
-  salary: string;
+  @minNumber({
+    conditionalExpression: function (control: AbstractControl) {
+      return this.username === "ahmed";
+    },
+    value: 5000,
+  })
+  salary: number;
+
+  @required()
+  @range({
+    minimumNumber: 18,
+    maximumNumber: 40,
+    disableExpression: (ele) => {
+      ele.salary > 5000;
+    },
+  })
+  age: number;
 
   @email({
     disableExpression: (ele) => {
@@ -54,6 +110,11 @@ export class UsersForm {
   })
   @prop()
   email: string;
+
+  @prop()
+  // @numeric()
+  @required()
+  mobileNumber: string;
 
   @required({ message: "pleae enter a valid password" })
   @password({
@@ -72,8 +133,40 @@ export class UsersForm {
   @compare({ fieldName: "password" })
   confirmPassword: string;
 
+  // @required()
+  // @date()
+  // @lessThan({ fieldName: "endDate" })
+  // startDate: Date;
+
+  // @required()
+  // @date()
+  // @greaterThan({ fieldName: "startDate" })
+  // endDate: Date;
+
   @propObject(AddressForm)
   address: AddressForm;
-}
 
-/// address model
+  @propArray(Courses)
+  courses: Array<Courses>;
+
+  ///////////// << getter & setter >> ///////////////
+  get getEmpId() {
+    return this.empid;
+  }
+
+  get getUsername() {
+    return this.username;
+  }
+
+  get getEmail() {
+    return this.email;
+  }
+
+  get getMobileNumber() {
+    return this.mobileNumber;
+  }
+
+  set setMobileNumber(phoneNumber: any) {
+    this.mobileNumber = phoneNumber;
+  }
+}

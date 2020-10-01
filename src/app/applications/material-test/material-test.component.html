@@ -1,63 +1,27 @@
-<p class="lead">material test component</p>
-
-<div class="stepper-content-wrapper">
-  <app-customstepper [userIcons]="userIcon" #cdkStepper>
-    <cdk-step optional="true" label="welcome zoz">
-      <input type="text" name="a" value="a" />
-    </cdk-step>
-    <cdk-step optional="false">
-      <input type="text" name="b" value="b" />
-    </cdk-step>
-    <cdk-step>
-     <ng-container *ngTemplateOutlet="step3"></ng-container>
-
-    </cdk-step>
-  </app-customstepper>
+<div class="table-wrapper">
+  <app-table-custom
+    #mytable
+    [tableDataSource]="users"
+    [tableColumns]="tableColumns"
+    [tableOptions]="tableOptions"
+  ></app-table-custom>
 </div>
+
 <br />
-<div>
-  <button mat-button (click)="prevItem()">prev</button>
-  <button mat-button (click)="nextItem()">next</button>
+<div class="btn-grid-group">
+  <button mat-button class="btn-green">Add</button>
+  <button mat-button>Edit</button>
+  <button mat-button>Fill</button>
 </div>
-
-<ng-template #step3>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>user data</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field>
-        <input matInput placeholder="label" value="value" />
-      </mat-form-field>
-      <br />
-      <mat-form-field>
-        <input matInput placeholder="label" value="value" />
-      </mat-form-field>
-      <br />
-      <mat-form-field>
-        <input matInput placeholder="label" value="value" />
-      </mat-form-field>
-      <br />
-      <mat-form-field>
-        <input matInput placeholder="label" value="value" />
-      </mat-form-field>
-      <br />
-      <mat-select placeholder="Company" name="item">
-        <mat-option>
-          <p>google</p>
-        </mat-option>
-        <mat-option>
-          <p>yahoo</p>
-        </mat-option>
-        <mat-option>
-          <p>facebook</p>
-        </mat-option>
-      </mat-select>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Ok</button>
-    </mat-card-actions>
-  </mat-card>
-</ng-template>
-
-
+<!-- <mat-tab-group>
+  <mat-tab label="TabHeader1">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, labore
+    officia! Eius delectus aspernatur, sequi asperiores praesentium adipisci id
+    accusamus dolore minus itaque nulla optio dolor non sed inventore alias!
+  </mat-tab>
+  <mat-tab label="TabTabHeader2">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde quibusdam,
+    eum ducimus id dolores accusamus voluptate omnis repellat illo? Alias atque
+    rerum id corrupti fugit totam libero dolores sed rem.
+  </mat-tab>
+</mat-tab-group> -->

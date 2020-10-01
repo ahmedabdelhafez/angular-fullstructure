@@ -1,0 +1,56 @@
+.error-text-item {
+  color: red;
+}
+
+// << csutom sweetalert progress >> //
+
+.swal2-container {
+  .swal2-icon-error {
+    .swal2-timer-progress-bar {
+      background-color: red !important;
+    }
+  }
+  // success icon
+  .swal2-icon-success {
+    .swal2-timer-progress-bar {
+      background-color: green !important;
+    }
+  }
+  // info icon
+  .swal2-icon-info {
+    .swal2-timer-progress-bar {
+      background-color: royalblue !important;
+    }
+  }
+  // info warning
+  .swal2-icon-warning {
+    .swal2-timer-progress-bar {
+      background-color: orange !important;
+    }
+  }
+
+  .swal2-actions {
+    .swal2-confirm {
+      background-color: green;
+      color: white;
+    }
+
+    .swal2-cancel {
+      background-color: red;
+      color: white;
+    }
+  }
+}
+
+.swal2-actions {
+  background-color: darkblue;
+  color: white !important;
+}
+.swal2-content {
+  background-color: darkblue;
+  color: white !important;
+}
+
+.swal2-header {
+  color: white !important;
+}

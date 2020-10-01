@@ -6,119 +6,136 @@ import {
   ElementRef,
   AfterViewInit,
   TemplateRef,
+  Inject,
 } from "@angular/core";
 import { MediaObserver } from "@angular/flex-layout";
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  group,
-  keyframes,
-  query,
-  stagger,
-} from "@angular/animations";
-import { QUILL_CONFIG_TOKEN } from "ngx-quill";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CdkStepper } from "@angular/cdk/stepper";
+
+import { DOCUMENT } from "@angular/common";
+import { RxFormGroup, RxFormBuilder } from "@rxweb/reactive-form-validators";
+import { MaterialColumn } from "src/app/shared/components/table-custom/table-types/MaterialColumn.interface";
+import { TableOptions } from "src/app/shared/components/table-custom/table-types/TableOptions.interface";
+import { PaginationPosition } from "src/app/shared/components/table-custom/table-types/PaginationPosition.interface";
+import { MatTable } from "@angular/material/table";
+import { HttpClient } from "@angular/common/http";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-material-test",
   templateUrl: "./material-test.component.html",
   styleUrls: ["./material-test.component.scss"],
-  animations: [
-    // trigger("addremove", [
-    //   transition(":enter", [
-    //     style({ transform: "translateY(-100px) ", opacity: 1 }),
-    //     animate("0.6s 0.40ms ease-in"),
-    //   ]),
-    //   transition(":leave", [
-    //     animate(
-    //       "1s 0.2s ease-out",
-    //       keyframes([
-    //         style({ transform: "translateX(100px)", offset: 0.6 }),
-    //         style({ transform: "translateY(-500px)", offset: 0.8 }),
-    //       ])
-    //     ),
-    //     // style({
-    //     //   transform: "translateY(-500px)",
-    //     //   opacity: 0,
-    //     // }),
-    //   ]),
-    // ]),
-    trigger("listAnimation", [
-      transition("* <=> *", [
-        // each time the binding value changes
-        query(
-          ":leave",
-          [
-            animate(
-              "1s 0.1s ease-in-out",
-              keyframes([
-                style({
-                  transform: "scale(1.3)",
-
-                  offset: 0.3,
-                }),
-                style({
-                  transform: "translateX(100px) scale(0.8)",
-                  opacity: 0.6,
-                  offset: 0.6,
-                }),
-                style({
-                  transform: "translateX(-500px) scale(0.5)",
-                  opacity: 0.2,
-                  offset: 0.8,
-                }),
-              ])
-            ),
-            // stagger(100, [animate("0.5s", style({ opacity: 0 }))])
-          ],
-          { optional: true }
-        ),
-        query(
-          ":enter",
-          [
-            style({ opacity: 0, transform: "scale(0)" }), // start with this styles
-            stagger("0.2s", [
-              animate("0.5s", style({ opacity: 1, transform: "scale(1)" })),
-            ]),
-          ],
-          { optional: true }
-        ),
-      ]),
-    ]),
-  ],
+  animations: [],
 })
 export class MaterialTestComponent implements OnInit, AfterViewInit {
-  @ViewChild("cdkStepper", { static: true }) cdkStepper: CdkStepper;
-
-  constructor(private media: MediaObserver, private fb: FormBuilder) {}
-  myform: FormGroup;
-  dataElement = ["Football", "Courses", "Games", "Database", "Design"];
-
-  userIcon = [
-    { id: 0, icon: "home" },
-    { id: 1, icon: "add" },
-    { id: 2, icon: "remove" },
+  users: any = [];
+  tableColumns: MaterialColumn[] = [
+    {
+      columnName: "userId",
+      visible: true,
+      columnWidth: "50px",
+      stickyColumn: true,
+    },
+    {
+      columnName: "id",
+      visible: true,
+      columnWidth: "100px",
+      stickyColumn: false,
+    },
+    {
+      columnName: "title",
+      visible: true,
+      columnWidth: "200px",
+      stickyColumn: false,
+    },
+    {
+      columnName: "body",
+      visible: true,
+      columnWidth: "200px",
+      stickyColumn: false,
+    },
   ];
 
+  tableOptions: TableOptions = {
+    notDataMessage: "no data in array",
+    showExportButtons: true,
+    exportFileName: "'ملف بيانات'",
+    showPagination: true,
+    // showDetailRow: false,
+    paginationPageSize: [1, 3, 5, 7, 8, 9],
+    pageSize: 10,
+    showFooterRow: true,
+    paginationPosition: PaginationPosition.CENTER,
+    paginationStyle: {
+      alignFlexSlef: "flex-end",
+      bgColor: "#fdebd3",
+      color: "#264e70",
+    },
+    haveActions: true,
+    actionsButtonsMethods: {
+      add: {
+        actionButtonName: "Add",
+        actionButtonMethod: function () {
+          console.log("add emp works fine");
+        },
+      },
+      edit: {
+        actionButtonName: "Edit",
+        actionButtonMethod: function () {
+          console.log("edit emp button works fine");
+        },
+      },
+      remove: {
+        actionButtonName: "Remove",
+        actionButtonMethod: function () {
+          console.log("edit emp button works fine");
+        },
+      },
+    },
+    showFilter: true,
+    tableStyle: { bgColor: "#fdebd3" },
+    headerCellStyle: {
+      bgColor: "#48CAE4",
+      color: "#03045E",
+      alignText: "center",
+      fontSize: "20px",
+    },
+    rowsCellStyle: {
+      bgColor: "#CAF0F8",
+      color: "#7D8597",
+      alignText: "center",
+      fontSize: "16px",
+    },
+    footerStyle: {
+      footerRow: { bgColor: "#7D8597" },
+      footerCellStyle: {
+        bgColor: "#7D8597",
+        color: "#CAF0F8",
+        fontSize: "18px",
+      },
+    },
+  };
+
+  empForm: RxFormGroup;
+  @ViewChild("mytable") mytable: MatTable<any>;
+
+  constructor(
+    private media: MediaObserver,
+    @Inject(DOCUMENT) private document: Document,
+    @Inject("window") private window: Window,
+    private fb: RxFormBuilder,
+    private http: HttpClient
+  ) {}
+
   ngOnInit() {
-    this.media.media$.subscribe((data) => {
-      console.log("media beakpoints");
-      console.log(data);
-    });
+    this.http
+      .get("https://jsonplaceholder.typicode.com/posts", {
+        observe: "body",
+      })
+      .subscribe((data) => {
+        this.users = data;
+      });
   }
 
-  nextItem() {
-    this.cdkStepper.next();
-    console.log("step number ", this.cdkStepper.selectedIndex);
-  }
-  prevItem() {
-    this.cdkStepper.previous();
-    console.log("step number ", this.cdkStepper.selectedIndex);
-  }
+  buildForm() {}
 
   ngAfterViewInit() {}
 }

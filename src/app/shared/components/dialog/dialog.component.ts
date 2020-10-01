@@ -4,14 +4,18 @@ import {
   TemplateRef,
   Input,
   Inject,
-  Output
+  Output,
 } from "@angular/core";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
 
 @Component({
   selector: "app-dialog",
   templateUrl: "./dialog.component.html",
-  styleUrls: ["./dialog.component.scss"]
+  styleUrls: ["./dialog.component.scss"],
 })
 export class DialogComponent implements OnInit {
   @Output("userAction") userAction: any;

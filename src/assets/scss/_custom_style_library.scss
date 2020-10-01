@@ -20,3 +20,62 @@
 //     height: auto;
 // }
 
+
+// << csutom sweetalert progress >> //
+
+// .swal2-container {
+//   .swal2-icon-error {
+//     .swal2-timer-progress-bar {
+//       background-color: $danger !important;
+//     }
+//   }
+//   // success icon
+//   .swal2-icon-success {
+//     .swal2-timer-progress-bar {
+//       background-color: $success !important;
+//     }
+//   }
+//   // info icon
+//   .swal2-icon-info {
+//     .swal2-timer-progress-bar {
+//       background-color: $primary !important;
+//     }
+//   }
+//   // info warning
+//   .swal2-icon-warning {
+//     .swal2-timer-progress-bar {
+//       background-color: $warning !important;
+//     }
+//   }
+
+//   .swal2-actions {
+//     .swal2-confirm {
+//       background-color: $success;
+//       color: $white;
+//     }
+
+//     .swal2-cancel {
+//       background-color: $danger;
+//       color: $white;
+//     }
+//   }
+// }
+
+// .swal2-actions {
+//   background-color: $darkBlue;
+//   color: $white !important;
+// }
+// .swal2-content {
+//   background-color: $darkBlue;
+//   color: $white !important;
+// }
+
+// .swal2-header {
+//   color: $white !important;
+// }
+
+/// << ng select library custom style >> //
+.ng-select .ng-select-container {
+  margin-top: 6px;
+}
+

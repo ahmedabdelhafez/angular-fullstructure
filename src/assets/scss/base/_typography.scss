@@ -1,27 +1,120 @@
 @import "../variables.scss";
+@import "../mixin/mixin_dir";
 
-.h1 {
-  font-size: 2em;
+.text-white {
+  color: $whiteColor;
 }
 
-.h2 {
-  font-size: 1.5em;
-}
-.h3 {
-  font-size: 1.17em;
+.text-black {
+  color: $blackColor;
 }
 
-.h4 {
-  font-size: 1em;
+.text-primary {
+  color: $primary;
 }
 
-.h5 {
-  font-size: 0.83em;
+.text-secondary {
+  color: $secondary;
 }
 
-.h6 {
-  font-size: 0.67em;
+.text-gold {
+  color: $goldColor;
+}
+
+.text-orange {
+  color: $orangeColor;
+}
+
+.text-sky {
+  color: $skyColor;
+}
+
+.text-brown {
+  color: $brownColor;
+}
+
+/// << font weight >> ///
+.f-w-100 {
+  font-weight: 100;
+}
+.f-w-200 {
+  font-weight: 200;
+}
+.f-w-300 {
+  font-weight: 300;
+}
+.f-w-400 {
+  font-weight: 400;
+}
+.f-w-500 {
   font-weight: 500;
+}
+.f-w-600 {
+  font-weight: 600;
+}
+.f-w-700 {
+  font-weight: 700;
+}
+.f-w-800 {
+  font-weight: 800;
+}
+.f-w-900 {
+  font-weight: 900;
+}
+
+.f-w-bold {
+  font-weight: bold;
+}
+
+.f-w-normal {
+  font-weight: normal;
+}
+
+// << font size  >> //
+.font-size-10 {
+  @include font-size(10px);
+}
+.font-size-12 {
+  @include font-size(12px);
+}
+.font-size-14 {
+  @include font-size(14px);
+}
+.font-size-16 {
+  @include font-size(16px);
+}
+.font-size-18 {
+  @include font-size(18px);
+}
+.font-size-20 {
+  @include font-size(20px);
+}
+
+// << text-transform >> //
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+// << text align >> //
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
 }
 
 //** display font sizes for big title & important heading */

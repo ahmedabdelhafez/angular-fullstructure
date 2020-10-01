@@ -4,6 +4,8 @@ import {
   NgModule,
   CUSTOM_ELEMENTS_SCHEMA,
   APP_INITIALIZER,
+  Injector,
+  DoBootstrap,
 } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
@@ -24,6 +26,9 @@ import { NgxIndexedDBModule, DBConfig } from "ngx-indexed-db";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoadingSpinnerService } from "./core/loading-spinner.service";
 import { HeaderJwtService } from "./core/security/header-jwt.service";
+import { windowFactory } from "./core/token/windowFactory";
+import { navigatorFactory } from "./core/token/navigatorFactory";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -62,6 +67,8 @@ export function loadConfigurations(configAppService: ConfigAppService) {
     ApplicationsModule,
     LoadingspinnerModule,
     NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
@@ -106,8 +113,15 @@ export function loadConfigurations(configAppService: ConfigAppService) {
       deps: [ConfigAppService],
       multi: true,
     },
+    { provide: "window", useFactory: windowFactory },
+    { provide: "navigator", useFactory: navigatorFactory },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule  {
+  constructor() {}
+
+ 
+}

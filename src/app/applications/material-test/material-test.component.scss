@@ -1,34 +1,36 @@
-.stepper-content-wrapper {
-  min-width: 400px;
-  max-width: 50%;
-  min-height: 400px;
-  
-  background-color: cadetblue;
-  border-radius: 10px;
-  padding: 5px 5px 50px 5px;
-  position: relative;
-  margin-bottom: 50px;
+.mybox {
+  width: 300px;
+  height: 200px;
+  padding: 5px;
+  background-color: lightsalmon;
+}
 
-
-  .stepper-header {
-    width: 100%;
-    max-height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 0px;
-
-    .dot-item {
-      max-width: 25px;
-      max-height: 25px;
-      background-color: crimson;
-      padding: 10px;
-      border-radius: 50%;
-      margin: 0px 5px;
-      position: relative;
-
-    
+.material-table-wrapper {
+  .mat-table {
+    td.mat-cell {
+      text-align: center;
+      background-color: salmon !important;
     }
+  }
+}
+
+.active-tab-style {
+  background-color: indigo;
+  color: indianred;
+}
+
+.btn-grid-group {
+  width: 100%;
+  padding: 5px;
+  background-color: coral;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: minmax(50px, auto);
+  gap: 5px 5px;
+  .btn-green{
+    background-color: cornflowerblue;
+    color: white;
+    outline: none !important;
+    font-size: 1rem;
   }
 }

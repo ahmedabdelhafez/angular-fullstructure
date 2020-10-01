@@ -11,6 +11,8 @@ import { ProfileComponent } from "./applications/profile/profile.component";
 import { GridComponent } from "./applications/grid/grid.component";
 import { MaterialTestComponent } from "./applications/material-test/material-test.component";
 import { PreloadStartegyService } from "./core/preload-startegy.service";
+import { SliderComponent } from "./applications/slider/slider.component";
+import { DargDropComponent } from "./applications/darg-drop/darg-drop.component";
 
 const routes: Routes = [
   {
@@ -61,6 +63,12 @@ const routes: Routes = [
     data: { breadcrumb: "/testprint", title: "print", state: "testprint" },
   },
   {
+    path: "dragdrop",
+    component: DargDropComponent,
+    data: { breadcrumb: "/dragdrop", title: "dragDrop", state: "dragDrop" },
+  },
+
+  {
     path: "observable",
     component: ObservableComponent,
     data: {
@@ -97,6 +105,11 @@ const routes: Routes = [
     path: "grid",
     component: GridComponent,
     data: { breadcrumb: "/grid", title: "grid", state: "grid" },
+  },
+  {
+    path: "slider",
+    component: SliderComponent,
+    data: { breadcrumb: "/slider", title: "slider", state: "slider" },
   },
 ];
 

@@ -120,7 +120,7 @@ absoultue position with its property [top, right, bottom, left]
 /**
 creat box on any div
 */
-@mixin box($width:100px, $height:100px) {
+@mixin containerBox($width:100px, $height:$width) {
   width: $width;
   height: $height;
 }

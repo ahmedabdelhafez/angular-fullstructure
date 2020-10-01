@@ -4,9 +4,53 @@ button.clockst {
   color: purple !important;
 }
 
+.active-item {
+  background-color: yellow !important;
+  border: 1px solid orangered;
+}
+.active-item2 {
+  background-color: seagreen !important;
+  border: 1px solid goldenrod;
+}
+
+.myitem {
+  width: 100px;
+  height: 2px;
+  margin: 0px 10px;
+  background-color: chocolate;
+}
+
 //////////////////////
 
+.mytext {
+  @include font-size(18px);
+}
 
-.mytext{
-@include font-size(18px);
+.stepper-header-wrapper {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.stepper-content-wrapper {
+  width: 100%;
+  background-color: tomato;
+  padding: 5px;
+  min-height: 500px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // align-items: stretch;
+}
+
+.stepper-footer-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: seagreen;
 }

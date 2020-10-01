@@ -1,74 +1,64 @@
-<mat-card class="mat-input-full-width">
-  <mat-card-header>
-    <mat-card-title>Add New Employee</mat-card-title>
-  </mat-card-header>
-  <form [formGroup]="employeeForm" (ngSubmit)="saveForm()">
-    <mat-card-content>
-      <mat-form-field>
-        <input matInput placeholder="empid" formControlName="empId" />
-        <mat-error>
-          <app-error-validation
-            [formInstance]="employeeForm"
-            [nestedGroupName]="''"
-            [controlName]="'empId'"
-            [validateError]="['required', 'maxlength']"
-          ></app-error-validation>
-        </mat-error>
-      </mat-form-field>
-      <!-- <mat-divider [inset]="true"> </mat-divider> --><br />
-      <mat-form-field>
-        <input matInput placeholder="emp name" formControlName="empName" />
-        <mat-error *ngIf="formErrors.empName">
-          {{ formErrors.empName }}
-        </mat-error>
-      </mat-form-field>
-      <!-- <mat-divider [inset]="true"> </mat-divider> -->
-      <br />
-      <mat-form-field>
-        <input matInput placeholder="salary" formControlName="salary" />
-        <mat-error *ngIf="formErrors.empName">
-          {{ formErrors.salary }}
-        </mat-error>
-      </mat-form-field>
-      <div class="form-group">
-        <input
-          type="file"
-          class="form-control"
-          name="image"
-          id="image"
-          (change)="uploadFile($event, employeeForm, 'empImage')"
-        />
-      </div>
-    </mat-card-content>
-    <mat-card-footer>
-      <button
-        mat-raised-button
-        type="submit"
-        [disabled]="employeeForm.invalid"
-        #saveBtn
-      >
-        Save
-      </button>
-      <button mat-raised-button type="button" (click)="disableFOrm()">
-        Disable Form
-      </button>
-    </mat-card-footer>
-  </form>
-</mat-card>
-
-<button mat-mini-fab (click)="getAllPosts()">
-  Get Posts<mat-icon>home</mat-icon>
-</button>
-
-<mat-list>
-  <mat-list-item *ngFor="let item of postsData">{{ item.body }}</mat-list-item>
-</mat-list>
-
-<div>
-  <p class="mytext">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo dolorem
-    fuga doloribus, praesentium nihil excepturi reiciendis qui, neque iste
-    facilis vero incidunt sint velit modi. Molestias neque numquam reiciendis
-    accusamus?
-  </p>
+<div class="stepper-header-wrapper">
+  <ng-container *ngIf="stepsCount && cdkStepper">
+    <ng-container *ngFor="let item of stepsCount; let idx = index">
+      <span
+        class="rounded-circle bg-danger p-2 ml-2 mr-2"
+        [ngClass]="{ 'active-item': stepper.selectedIndex === idx }"
+        (click)="activeStep(idx)"
+        >{{ idx + 1 }}
+      </span>
+      <ng-container *ngIf="idx < lineCount">
+        <span
+          class="myitem"
+          [ngClass]="{ 'active-item2': stepper.selectedIndex === idx + 1 }"
+        ></span>
+      </ng-container> </ng-container
+  ></ng-container>
 </div>
+
+<div class="stepper-content-wrapper">
+  <app-customstepper #cdkStepper>
+    <cdk-step>
+      <div class="animated zoomIn slow">
+        <p class="display-2">step1</p>
+        <ng-container *ngTemplateOutlet="step1"></ng-container>
+      </div>
+    </cdk-step>
+    <cdk-step>
+      <div class="animated fadeIn slow">
+        <p class="display-2">step two</p>
+        <ng-container *ngTemplateOutlet="step2"></ng-container>
+      </div>
+    </cdk-step>
+    <cdk-step>
+      <p class="display-2">step three</p>
+    </cdk-step>
+    <cdk-step>
+      <p class="display-2">step four</p>
+    </cdk-step>
+  </app-customstepper>
+</div>
+
+<div class="stepper-footer-wrapper">
+  <button mat-fab (click)="cdkStepper.previous()">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <button mat-fab (click)="cdkStepper.next()">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+</div>
+
+<ng-template #step1>
+  <button mat-button (click)="stepper.next()">button 1</button>
+</ng-template>
+<ng-template #step2>
+  <button mat-button (click)="stepper.previous()">prev</button>
+  <button mat-button (click)="stepper.next()">Next</button>
+</ng-template>
+<ng-template #step3>
+  <button mat-button (click)="stepper.previous()">prev</button>
+  <button mat-button (click)="stepper.next()">Next</button></ng-template
+>
+<ng-template #step4
+  ><button mat-button (click)="stepper.previous()">prev</button>
+</ng-template>

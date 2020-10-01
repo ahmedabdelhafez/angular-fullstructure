@@ -1,145 +1,108 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CustomValidation } from "src/app/shared/validator/CustomValidation";
-import { Router } from "@angular/router";
-
-import { HttpCall } from "src/app/services/HttpCall.service";
-import { AppAlert } from "src/app/shared/util/AppAlert";
-import Swal from "sweetalert2";
-import * as customAnimation from "../../animations/CustomAnimation";
-import { NgxIndexedDBService } from "ngx-indexed-db";
 import {
-  fadeInOnEnterAnimation,
-  fadeOutOnLeaveAnimation,
-  slideInLeftOnEnterAnimation,
-  slideOutLeftOnLeaveAnimation,
-} from "angular-animations";
-declare var $: any;
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewEncapsulation,
+} from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { tap, debounceTime } from "rxjs/operators";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
+import { HttpClient } from "@angular/common/http";
+import {
+  parsePhoneNumberFromString,
+  PhoneNumber,
+  parsePhoneNumber,
+  CountryCallingCode,
+} from "libphonenumber-js";
 
 @Component({
   selector: "app-testprint",
   templateUrl: "./testprint.component.html",
   styleUrls: ["./testprint.component.scss"],
-  animations: [
-    customAnimation.rotateIcon,
-    fadeInOnEnterAnimation(),
-    fadeOutOnLeaveAnimation(),
-    slideInLeftOnEnterAnimation({
-      anchor: "enter",
-      duration: 1000,
-      delay: 100,
-    }),
-    slideOutLeftOnLeaveAnimation({
-      anchor: "leave",
-      duration: 3000,
-      delay: 250,
-    }),
-  ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TestprintComponent implements OnInit, AfterViewInit {
-  iconState = "up";
-  state22 = true;
-  hideItem() {
-    if (this.state22 === false) {
-      this.state22 = true;
-    } else {
-      this.state22 = false;
-    }
-  }
+  myForm: FormGroup;
+  // phoneNumber: string;
+  phoneForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private httpCall: HttpCall,
-    private dbService: NgxIndexedDBService
+    private dialog: MatDialog,
+    private http: HttpClient
   ) {}
-
-  rotateIcon() {
-    this.iconState === "up"
-      ? (this.iconState = "down")
-      : (this.iconState = "up");
-    console.log(this.iconState);
-  }
-
   async ngOnInit() {
-    this.createForm();
-    await this.dbService
-      .getAll<any[]>("people")
-      .then((data) => {
-        console.table(data);
-        data.forEach((e) => {
-          console.log(e["email"]);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  myform: FormGroup;
-
-  createForm() {
-    this.myform = this.fb.group({
-      userName: [""],
-      age: [""],
-      salary: [""],
+    this.myForm = this.fb.group({
+      username: ["", [Validators.required]],
+      salary: [100],
+    });
+    //////////
+    this.phoneForm = this.fb.group({
+      phoneNumber: [""],
     });
   }
-
-  formdata = new FormData();
-  saveForm() {
-    this.formdata.append("userName", this.myform.get("userName").value);
-    this.formdata.append("age", this.myform.get("age").value);
-    this.formdata.append("salary", this.myform.get("salary").value);
-    console.log("form after build");
-    console.log(JSON.stringify(this.formdata));
-  }
-
-  onNameChange(event) {
-    console.log("name event");
-    console.log(event);
-  }
-  imageURL;
-  // Image Preview
-  showPreview(event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    // this.uploadForm.patchValue({
-    //   avatar: file
-    // });
-    // this.uploadForm.get('avatar').updateValueAndValidity()
-
-    // File Preview
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageURL = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  getAll() {
-    this.httpCall.getAll<any>("posts").subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  async getOne() {
-    this.httpCall.getOne<any>("posts", "5").subscribe(async (data) => {
-      console.log(data);
-      await AppAlert.showToastError("first error", "test with await");
-      await AppAlert.showToastInfo("second error");
-      await AppAlert.ConfirmALert(
-        "هل تريد الخروج",
-        "الخروج من النظام",
-        "نعم اريد",
-        "كلا لا اريد"
-      ).then(async (res) => {
-        if (res.value) await AppAlert.showToastSuccess("ok bye bye");
-        else if (res.dismiss === Swal.DismissReason.cancel)
-          await AppAlert.showToastError("noooooooooooo");
-      });
-    });
-  }
-  state = "animateMe";
-  state2 = "";
 
   ngAfterViewInit() {}
+
+  ParsePhone() {
+    const phoneNumber = parsePhoneNumberFromString(
+      this.phoneForm.get("phoneNumber").value
+    );
+    console.log(phoneNumber);
+
+    if (phoneNumber) {
+      console.log("=--=-==--- Phone After parsing -=-=-=--=-");
+      console.log("is valid phone: ", phoneNumber.isValid());
+      console.log("is possible phone: ", phoneNumber.isPossible());
+      console.log("Number: ", phoneNumber.number);
+      console.log("national number: ", phoneNumber.nationalNumber);
+      console.log("Phone URI: ", phoneNumber.getURI);
+      console.log("Phone EXt: ", phoneNumber.ext);
+      console.log("Country: ", phoneNumber.country);
+      console.log("Country Calling: ", phoneNumber.countryCallingCode);
+      console.log(phoneNumber);
+    } else {
+      console.log("not a valid phone");
+    }
+  }
+
+  validatePhone() {
+    let phonVal = this.phoneForm.get("phoneNumber").value;
+    const phoneNumber = parsePhoneNumberFromString(phonVal);
+    if (phoneNumber) {
+      if (!phoneNumber.isValid()) {
+        console.log("not a valida phone");
+
+        this.phoneForm.get("phoneNumber").setErrors({ notPhone: true });
+      } else {
+        this.phoneForm.get("phoneNumber").setErrors(null);
+        this.phoneForm
+          .get("phoneNumber")
+          .updateValueAndValidity({ onlySelf: true, emitEvent: true });
+      }
+    } else {
+      console.log("not a valida phone");
+
+      this.phoneForm.get("phoneNumber").setErrors({ notPhone: true });
+      // this.phoneForm.get("phoneNumber").updateValueAndValidity();
+    }
+  }
+
+  openModal(template: any) {
+    this.dialog.open(DialogComponent, {
+      id: "d1",
+      width: "300px",
+      disableClose: false,
+      closeOnNavigation: true,
+      hasBackdrop: true,
+      data: {
+        title: "hello ahmed",
+        template: template,
+      },
+    });
+  }
+
+  saveForm() {
+    console.log(this.myForm.value);
+  }
 }

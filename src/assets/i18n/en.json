@@ -12,12 +12,23 @@
     "required": "the {{itemName}} field is required",
     "notNumber": "the {{itemName}} must be a number",
     "maxlength": "maxlength for item {{itemName}} is",
+    "minlength": "minlength for item {{itemName}} is {{val1}} chars",
+    "maxLength": "maxlength for item {{itemName}} is",
+    "minLength": "minlength for item {{itemName}} is {{val1}} chars",
     "alpha": "the {{itemName}} accpts charachter only",
     "notArabic": "this field must have arabic data only",
     "email": "please enter a valida email",
-    "numeric": "this field accepts number only"
+    "numeric": "this field accepts number only",
+    "compare": "field {{itemName}} is not compatible with {{compareField}}",
+    "range": "field {{itemName}} must between {{val1}} and {{val2}}"
   },
-  "appcontrols": { "username": "username" },
+  "appcontrols": {
+    "username": "username",
+    "confirmPassword": "confirmPassword",
+    "password": "password",
+    "salary":"Salary",
+    "empId":"empId"
+  },
   "statuscode": {
     "200": "The request has succeeded",
     "201": "resource created succefuly",
@@ -37,7 +48,7 @@
     "moreabout": "More Info",
     "observable": "Realtime Data",
     "grid": "Grid CSS3",
-    "sliders": "Slider",
+    "slider": "Slider",
     "materialtest": "Material Test",
     "aboutemp": "About Emp"
   },
@@ -52,7 +63,8 @@
     "observable": "Realtime Data",
     "profile": "Profile",
     "grid": "Grid CSS3",
-    "sliders": "Slider",
+    "slider": "Slider",
+    "dragdrop": "Drag Drop",
     "users": "Users",
     "materialtest": "Material Test"
   },

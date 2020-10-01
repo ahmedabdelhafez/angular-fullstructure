@@ -1,5 +1,11 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators,
+} from "@angular/forms";
 import { FormOperation } from "src/app/core/model/FormOperation.iterface";
 import {
   RxwebValidators,
@@ -7,10 +13,15 @@ import {
   RxFormBuilder,
   RxFormGroup,
   ResetFormType,
+  RxFormArray,
 } from "@rxweb/reactive-form-validators";
 import { CanComponentDeactivate } from "../../core/security/guard/candeactivate.guard";
 import { Observable, of } from "rxjs";
-import { UsersForm, AddressForm } from "../../shared/forms-models/users.class";
+import {
+  UsersForm,
+  AddressForm,
+  Courses,
+} from "../../shared/forms-models/users.class";
 import { HttpCall } from "src/app/services/HttpCall.service";
 import {
   distinctUntilChanged,
@@ -22,7 +33,13 @@ import {
   exhaustMap,
   mergeAll,
 } from "rxjs/operators";
-import { isArray } from 'jquery';
+import * as _lodash from "lodash";
+import { MatDialog } from "@angular/material/dialog";
+import {
+  SearchCountryField,
+  TooltipLabel,
+  CountryISO,
+} from "ngx-intl-tel-input";
 @Component({
   selector: "app-use-tabs",
   templateUrl: "./use-tabs.component.html",
@@ -51,12 +68,23 @@ export class UseTabsComponent
   ];
 
   constructor(
-    private fb: FormBuilder,
     private formBuilder: RxFormBuilder,
-    private http: HttpCall
+    private http: HttpCall,
+    private dialog: MatDialog
   ) {}
 
-  empForm: FormGroup;
+  openDialog(template: any) {
+    this.dialog.open(template, {
+      data: {
+        title: "custom dialog title",
+        template: template,
+      },
+      minWidth: 500,
+      minHeight: 400,
+    });
+  }
+
+  empForm: RxFormGroup;
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (
@@ -67,17 +95,57 @@ export class UseTabsComponent
     }
     return true;
   }
-  postId = new FormControl('1');
+  postId = new FormControl("1");
   ngOnInit(): void {
     let userForm = new UsersForm();
     userForm.address = new AddressForm();
+    let courses = new Courses();
+    userForm.courses = new Array<Courses>();
+    //<< this line add at lease one form array item when initial it >> //
+    // userForm.courses.push(courses);
     // this.createForm();
-    this.empForm = this.formBuilder.formGroup(userForm);
+    this.empForm = <RxFormGroup>this.formBuilder.formGroup(userForm);
 
     this.getdataFromServer();
+
   }
 
-  createForm() {
+  addCourse() {
+    let courses = <RxFormArray>this.empForm.controls.courses;
+    courses.push(this.formBuilder.formGroup(Courses));
+  }
+
+  removeCourse(idx: number) {
+    let hobbies = <RxFormArray>this.empForm.controls.courses;
+    hobbies.removeAt(idx);
+  }
+
+  patchFormWithData() {
+    let x = {
+      empid: "1",
+      username: "ahmed",
+      salary: 15000,
+      age: "25",
+      email: "ahmed@gmail.com",
+      password: "ahmed@1020",
+      confirmPassword: "ahmed@1020",
+      address: { city: "cairo", zipcode: "12345" },
+      courses: [
+        { courseId: 1, courseName: "java" },
+        { courseId: 2, courseName: "html" },
+      ],
+    };
+    // this.empForm.patchValue(x);
+    // let arr = this.empForm.get("courses") as RxFormArray;
+
+    // x.courses.forEach((ele, idx) => {
+    //   arr.push(this.formBuilder.group(ele));
+    // });
+
+    this.empForm.patchModelValue({ ...x });
+  }
+
+  createForm(): any {
     // this.empForm = this.fb.group({
     //   empid: [
     //     "",
@@ -132,31 +200,58 @@ export class UseTabsComponent
     //   ],
     // });
   }
+  separateDialCode = false;
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [
+    CountryISO.Egypt,
+    CountryISO.UnitedKingdom,
+  ];
+  phoneForm = new FormGroup({
+    phone: new FormControl(undefined, [Validators.required]),
+  });
 
-  saveForm<T>(formInstance?: FormGroup) {
-    if (formInstance.invalid) {
+  saveForm(): any {
+    if (this.empForm.invalid) {
       console.log("please complete the form");
     } else {
-      let data = formInstance.getRawValue();
+      let formdata = (this.empForm as RxFormGroup).toFormData();
 
-      console.log(data);
+      let data = (this.empForm as RxFormGroup).getRawValue();
+
+      console.log(JSON.stringify(data));
     }
   }
-  resetForm<T>(formInstance?: FormGroup) {
+  resetForm(formInstance?: FormGroup): any {
     formInstance.reset();
     // this.empForm.resetForm({ resetType: ResetFormType.ControlsOnly });
   }
-  updateData<T>(updateObject: T, id?: T) {
+  updateData(updateObject?: any, id?: any): any {
+    let data = {
+      empid: "11",
+      username: "ahmedfezo",
+      salary: "15000",
+      email: "ahmed@gmail.com",
+      password: "1544#$FM",
+      confirmPassword: "1544#$FM",
+      address: { city: "cairo#@$%", zipcode: "1541" },
+    };
+    this.empForm.patchValue(data, { onlySelf: false });
+  }
+  deleteData(deleteObject: any, id?: any): any {
     throw new Error("Method not implemented.");
   }
-  deleteData<T>(deleteObject: T, id?: T) {
-    throw new Error("Method not implemented.");
-  }
-  getFormValues<T>(formInstance?: FormGroup) {
+  getFormValues(formInstance?: FormGroup): any {
     throw new Error("Method not implemented.");
   }
 
-  bookForm: FormGroup = this.fb.group({
+  getAllErrors() {
+    let msg = this.empForm.getErrorSummary(true);
+    console.log(msg);
+  }
+
+  bookForm: FormGroup = this.formBuilder.group({
     postId: this.postId,
   });
   getdataFromServer() {
@@ -176,9 +271,9 @@ export class UseTabsComponent
       )
       .subscribe(
         (data) => {
-          if (isArray(data) && data.length === 0) {
+          if (_lodash.isArray(data) && data.length === 0) {
             console.log("no data");
-          }else{
+          } else {
             console.log(data);
           }
         },

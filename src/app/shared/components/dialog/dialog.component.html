@@ -1,18 +1,11 @@
 <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
-  <!-- <h2 >{{ dialogData.title }}</h2>
-    <button mat-mini-fab class="m-auto"><mat-icon>close</mat-icon></button> -->
-  <mat-toolbar
-    role="toolbar"
-    class="task-header"
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
-  >
-    <span> {{ dialogData?.title }}</span>
-    <!-- <span class="fx-spacer"></span> -->
-    <button mat-icon-button [mat-dialog-close]="false">
-      <mat-icon mat-list-icon>close</mat-icon>
-    </button>
-  </mat-toolbar>
+  <!-- <h2>{{ dialogData.title }}</h2>
+  <button mat-mini-fab class="m-auto"><mat-icon>close</mat-icon></button> -->
+
+  <span> {{ dialogData?.title }}</span>
+  <button mat-icon-button [mat-dialog-close]="false">
+    <mat-icon mat-list-icon>close</mat-icon>
+  </button>
 </div>
 <div mat-dialog-content>
   <ng-content *ngTemplateOutlet="dialogData.template"></ng-content>

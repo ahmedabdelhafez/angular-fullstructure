@@ -1,0 +1,62 @@
+<!-- Slider main container -->
+<div class="swiper-container" id="slider1">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide">
+      <img src="../../../assets/images/slider/1.jpg" alt="img 1" />
+      <div class="slider-text">
+        <h2 class="display-2" *ngIf="slideAnimationState" [@fadeInOnEnter]>
+          Slide Number 1
+        </h2>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <img src="../../../assets/images/slider/2.jpg" alt="img 1" />
+      <div class="slider-text">
+        <h2 class="display-2" *ngIf="slideAnimationState" [@fadeInOnEnter]>
+          Slide Number 2
+        </h2>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <img src="../../../assets/images/slider/3.jpg" alt="img 1" />
+      <div class="slider-text">
+        <h2 class="display-2" *ngIf="slideAnimationState" [@slideInDownOnEnter]>
+          Slide Number 3
+        </h2>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <img src="../../../assets/images/slider/4.jpg" alt="img 1" />
+      <div class="slider-text">
+        <h2
+          class="display-2"
+          *ngIf="slideAnimationState"
+          [@slideInRightOnEnter]
+        >
+          Slide Number 4
+        </h2>
+        <h4 class="h4" *ngIf="slideAnimationState"
+        [@slideInLeftOnEnter]>subtitle for transition 4</h4>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <img src="../../../assets/images/slider/5.jpg" alt="img 1" />
+      <div class="slider-text">
+        <h2 class="display-3" *ngIf="slideAnimationState" [@flipInXOnEnter]>
+          Slide Number 5
+        </h2>
+      </div>
+    </div>
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <!-- If we need scrollbar -->
+  <!-- <div class="swiper-scrollbar"></div> -->
+</div>

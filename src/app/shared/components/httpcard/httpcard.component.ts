@@ -7,7 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   selector: "app-httpcard",
   templateUrl: "./httpcard.component.html",
   styleUrls: ["./httpcard.component.scss"],
-  providers: [NgxSpinnerService]
+  providers: [NgxSpinnerService],
 })
 export class HttpcardComponent implements OnInit {
   isLoding = false;
@@ -30,23 +30,22 @@ export class HttpcardComponent implements OnInit {
       color: "#ffbd69",
       fullScreen: false,
       size: "medium",
-      type:'ball-beat'
+      type: "ball-beat",
     });
     this.posts
       .getPost(this.postId)
       .pipe(
         delay(3000),
-        tap(e => {
+        tap((e) => {
           console.log("tap method works well");
-          console.log(e);
         })
       )
       .subscribe(
-        data => {
+        (data) => {
           this.postData = data;
           console.log(data);
         },
-        err => {
+        (err) => {
           console.log(err);
         },
         () => {
