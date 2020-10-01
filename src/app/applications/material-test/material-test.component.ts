@@ -28,10 +28,30 @@ import { take } from "rxjs/operators";
 export class MaterialTestComponent implements OnInit, AfterViewInit {
   users: any = [];
   tableColumns: MaterialColumn[] = [
-    { columnName: "userId", visible: true, columnWidth: "50px" },
-    { columnName: "id", visible: true, columnWidth: "100px" },
-    { columnName: "title", visible: true, columnWidth: "200px" },
-    { columnName: "body", visible: true, columnWidth: "200px" },
+    {
+      columnName: "userId",
+      visible: true,
+      columnWidth: "50px",
+      stickyColumn: true,
+    },
+    {
+      columnName: "id",
+      visible: true,
+      columnWidth: "100px",
+      stickyColumn: false,
+    },
+    {
+      columnName: "title",
+      visible: true,
+      columnWidth: "200px",
+      stickyColumn: false,
+    },
+    {
+      columnName: "body",
+      visible: true,
+      columnWidth: "200px",
+      stickyColumn: false,
+    },
   ];
 
   tableOptions: TableOptions = {
@@ -39,9 +59,10 @@ export class MaterialTestComponent implements OnInit, AfterViewInit {
     showExportButtons: true,
     exportFileName: "'ملف بيانات'",
     showPagination: true,
-    showDetailRow: false,
+    // showDetailRow: false,
     paginationPageSize: [1, 3, 5, 7, 8, 9],
     pageSize: 10,
+    showFooterRow: true,
     paginationPosition: PaginationPosition.CENTER,
     paginationStyle: {
       alignFlexSlef: "flex-end",
@@ -82,6 +103,14 @@ export class MaterialTestComponent implements OnInit, AfterViewInit {
       color: "#7D8597",
       alignText: "center",
       fontSize: "16px",
+    },
+    footerStyle: {
+      footerRow: { bgColor: "#7D8597" },
+      footerCellStyle: {
+        bgColor: "#7D8597",
+        color: "#CAF0F8",
+        fontSize: "18px",
+      },
     },
   };
 

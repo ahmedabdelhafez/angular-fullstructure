@@ -33,6 +33,7 @@
               "./node_modules/swiper/css/swiper.min.css",
               "./node_modules/animate.css/animate.min.css",
               "./node_modules/intro.js/minified/introjs.min.css",
+              "./node_modules/intl-tel-input/build/css/intlTelInput.css",
               "./node_modules/intro.js/minified/introjs-rtl.min.css",
               "src/custom-style.scss",
               "src/styles.scss"

@@ -1,11 +1,11 @@
 @import "./variables.scss";
-@import "./fonts.scss";
 @import "./layout/layout_dir";
-@import './components/components_dir';
-@import './pages/pages_dir';
-@import './themes/themes_dir';
+@import "./components/components_dir";
+@import "./pages/pages_dir";
+@import "./themes/themes_dir";
 @import "./base/base_dir";
-@import "./custom_style_library";
+@import "./custom-bootstrap";
+@import "./custom-material";
 
 /*****************
 -- start coding

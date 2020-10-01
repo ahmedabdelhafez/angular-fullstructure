@@ -11,7 +11,7 @@ export interface TableOptions {
   /** exported file name */
   exportFileName?: string;
   /** show expanded detail row  */
-  showDetailRow?: boolean;
+  // showDetailRow?: boolean;
   /** paginator position option have three options `CENTER`,`LEFT`, 'RIGHT' */
   paginationPosition: PaginationPosition;
   /** pagination paging size that allow user to paginate the values */
@@ -70,7 +70,7 @@ export interface TableOptions {
   };
   /**  rows cells style for every rows expect headers */
   rowsCellStyle?: {
-    /** row cll background color prefer color e.x `#ffffff` */
+    /** row cell background color prefer color e.x `#ffffff` */
     bgColor?: string;
     /** font text color */
     color?: string;
@@ -78,5 +78,24 @@ export interface TableOptions {
     alignText?: "center" | "right" | "left";
     /** rows text font size */
     fontSize?: string;
+  };
+  showFooterRow?: boolean;
+  footerStyle?: {
+    /** style object for full footer row have backgroundColorOnly */
+    footerRow: {
+      /** full footer row `background color` */
+      bgColor: string;
+    };
+    /** footer cells style for all cells */
+    footerCellStyle: {
+      /** footer cell background color prefer color e.x `#ffffff` */
+      bgColor?: string;
+      /** font text color */
+      color?: string;
+      /** text align */
+      // alignText?: "center" | "right" | "left";
+      /** footer text font size prefered unit `px` or `rem` */
+      fontSize?: string;
+    };
   };
 }

@@ -7,21 +7,33 @@
     <button
       mat-raised-button
       class="btn-export-style"
-      (click)="exporterElement.exportTable('json', { fileName: tableOptions.exportFileName })"
+      (click)="
+        exporterElement.exportTable('json', {
+          fileName: tableOptions.exportFileName
+        })
+      "
     >
       To JSON
     </button>
     <button
       mat-raised-button
       class="btn-export-style"
-      (click)="exporterElement.exportTable('xlsx', { fileName: tableOptions.exportFileName })"
+      (click)="
+        exporterElement.exportTable('xlsx', {
+          fileName: tableOptions.exportFileName
+        })
+      "
     >
       To Excel
     </button>
     <button
       mat-raised-button
       class="btn-export-style"
-      (click)="exporterElement.exportTable('csv', { fileName: tableOptions.exportFileName })"
+      (click)="
+        exporterElement.exportTable('csv', {
+          fileName: tableOptions.exportFileName
+        })
+      "
     >
       To CSV
     </button>
@@ -74,6 +86,23 @@
           >
             {{ row[col] }}
           </td>
+          <td
+            mat-footer-cell
+            *matFooterCellDef
+            [ngStyle]="{
+              backgroundColor: tableOptions.footerStyle.footerCellStyle.bgColor
+                ? tableOptions.footerStyle.footerCellStyle.bgColor
+                : '',
+              color: tableOptions.footerStyle.footerCellStyle.color
+                ? tableOptions.footerStyle.footerCellStyle.color
+                : '',
+              fontSize: tableOptions.footerStyle.footerCellStyle.fontSize
+                ? tableOptions.footerStyle.footerCellStyle.fontSize
+                : ''
+            }"
+          >
+            Total
+          </td>
         </ng-container>
         <!-- if table have action column option -->
         <ng-container *ngIf="col === 'actions'">
@@ -95,12 +124,44 @@
               "
             ></ng-container>
           </td>
+          <td
+            mat-footer-cell
+            *matFooterCellDef
+            [ngStyle]="{
+              backgroundColor: tableOptions.footerStyle.footerCellStyle.bgColor
+                ? tableOptions.footerStyle.footerCellStyle.bgColor
+                : '',
+              color: tableOptions.footerStyle.footerCellStyle.color
+                ? tableOptions.footerStyle.footerCellStyle.color
+                : '',
+              fontSize: tableOptions.footerStyle.footerCellStyle.fontSize
+                ? tableOptions.footerStyle.footerCellStyle.fontSize
+                : '',
+              textAlign: 'center'
+            }"
+          >
+            {{ 100000 | currency }}
+          </td>
         </ng-container>
       </ng-container>
     </ng-container>
 
+    <!-- header columns names must be an array -->
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <!-- row data must be an array of column to allow table to map column name with data source -->
     <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    <!-- show footer row for totals or any thing -->
+    <ng-container *ngIf="tableOptions.showFooterRow">
+      <tr
+        mat-footer-row
+        *matFooterRowDef="columns"
+        [ngStyle]="{
+          backgroundColor: tableOptions.footerStyle.footerRow.bgColor
+            ? tableOptions.footerStyle.footerRow.bgColor
+            : ''
+        }"
+      ></tr>
+    </ng-container>
   </table>
 
   <!-- if datasource have no data show this message-->
@@ -108,7 +169,7 @@
     <p>{{ tableOptions.notDataMessage }}</p>
   </div>
 
-  <!-- table pagination item -->
+  <!-- table pagination original item -->
   <div
     class="material-pagination-wrapper"
     [ngStyle]="{ 'align-self': tableOptions.paginationStyle.alignFlexSlef }"
@@ -174,16 +235,28 @@
   </div>
 </div>
 
-<!-- table actions buttons  -->
+<!-- table action buttons  -->
 <ng-template #actionButtonsTemplate let-btnActions="btnActions">
   <div class="action-buttons-wrapper">
-    <button mat-button class="btn-action-item" (click)="btnActions.add.actionButtonMethod()">
+    <button
+      mat-button
+      class="btn-action-item"
+      (click)="btnActions.add.actionButtonMethod()"
+    >
       {{ btnActions.add.actionButtonName }}
     </button>
-    <button mat-button class="btn-action-item" (click)="btnActions.edit.actionButtonMethod()">
+    <button
+      mat-button
+      class="btn-action-item"
+      (click)="btnActions.edit.actionButtonMethod()"
+    >
       {{ btnActions.edit.actionButtonName }}
     </button>
-    <button mat-button class="btn-action-item" (click)="btnActions.remove.actionButtonMethod()">
+    <button
+      mat-button
+      class="btn-action-item"
+      (click)="btnActions.remove.actionButtonMethod()"
+    >
       {{ btnActions.remove.actionButtonName }}
     </button>
   </div>

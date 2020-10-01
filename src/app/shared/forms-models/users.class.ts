@@ -18,8 +18,11 @@ import {
   greaterThan,
   lessThan,
   elementClass,
+  minNumber,
   error,
   disable,
+  alphaNumeric,
+  json,
 } from "@rxweb/reactive-form-validators";
 
 /// address model
@@ -53,17 +56,17 @@ export class UsersForm {
   @prop()
   empid: number;
 
-  @error({
-    conditionalExpression: function (control: AbstractControl) {
-      return this.action === "submit";
-    },
-  })
+  // @error({
+  //   conditionalExpression: function (control: AbstractControl) {
+  //     return this.username === "ahmed";
+  //   },
+  // })
   @alpha({
     message: "this field must be string",
   })
   @minLength({ value: 3 })
   @required({
-    conditionalExpression:  (ele) =>{
+    conditionalExpression: (ele) => {
       return ele.empid == 10;
     },
   })
@@ -82,6 +85,12 @@ export class UsersForm {
     message: "enter a valida slary",
   })
   @prop()
+  @minNumber({
+    conditionalExpression: function (control: AbstractControl) {
+      return this.username === "ahmed";
+    },
+    value: 5000,
+  })
   salary: number;
 
   @required()
@@ -102,6 +111,11 @@ export class UsersForm {
   @prop()
   email: string;
 
+  @prop()
+  // @numeric()
+  @required()
+  mobileNumber: string;
+
   @required({ message: "pleae enter a valid password" })
   @password({
     message: "not a valid password",
@@ -119,15 +133,15 @@ export class UsersForm {
   @compare({ fieldName: "password" })
   confirmPassword: string;
 
-  @required()
-  @date()
-  @lessThan({ fieldName: "endDate" })
-  startDate: Date;
+  // @required()
+  // @date()
+  // @lessThan({ fieldName: "endDate" })
+  // startDate: Date;
 
-  @required()
-  @date()
-  @greaterThan({ fieldName: "startDate" })
-  endDate: Date;
+  // @required()
+  // @date()
+  // @greaterThan({ fieldName: "startDate" })
+  // endDate: Date;
 
   @propObject(AddressForm)
   address: AddressForm;
@@ -146,5 +160,13 @@ export class UsersForm {
 
   get getEmail() {
     return this.email;
+  }
+
+  get getMobileNumber() {
+    return this.mobileNumber;
+  }
+
+  set setMobileNumber(phoneNumber: any) {
+    this.mobileNumber = phoneNumber;
   }
 }

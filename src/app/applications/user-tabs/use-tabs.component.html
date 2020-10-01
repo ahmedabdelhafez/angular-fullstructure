@@ -63,6 +63,27 @@
           {{ empForm.get("age").errors | json }}
         </mat-error> -->
       </mat-form-field>
+      <br />
+      <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [maxLength]="15"
+        [tooltipField]="TooltipLabel.Name"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        name="mobileNumber"
+        formControlName="mobileNumber"
+      >
+      </ngx-intl-tel-input>
       <mat-form-field>
         <input matInput placeholder="email" formControlName="email" />
         <mat-error>
@@ -166,6 +187,7 @@
                 ></app-error-validation>
               </mat-error>
             </mat-form-field>
+         
           </mat-card-content>
         </mat-card>
       </ng-container>

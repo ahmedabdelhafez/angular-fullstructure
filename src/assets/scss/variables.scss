@@ -1,16 +1,21 @@
 /** colors variables */
-$light-green: greenyellow;
-$darkBlue: darkblue;
-$seaGreen: seagreen;
-$danger:red;
-
+$primary: #00a0b0;
+$secondary: #bee6ea;
+$whiteColor: white;
+$skyColor: #eff9fa;
+$brownColor: #4f372d;
+$goldColor: #edc951;
+$orangeColor: #eb6841;
+$blackColor: #000000;
+$danger: red;
+$success:green;
 /** font variable */
 $font10: 10px;
 $font12: 12px;
-
-// screen default sizes
-$screenXl: 1920px;
-$screenLg: 1200px;
-$screenMd: 768px;
-$screenSm: 400px;
-$screenXs: 320px;
+$font14: 14px;
+$font16: 16px;
+$font18: 18px;
+$font20: 20px;
+$fontParagraph: $font12;
+$fontHeading: 24px;
+$fontDisplay: 48px;

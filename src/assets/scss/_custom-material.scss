@@ -1,0 +1,72 @@
+@import "./variables.scss";
+
+.mat-form-field-infix {
+  width: 300px !important;
+}
+
+.mat-menu-content {
+  padding: 0px !important;
+}
+
+button:focus {
+  outline: none;
+}
+
+/////////////
+// << csutom sweetalert progress >> //
+
+.swal2-container {
+  .swal2-icon-error {
+    .swal2-timer-progress-bar {
+      background-color: $danger !important;
+    }
+  }
+  // success icon
+  .swal2-icon-success {
+    .swal2-timer-progress-bar {
+      background-color: $success !important;
+    }
+  }
+  // info icon
+  .swal2-icon-info {
+    .swal2-timer-progress-bar {
+      background-color: $primary !important;
+    }
+  }
+  // info warning
+  .swal2-icon-warning {
+    .swal2-timer-progress-bar {
+      background-color: $orangeColor !important;
+    }
+  }
+
+  .swal2-actions {
+    .swal2-confirm {
+      background-color: $success;
+      color: $whiteColor;
+    }
+
+    .swal2-cancel {
+      background-color: $danger;
+      color: $whiteColor;
+    }
+  }
+}
+
+.swal2-actions {
+  background-color: $primary;
+  color: $whiteColor !important;
+}
+.swal2-content {
+  background-color: $primary;
+  color: $whiteColor !important;
+}
+
+.swal2-header {
+  color: $whiteColor !important;
+}
+
+/// << ng select library custom style >> //
+.ng-select .ng-select-container {
+  margin-top: 6px;
+}

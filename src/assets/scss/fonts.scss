@@ -38,25 +38,37 @@ this is a font face mixin to load the font but it have a fixed entry point
 
 @font-face {
   font-family: "bodoni";
-  src: url("/assets/fonts/bodoni/Bodoni-Bold.ttf");
+  src: url("assets/fonts/bodoni/Bodoni-Bold.ttf");
 }
 
 @font-face {
   font-family: "rlway";
-  src: url("/assets/fonts/raleway/Raleway-Medium.ttf");
+  src: url("assets/fonts/raleway/Raleway-Medium.ttf");
 }
 
 @font-face {
-  font-family: "Cairo";
-  src: url("/assets/fonts/cairo/Cairo-Regular.ttf");
+  font-family: "cairo";
+  src: url("assets/fonts/cairo/Cairo-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Cairo-bold";
-  src: url("/assets/fonts/cairo/Cairo-Bold.ttf");
+  font-family: "cairo-bold";
+  src: url("assets/fonts/cairo/Cairo-Bold.ttf");
 }
 
 @font-face {
-  font-family: "Cairo-light";
-  src: url("/assets/fonts/cairo/Cairo-Light.ttf");
+  font-family: "cairo-light";
+  src: url("assets/fonts/cairo/Cairo-Light.ttf");
+}
+@font-face {
+  font-family: "cairo-extralight";
+  src: url("assets/fonts/cairo/Cairo-ExtraLight.ttf");
+}
+@font-face {
+  font-family: "cairo-black";
+  src: url("assets/fonts/cairo/Cairo-Black.ttf");
+}
+@font-face {
+  font-family: "cairo-semibold";
+  src: url("assets/fonts/cairo/SemiBold.ttf");
 }

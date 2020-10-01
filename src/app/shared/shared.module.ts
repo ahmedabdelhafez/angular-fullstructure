@@ -31,7 +31,9 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators"; // <-- 
 import { NgxProgressModule } from "@kken94/ngx-progress";
 import { DragAndDropModule } from "angular-draggable-droppable";
 import { DndModule } from "ngx-drag-drop";
+import { LazyloadingImageDirective } from "./directive/lazyloading-image.directive";
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
+import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
 import { ReactiveitemvalidationDirective } from "./directive/reactive-item-validation.directive";
 // export function createTranslateLoader(http: HttpClient) {
 //   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -55,6 +57,7 @@ import { ReactiveitemvalidationDirective } from "./directive/reactive-item-valid
     ErrorValidationComponent,
     ItemvalidationDirective,
     ReactiveitemvalidationDirective,
+    LazyloadingImageDirective,
   ],
   imports: [
     CommonModule,
@@ -81,6 +84,7 @@ import { ReactiveitemvalidationDirective } from "./directive/reactive-item-valid
     DragAndDropModule,
     DndModule,
     NgxPageScrollCoreModule.forRoot({ duration: 2500 }),
+    NgxIntlTelInputModule,
   ],
   exports: [
     MaterialModule,
@@ -115,6 +119,8 @@ import { ReactiveitemvalidationDirective } from "./directive/reactive-item-valid
     DragAndDropModule,
     DndModule,
     NgxPrintModule,
+    NgxIntlTelInputModule,
+    LazyloadingImageDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

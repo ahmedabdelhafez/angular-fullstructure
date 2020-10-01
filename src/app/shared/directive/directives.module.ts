@@ -4,7 +4,7 @@ import { LazyloadingImageDirective } from "./lazyloading-image.directive";
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [LazyloadingImageDirective],
-  exports: [LazyloadingImageDirective],
+  declarations: [],
+  exports: [],
 })
 export class DirectivesModule {}

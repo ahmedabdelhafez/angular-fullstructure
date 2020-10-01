@@ -1,5 +1,11 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl, FormArray } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators,
+} from "@angular/forms";
 import { FormOperation } from "src/app/core/model/FormOperation.iterface";
 import {
   RxwebValidators,
@@ -29,6 +35,11 @@ import {
 } from "rxjs/operators";
 import * as _lodash from "lodash";
 import { MatDialog } from "@angular/material/dialog";
+import {
+  SearchCountryField,
+  TooltipLabel,
+  CountryISO,
+} from "ngx-intl-tel-input";
 @Component({
   selector: "app-use-tabs",
   templateUrl: "./use-tabs.component.html",
@@ -96,6 +107,7 @@ export class UseTabsComponent
     this.empForm = <RxFormGroup>this.formBuilder.formGroup(userForm);
 
     this.getdataFromServer();
+
   }
 
   addCourse() {
@@ -188,6 +200,17 @@ export class UseTabsComponent
     //   ],
     // });
   }
+  separateDialCode = false;
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [
+    CountryISO.Egypt,
+    CountryISO.UnitedKingdom,
+  ];
+  phoneForm = new FormGroup({
+    phone: new FormControl(undefined, [Validators.required]),
+  });
 
   saveForm(): any {
     if (this.empForm.invalid) {
