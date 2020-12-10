@@ -2,7 +2,7 @@
   <ng-container *ngIf="stepsCount && cdkStepper">
     <ng-container *ngFor="let item of stepsCount; let idx = index">
       <span
-        class="rounded-circle bg-danger p-2 ml-2 mr-2"
+        class="bg-danger ml-2 mr-2 icon-item-st"
         [ngClass]="{ 'active-item': stepper.selectedIndex === idx }"
         (click)="activeStep(idx)"
         >{{ idx + 1 }}

@@ -35,4 +35,25 @@ export class AppUtil {
       }
     }, 16);
   }
+
+  isInt(n) {
+    return Number(n) === n && n % 1 === 0;
+  }
+
+  isFloat(n) {
+    return Number(n) === n && n % 1 !== 0;
+  }
+
+  isNumber(num) {
+    let vNum = null;
+    if (!isNaN(Number.parseInt(num)) && num % 1 === 0) {
+      vNum = Number.parseInt(num);
+    } else if (!isNaN(Number.parseFloat(num)) && num % 1 !== 0) {
+      vNum = Number.parseFloat(num);
+    } else {
+      vNum = 0;
+    }
+
+    return vNum;
+  }
 }

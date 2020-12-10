@@ -1,60 +1,72 @@
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CustomValidation } from "src/app/shared/validator/CustomValidation";
-import { trigger, transition, useAnimation } from "@angular/animations";
-
+import {
+  RxFormBuilder,
+  RxFormGroup,
+  RxwebValidators,
+} from "@rxweb/reactive-form-validators";
+import { AppAlert } from "src/app/shared/util/AppAlert";
+import { CustomValidation } from "../../shared/validator/CustomValidation";
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"],
+  encapsulation: ViewEncapsulation.None,
   animations: [],
 })
 export class ProfileComponent implements OnInit {
-  fadeInAnimation: any;
-  slideInLeftAnim: any;
-  myform: FormGroup;
-  city: string[] = ["Egypt", "Italy", "France", "Germany", "Canada"];
-
-  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
+  empsForm: FormGroup;
+  countrysList = [
+    { id: 1, name: "egypt" },
+    { id: 2, name: "italy" },
+    { id: 3, name: "france" },
+    { id: 4, name: "turky" },
+    { id: 5, name: "germany" },
+  ];
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();
   }
 
   createForm() {
-    this.myform = this.fb.group({
-      fname: ["", [Validators.required, Validators.minLength(5)]],
-      lname: ["", [Validators.required, Validators.minLength(5)]],
-      salary: ["", [Validators.required]],
-      comm: [null],
-      status: [],
-      city: [],
-      age: ["", [CustomValidation.isBetween(18, 50)]],
+    this.empsForm = this.fb.group({
+      userId: ["", [Validators.required]],
+      fullnameAr: [
+        "",
+        [
+          Validators.required,
+          CustomValidation.isArabicOnly,
+          Validators.maxLength(20),
+        ],
+      ],
+      fullnameEn: [
+        "",
+        [
+          Validators.required,
+          CustomValidation.isEnglishWithSpace,
+          RxwebValidators.maxLength({ value: 20 }),
+        ],
+      ],
     });
   }
 
   saveForm() {
-    let salary: number = this.myform.get("salary").value as number;
-    let comm = this.myform.get("comm").value;
-    console.log("Comm Value: " + comm);
-
-    if (comm === null || comm === 0) {
-      // this.myform.get('comm').patchValue(50);
-      this.myform.get("comm").setValidators(Validators.required);
-      this.myform.get("comm").updateValueAndValidity({ onlySelf: true });
-      return;
+    if (this.empsForm.invalid) {
+      AppAlert.showError("please complete all form data", null, 1500);
     } else {
-      this.myform.get("comm").clearValidators();
-      this.myform.get("comm").updateValueAndValidity({ onlySelf: true });
+      console.log(this.empsForm.getRawValue());
     }
-    console.log(this.myform.value);
   }
 
-  removeValidation() {
-    this.myform.clearValidators();
-  }
-
-  onkeyAction(event) {
-    console.log(event);
+  errorSummry() {
+    // console.log(this.empsForm.getErrorSummary(true));
   }
 }

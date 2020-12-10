@@ -36,6 +36,7 @@
               "./node_modules/intl-tel-input/build/css/intlTelInput.css",
               "./node_modules/intro.js/minified/introjs-rtl.min.css",
               "src/custom-style.scss",
+              "src/darkmode-style.scss",
               "src/styles.scss"
             ],
             "scripts": [

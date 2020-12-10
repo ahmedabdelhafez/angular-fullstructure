@@ -42,7 +42,7 @@ export class CustomFormInputComponent implements OnInit, ControlValueAccessor {
   @Input("name") name: string;
   /** type of input avilable types are `txt, email, password` */
   @Input() type: "text" | "email" | "password" | "number" = "text";
-
+ 
   value: any = "";
   ngOnInit() {}
 

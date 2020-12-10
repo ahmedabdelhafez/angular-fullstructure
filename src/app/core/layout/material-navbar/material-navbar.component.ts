@@ -123,6 +123,21 @@ export class MaterialNavbarComponent implements OnInit, AfterViewInit {
       hidden: false,
     },
     {
+      label: "profile",
+      data: { name: "profile" },
+      link: "/profile",
+      onSelected: () => {
+        this.router.navigate(["/profile"]);
+        this.menuStateAr = "hide";
+        this.menuStateEn = "hide";
+      },
+      navigationExtras: {
+        relativeTo: this.activatedRoute,
+      },
+      icon: "star_rate",
+      hidden: false,
+    },
+    {
       label: "slider",
       data: { name: "slider" },
       link: "/slider",

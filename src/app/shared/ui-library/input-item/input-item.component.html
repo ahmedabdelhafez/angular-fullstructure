@@ -1,0 +1,12 @@
+<div class="form-group">
+  <label [for]="itemId">{{ labelText }}</label>
+  <input
+    [type]="inputType"
+    class="form-control"
+    [name]="itemName"
+    [id]="itemId"
+    [placeholder]="placeholder"
+    (input)="onChange($event.target.value)"
+    (blur)="onTouched()"
+  />
+</div>

@@ -372,9 +372,3 @@ $shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
   outline: none;
 }
 
-.sidenav-static {
-  position: fixed;
-  width: 100%;
-  z-index: 9999999999999;
-  transition: all 0.3s ease-in-out;
-}

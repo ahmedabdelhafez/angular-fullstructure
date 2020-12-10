@@ -143,6 +143,21 @@ export class SideNavbarComponent implements OnInit, AfterViewInit {
       hidden: false,
     },
     {
+      label: "profile",
+      data: { name: "profile" },
+      link: "/profile",
+      onSelected: () => {
+        this.router.navigate(["/profile"]);
+        this.menuStateAr = "hide";
+        this.menuStateEn = "hide";
+      },
+      navigationExtras: {
+        relativeTo: this.activatedRoute,
+      },
+      icon: "star_rate",
+      hidden: false,
+    },
+    {
       label: "observable",
       data: { name: "observable" },
 
@@ -182,18 +197,18 @@ export class SideNavbarComponent implements OnInit, AfterViewInit {
       },
       navigationExtras: { relativeTo: this.activatedRoute },
     },
-    {
-      label: "sliders",
-      data: { name: "sliders" },
-      link: "/sliders",
-      icon: "offline_pin",
-      onSelected: () => {
-        this.router.navigate(["/sliders"]);
-        this.menuStateAr = "hide";
-        this.menuStateEn = "hide";
-      },
-      navigationExtras: { relativeTo: this.activatedRoute },
-    },
+    // {
+    //   label: "sliders",
+    //   data: { name: "sliders" },
+    //   link: "/sliders",
+    //   icon: "offline_pin",
+    //   onSelected: () => {
+    //     this.router.navigate(["/sliders"]);
+    //     this.menuStateAr = "hide";
+    //     this.menuStateEn = "hide";
+    //   },
+    //   navigationExtras: { relativeTo: this.activatedRoute },
+    // },
   ];
   appConfig: any;
   windowSize$ = fromEvent(window, "scroll");

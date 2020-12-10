@@ -18,6 +18,7 @@ import { DialogModule } from "../shared/components/dialog/dialog.module";
 import { UploaderModule } from "../shared/components/uploader/uploader.module";
 import { SearchModule } from "../shared/components/search/search.module";
 import { MaterialTestComponent } from "./material-test/material-test.component";
+import { AddComponent } from "./material-test/add/add.component";
 import { ItemviewComponent } from "./grid/itemview/itemview.component";
 import { NgxPaginationModule } from "ngx-pagination";
 import { EventCalendarModule } from "../shared/components/event-calendar/event-calendar.module";
@@ -26,6 +27,7 @@ import { HeaderSectionModule } from "../shared/components/header-section/header-
 import { SliderComponent } from "./slider/slider.component";
 import { TableCustomModule } from "../shared/components/table-custom/tablecustom.module";
 import { UilibraryModule } from "../shared/ui-library/uilibrary.module";
+import { AddEmpComponent } from "./observable/add-emp/add-emp.component";
 // const route: Routes = [
 //   { path: '', component: TeststyleComponent }
 // ]
@@ -42,6 +44,8 @@ import { UilibraryModule } from "../shared/ui-library/uilibrary.module";
     ItemviewComponent,
     SliderComponent,
     DargDropComponent,
+    AddComponent,
+    AddEmpComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +77,8 @@ import { UilibraryModule } from "../shared/ui-library/uilibrary.module";
     SliderComponent,
     UilibraryModule,
     DargDropComponent,
+    AddComponent,
+    AddEmpComponent,
   ],
   entryComponents: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

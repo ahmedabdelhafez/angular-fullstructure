@@ -4,6 +4,17 @@ button.clockst {
   color: purple !important;
 }
 
+.icon-item-st {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .active-item {
   background-color: yellow !important;
   border: 1px solid orangered;

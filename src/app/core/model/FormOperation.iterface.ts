@@ -7,28 +7,28 @@ export interface FormOperation {
    *
    * @returns `void |  Promise<void>`
    */
-  createForm: <T>() => T;
+  createForm(): any;
   /**
    * @description `saveForm`  method is used to post form data to backend
    * and it returns void or promise<void> to allow developer use it with Async/Await
    *
    * @returns `void |  Promise<void>`
    */
-  saveForm: <T>(formInstance?: FormGroup) => T;
+  saveForm(formInstance?: FormGroup): any;
   /**
    * @description `resetForm`  method is used to reset form values
    * and it returns void or promise<void> to allow developer use it with Async/Await
    *@param `formInstance` @type FormGroup
    * @returns `void |  Promise<void>`
    */
-  resetForm: <T>(formInstance?: FormGroup) => T;
+  resetForm(formInstance?: FormGroup): any;
   /**
    * @description `updateData`  method is used to update form values to backend
    * and it returns void or promise<void> to allow developer use it with Async/Await
    *
    * @returns `void |  Promise<void>`
    */
-  updateData?: <T>(updateObject: T, id?: T) => T;
+  updateData(updateObject: any, id?: any): any;
   /**
    * @description `deleteData`  method is used to delete object from backend
    * and it returns void or promise<void> to allow developer use it with Async/Await
@@ -36,7 +36,7 @@ export interface FormOperation {
    * @param `id` @type T
    * @returns `void |  Promise<void>`
    */
-  deleteData?: <T>(deleteObject: T, id?: T) => T;
+  deleteData(deleteObject: any, id?: any): any;
   /**
    * @description `getFormValues`  method is used to return all form values
    * and it returns void or promise<void> to allow developer use it with Async/Await
@@ -44,5 +44,5 @@ export interface FormOperation {
    * @param `id` @type T
    * @returns `form values` @type T
    */
-  getFormValues?: <T>(formInstance?: FormGroup) => T;
+  getFormValues(formInstance?: FormGroup): any;
 }

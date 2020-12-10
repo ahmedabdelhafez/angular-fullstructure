@@ -34,7 +34,7 @@ export class TestprintComponent implements OnInit, AfterViewInit {
   async ngOnInit() {
     this.myForm = this.fb.group({
       username: ["", [Validators.required]],
-      salary: [100],
+      salary: [100, [Validators.required]],
     });
     //////////
     this.phoneForm = this.fb.group({

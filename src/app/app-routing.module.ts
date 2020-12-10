@@ -10,9 +10,11 @@ import { ObservableComponent } from "./applications/observable/observable.compon
 import { ProfileComponent } from "./applications/profile/profile.component";
 import { GridComponent } from "./applications/grid/grid.component";
 import { MaterialTestComponent } from "./applications/material-test/material-test.component";
+import { AddComponent } from "./applications/material-test/add/add.component";
 import { PreloadStartegyService } from "./core/preload-startegy.service";
 import { SliderComponent } from "./applications/slider/slider.component";
 import { DargDropComponent } from "./applications/darg-drop/darg-drop.component";
+import { AddEmpComponent } from "./applications/observable/add-emp/add-emp.component";
 
 const routes: Routes = [
   {
@@ -76,6 +78,16 @@ const routes: Routes = [
       title: "observable",
       state: "observable",
     },
+    children: [{ path: "addemp", component: AddEmpComponent }],
+  },
+  {
+    path: "observable/:id",
+    component: ObservableComponent,
+    data: {
+      breadcrumb: "/observable",
+      title: "observable",
+      state: "observable",
+    },
   },
   {
     path: "fullmenu",
@@ -95,10 +107,12 @@ const routes: Routes = [
   {
     path: "materialtest",
     component: MaterialTestComponent,
+    // pathMatch: "full",
+    children: [{ path: "add", component: AddComponent }],
     data: {
-      breadcrumb: "/materialtest",
-      title: "Material Test",
-      state: "materialtest",
+      breadcrumb: "/add",
+      title: "add",
+      state: "add",
     },
   },
   {
@@ -111,6 +125,10 @@ const routes: Routes = [
     component: SliderComponent,
     data: { breadcrumb: "/slider", title: "slider", state: "slider" },
   },
+  // {
+  //   path: "**",
+  //   redirectTo: "login",
+  // },
 ];
 
 @NgModule({

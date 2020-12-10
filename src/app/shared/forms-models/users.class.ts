@@ -1,4 +1,5 @@
 import { AbstractControl } from "@angular/forms";
+import { TranslateService } from "@ngx-translate/core";
 import {
   required,
   numeric,
@@ -23,6 +24,7 @@ import {
   disable,
   alphaNumeric,
   json,
+  requiredTrue,
 } from "@rxweb/reactive-form-validators";
 
 /// address model
@@ -79,6 +81,10 @@ export class UsersForm {
   username: string;
 
   @required()
+  @prop()
+  countryName: string;
+
+  @required()
   @numeric({
     allowDecimal: true,
     acceptValue: NumericValueType.PositiveNumber,
@@ -92,6 +98,10 @@ export class UsersForm {
     value: 5000,
   })
   salary: number;
+
+  @prop()
+  @requiredTrue()
+  isActive: boolean;
 
   @required()
   @range({
@@ -109,6 +119,7 @@ export class UsersForm {
     },
   })
   @prop()
+  @required({ messageKey: "email", isAddMessageKey: true })
   email: string;
 
   @prop()

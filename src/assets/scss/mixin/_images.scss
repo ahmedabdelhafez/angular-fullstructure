@@ -2,6 +2,6 @@
   width: $width;
   height: $height;
   img {
-    object-fit: cover;
+    object-fit: $objectFit;
   }
 }

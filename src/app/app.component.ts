@@ -22,6 +22,7 @@ import { DOCUMENT } from "@angular/common";
 import { TranslationService } from "./core/translation.service";
 import { ConsoleService } from "./shared/util/ConsoleService";
 import { TranslationKeys } from "./core/model/enums/Translation-Keys.enum";
+import { ReactiveFormConfig } from "@rxweb/reactive-form-validators";
 
 export const MY_FORMATS = {
   parse: {

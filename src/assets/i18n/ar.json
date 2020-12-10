@@ -20,7 +20,19 @@
     "email": "برجاء إدخال بريد إلكتروني صحيح",
     "numeric": "يجب إدخال ارقام فقط",
     "compare": "field {{itemName}} is not compatible with {{compareField}}",
-    "range": "field {{itemName}} must between {{val1}} and {{val2}}"
+    "range": "field {{itemName}} must between {{val1}} and {{val2}}",
+    "invalidAge": "برجاء إدخال السن الصحيح",
+    "requiredTrue": "هذا الحقل مطلوب",
+    "date": "برجاء إدخال تاريخ صحيح",
+    "notEnglish": "يجب إدخال بيانات باللغة الإنجليزية فقط",
+    "notUrl": "برجاء إدخال رابط صحيح",
+    "notMobile": "برجاء إدخال رقم هاتف صحيح",
+    "notCurrency": "برجاء إدخال قيمة عملة صحيحة",
+    "notAlphaArabic": "هذا الحقل يقبل احرف و عربية و ارقام فقط",
+    "notAlphaEnglish": "هذا الحقل يقبل احرف إنجليزي و ارقام فقط",
+    "notCreditcard": "برجاء إدخال رقم بطاقة إلكترونية صحيحة",
+    "notDate": "برجاء إدخال اريخ صحيح",
+    "notInRange": "بيانات هذا الحقل يجب ان تكون بين {{val1}} و {{val2}}"
   },
   "appcontrols": {
     "username": "اسم المستخدم",
@@ -49,7 +61,8 @@
     "slider": "عارض الصور",
     "dragdrop": "سحب و إفلات",
     "materialtest": "تصميم ماتيريال",
-    "aboutemp": "معلومات موظف"
+    "aboutemp": "معلومات موظف",
+    "profile": "ملف شخصي"
   },
   "navbar": {
     "home": "الرئيسية",

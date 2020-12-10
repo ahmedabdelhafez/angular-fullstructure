@@ -22,7 +22,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/shared/components/dialog/dialog.component";
 import { FormOperation } from "src/app/core/model/FormOperation.iterface";
 import { FormGroup } from "@angular/forms";
-import { City } from 'src/app/core/model/CityDataSource.interface';
+import { City } from "src/app/core/model/CityDataSource.interface";
 
 // declare var $: any;
 
@@ -39,6 +39,9 @@ export class GridComponent implements OnInit, AfterViewInit {
   page: number = 0;
   total: number = 0;
   itemPerPage: 5;
+
+  
+
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute,

@@ -6,13 +6,13 @@ import {
 } from "@angular/cdk/drag-drop";
 import { DragAndDropModule } from 'angular-draggable-droppable';
 
-
 @Component({
   selector: "app-darg-drop",
   templateUrl: "./darg-drop.component.html",
   styleUrls: ["./darg-drop.component.scss"],
 })
 export class DargDropComponent implements OnInit {
+  img1:string = '@assets/images/slider/1jpg';
   public simpleList = [
     [
       { name: "John", type: "male" },

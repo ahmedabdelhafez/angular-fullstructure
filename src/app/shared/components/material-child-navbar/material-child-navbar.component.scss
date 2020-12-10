@@ -1,0 +1,21 @@
+.nav-child-element-wrapper {
+  width: 100%;
+  height: auto;
+}
+
+#customTabNav .mat-tab-links {
+  // background-color: chocolate;
+  height: 48px;
+
+  // .mat-tab-link:active {
+  //   background-color: cornsilk !important;
+  // }
+  .mat-tab-link:hover {
+    background-color: crimson;
+  }
+}
+.activeLinkChild {
+  background-color: slateblue;
+  color: wheat;
+  font-size: 1rem;
+}

@@ -12,14 +12,21 @@
           formControlName="username"
         ></app-custom-form-input>
         <div class="salary-wrapper">
-          <app-custom-form-input
+          <!-- <app-custom-form-input
             id="salaryItem"
             class="salary-class-input"
             name="itemSalary"
             formControlName="salary"
             [type]="'number'"
             [placeholder]="'your salary'"
-          ></app-custom-form-input>
+          ></app-custom-form-input> -->
+          <app-input-file
+            [type]="'text'"
+            formControlName="salary"
+            [label]="'salary item'"
+            [placeholder]="'salary placeholder'"
+          >
+          </app-input-file>
         </div>
       </div>
     </mat-card-content>

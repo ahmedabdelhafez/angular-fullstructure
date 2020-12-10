@@ -1,0 +1,13 @@
+<label>{{ value }}</label>
+<input
+  [type]="type"
+  [placeholder]="placeholder"
+  [value]="value"
+  [disabled]="disabled"
+  (input)="onChange($event.target.value)"
+  (blur)="onTouched()"
+/>
+
+<ng-container *ngIf="currentControl.invalid">
+  <p>i have an error fix me</p>
+</ng-container>

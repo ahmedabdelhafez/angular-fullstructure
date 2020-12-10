@@ -27,6 +27,7 @@ import { SideviewService } from "src/app/services/sideview.service";
 import { HttpCall } from "src/app/services/HttpCall.service";
 import { saveAs } from "file-saver";
 import { DOCUMENT } from "@angular/common";
+import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-observable",
   templateUrl: "./observable.component.html",
@@ -111,7 +112,9 @@ export class ObservableComponent implements OnInit, OnDestroy {
     private httpData: HttpCall,
     private sideView: SideviewService,
     private elem: ElementRef,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   public editor;
@@ -189,7 +192,9 @@ export class ObservableComponent implements OnInit, OnDestroy {
       });
   }
 
-
+  naviagetToAdd() {
+    this.router.navigate(["/observable/addemp"]);
+  }
 
   hideByHand() {
     let items = document.querySelectorAll("item-grid").forEach((e) => {

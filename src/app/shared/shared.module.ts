@@ -2,27 +2,15 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialModule } from "./material.module";
 import { BootstrapngxModule } from "./bootstrapngx.module";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
-import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { ItemvalidationDirective } from "./directive/itemvalidation.directive";
+import { HttpClientModule } from "@angular/common/http";
+import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ArabicOnlyDirective } from "./directive/arabic-only.directive";
-import { LatinOnlyDirective } from "./directive/latin-only.directive";
-import { LatinwithnumberDirective } from "./directive/latinwithnumber.directive";
-import { SummryPipe } from "./pipes/summry.pipe";
-import { CurrencyIconDirective } from "./directive/currency-icon.directive";
-import { RolesDirective } from "../core/security/roles_directive/roles.directive";
-import { CustomPopoverDirective } from "./directive/custom-popover.directive";
-import { RtlDirective } from "./directive/rtl.directive";
 import { QuillModule } from "ngx-quill";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgCircleProgressModule } from "ng-circle-progress";
-import { FilterPipe } from "./pipes/filter.pipe";
 import { NgxPrintModule } from "ngx-print";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
-import { StaticNavbarDirective } from "./directive/static-navbar.directive";
 import { FilterViewerComponent } from "./components/filter-viewer/filter-viewer.component";
 import { TimerComponent } from "./components/timer/timer.component";
 import { CustomstepperComponent } from "./components/customstepper/customstepper.component";
@@ -31,42 +19,33 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators"; // <-- 
 import { NgxProgressModule } from "@kken94/ngx-progress";
 import { DragAndDropModule } from "angular-draggable-droppable";
 import { DndModule } from "ngx-drag-drop";
-import { LazyloadingImageDirective } from "./directive/lazyloading-image.directive";
 import { NgxPageScrollCoreModule } from "ngx-page-scroll-core";
+import { NgxPageScrollModule } from "ngx-page-scroll";
 import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
-import { ReactiveitemvalidationDirective } from "./directive/reactive-item-validation.directive";
-// export function createTranslateLoader(http: HttpClient) {
-//   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-// }
+import { MaterialChildNavbarComponent } from "./components/material-child-navbar/material-child-navbar.component";
+import { DirectivesModule } from "./directive/directives.module";
+import { PipesModule } from "./pipes/pipes.module";
+import { TimelineComponent } from "./components/timeline/timeline.component";
+import { TabGroupComponent } from "./components/tab-group/tab-group.component";
+import { GridContainerComponent } from "./components/grid-container/grid-container.component";
+
 @NgModule({
   declarations: [
-    ItemvalidationDirective,
-    ArabicOnlyDirective,
-    LatinOnlyDirective,
-    LatinwithnumberDirective,
-    SummryPipe,
-    CurrencyIconDirective,
-    RolesDirective,
-    CustomPopoverDirective,
-    RtlDirective,
-    FilterPipe,
-    StaticNavbarDirective,
     FilterViewerComponent,
     TimerComponent,
     CustomstepperComponent,
     ErrorValidationComponent,
-    ItemvalidationDirective,
-    ReactiveitemvalidationDirective,
-    LazyloadingImageDirective,
+    MaterialChildNavbarComponent,
+    TimelineComponent,
+    TabGroupComponent,
+    GridContainerComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     BootstrapngxModule,
-    HttpClientModule,
+
     TranslateModule,
-    FormsModule,
-    ReactiveFormsModule,
     QuillModule.forRoot(),
     NgxMaterialTimepickerModule.setLocale("ar-AE"),
     NgSelectModule,
@@ -84,7 +63,11 @@ import { ReactiveitemvalidationDirective } from "./directive/reactive-item-valid
     DragAndDropModule,
     DndModule,
     NgxPageScrollCoreModule.forRoot({ duration: 2500 }),
+    NgxPageScrollModule,
     NgxIntlTelInputModule,
+    RouterModule,
+    DirectivesModule,
+    PipesModule,
   ],
   exports: [
     MaterialModule,
@@ -94,33 +77,27 @@ import { ReactiveitemvalidationDirective } from "./directive/reactive-item-valid
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    ItemvalidationDirective,
-    ArabicOnlyDirective,
-    LatinOnlyDirective,
-    LatinwithnumberDirective,
-    SummryPipe,
-    CurrencyIconDirective,
-    RolesDirective,
-    CustomPopoverDirective,
-    RtlDirective,
     QuillModule,
     NgSelectModule,
     NgCircleProgressModule,
-    FilterPipe,
     NgxMaterialTimepickerModule,
-    StaticNavbarDirective,
     FilterViewerComponent,
     TimerComponent,
     CustomstepperComponent,
     ErrorValidationComponent,
     RxReactiveFormsModule,
-    ItemvalidationDirective,
-    ReactiveitemvalidationDirective,
     DragAndDropModule,
     DndModule,
     NgxPrintModule,
     NgxIntlTelInputModule,
-    LazyloadingImageDirective,
+    MaterialChildNavbarComponent,
+    NgxPageScrollCoreModule,
+    NgxPageScrollModule,
+    TimelineComponent,
+    DirectivesModule,
+    PipesModule,
+    TabGroupComponent,
+    GridContainerComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

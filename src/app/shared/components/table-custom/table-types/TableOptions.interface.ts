@@ -51,51 +51,51 @@ export interface TableOptions {
     itemsPerpageLabels?: string;
   };
   /** table options such as background color , font color , width and height */
-  tableStyle?: {
-    /** full table background color */
-    bgColor?: string;
-    minWidth?: string | number;
-    minHeight?: string | number;
-  };
+  // tableStyle?: {
+  //   /** full table background color */
+  //   bgColor?: string;
+  //   minWidth?: string | number;
+  //   minHeight?: string | number;
+  // };
   /** header cell style the style will be applied for all header cells only */
-  headerCellStyle?: {
-    /** header cll background color prefer color e.x `#ffffff` */
-    bgColor?: string;
-    /** font text color */
-    color?: string;
-    /** text align */
-    alignText?: "center" | "right" | "left";
-    /** header text font size */
-    fontSize?: string;
-  };
+  // headerCellStyle?: {
+  //   /** header cll background color prefer color e.x `#ffffff` */
+  //   bgColor?: string;
+  //   /** font text color */
+  //   color?: string;
+  //   /** text align */
+  //   alignText?: "center" | "right" | "left";
+  //   /** header text font size */
+  //   fontSize?: string;
+  // };
   /**  rows cells style for every rows expect headers */
-  rowsCellStyle?: {
-    /** row cell background color prefer color e.x `#ffffff` */
-    bgColor?: string;
-    /** font text color */
-    color?: string;
-    /** text align */
-    alignText?: "center" | "right" | "left";
-    /** rows text font size */
-    fontSize?: string;
-  };
+  // rowsCellStyle?: {
+  //   /** row cell background color prefer color e.x `#ffffff` */
+  //   bgColor?: string;
+  //   /** font text color */
+  //   color?: string;
+  //   /** text align */
+  //   alignText?: "center" | "right" | "left";
+  //   /** rows text font size */
+  //   fontSize?: string;
+  // };
   showFooterRow?: boolean;
-  footerStyle?: {
-    /** style object for full footer row have backgroundColorOnly */
-    footerRow: {
-      /** full footer row `background color` */
-      bgColor: string;
-    };
-    /** footer cells style for all cells */
-    footerCellStyle: {
-      /** footer cell background color prefer color e.x `#ffffff` */
-      bgColor?: string;
-      /** font text color */
-      color?: string;
-      /** text align */
-      // alignText?: "center" | "right" | "left";
-      /** footer text font size prefered unit `px` or `rem` */
-      fontSize?: string;
-    };
-  };
+  // footerStyle?: {
+  //   /** style object for full footer row have backgroundColorOnly */
+  //   footerRow: {
+  //     /** full footer row `background color` */
+  //     bgColor: string;
+  //   };
+  //   /** footer cells style for all cells */
+  //   footerCellStyle: {
+  //     /** footer cell background color prefer color e.x `#ffffff` */
+  //     bgColor?: string;
+  //     /** font text color */
+  //     color?: string;
+  //     /** text align */
+  //     // alignText?: "center" | "right" | "left";
+  //     /** footer text font size prefered unit `px` or `rem` */
+  //     fontSize?: string;
+  //   };
+  // };
 }

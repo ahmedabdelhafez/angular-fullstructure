@@ -24,14 +24,14 @@ export class CustomValidation {
    */
   static isArabicOnly(control: AbstractControl): ValidationErrors | null {
     const val: string = control.value as string;
-    // const arabicRegex = /[\u0600-\u06FF]/;
-    // if (!arabicRegex.test(val)) {
-    //   return { notArabic: true };
-    // }
-
-    if (!validator.isAlpha(val === null ? "" : val, "ar-EG")) {
+    const arabicRegex = /^[\u0600-\u06FF ]+$/;
+    if (!arabicRegex.test(val)) {
       return { notArabic: true };
     }
+
+    // if (!validator.isAlpha(val === null ? "" : val, "ar-EG")) {
+    //   return { notArabic: true };
+    // }
     return null;
   }
   /**
@@ -48,6 +48,18 @@ export class CustomValidation {
     if (!validator.isAlpha(val === null ? "" : val, "en-US")) {
       return { notEnglish: true };
     }
+    return null;
+  }
+
+  static isEnglishWithSpace(control: AbstractControl): ValidationErrors | null {
+    const val: string = control.value as string;
+    const englishRegex = new RegExp("^[a-zA-Z ]+$");
+    if (!englishRegex.test(val)) {
+      return { notEnglish: true };
+    }
+    // if (!validator.isAlpha(val === null ? "" : val, "en-US")) {
+    //   return { notEnglish: true };
+    // }
     return null;
   }
   /**
@@ -200,7 +212,7 @@ export class CustomValidation {
   static isCreditCard(control: AbstractControl): ValidationErrors | null {
     const val: string = control.value as string;
     if (!validator.isCreditCard(val)) {
-      return { notCreditard: true };
+      return { notCreditcard: true };
     }
     return null;
   }
@@ -248,7 +260,7 @@ export class CustomValidation {
     return (control: AbstractControl): { [key: string]: any } => {
       const val = control.value as number;
       if (!(val >= min && val <= max)) {
-        return { notRange: true, message: { min, max } };
+        return { notInRange: true, message: { min, max } };
       }
       return null;
     };
@@ -285,7 +297,7 @@ export class CustomValidation {
     // compare is the password math
     if (password !== confirmPassword) {
       // if they don't match, set an error in our confirmPassword form control
-      control.get("confirmPassword").setErrors({ NoPassswordMatch: true });
+      control.get("confirmPassword").setErrors({ passswordNotMatch: true });
     }
   }
 }

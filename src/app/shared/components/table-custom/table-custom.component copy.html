@@ -1,0 +1,256 @@
+<!-- <div class="material-table-wrapper">
+  <div
+    class="material-table-header-wrapper"
+    *ngIf="tableOptions.showExportButtons"
+  >
+    <button
+      mat-raised-button
+      class="btn-export-style"
+      (click)="
+        exporterElement.exportTable('json', {
+          fileName: tableOptions.exportFileName
+        })
+      "
+    >
+      To JSON
+    </button>
+    <button
+      mat-raised-button
+      class="btn-export-style"
+      (click)="
+        exporterElement.exportTable('xlsx', {
+          fileName: tableOptions.exportFileName
+        })
+      "
+    >
+      To Excel
+    </button>
+    <button
+      mat-raised-button
+      class="btn-export-style"
+      (click)="
+        exporterElement.exportTable('csv', {
+          fileName: tableOptions.exportFileName
+        })
+      "
+    >
+      To CSV
+    </button>
+  </div>
+
+  <table
+    mat-table
+    matTableExporter
+    #exporter="matTableExporter"
+    matSort
+    #table
+    [dataSource]="dataSource"
+    [ngStyle]="{
+      'min-width': tableOptions.tableStyle.minWidth
+        ? tableOptions.tableStyle.minWidth
+        : '100%',
+      'background-color': tableOptions.tableStyle.bgColor
+        ? tableOptions.tableStyle.bgColor
+        : 'whitesmoke'
+    }"
+    *ngIf="tableDataSource.length > 0"
+  >
+    <ng-container *ngFor="let col of columns; let i = index">
+      <ng-container [matColumnDef]="col">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          appRtl
+          [ngStyle]="{
+            color: tableOptions.headerCellStyle.color,
+            backgroundColor: tableOptions.headerCellStyle.bgColor,
+            textAlign: tableOptions.headerCellStyle.alignText,
+            fontSize: tableOptions.headerCellStyle.fontSize
+          }"
+        >
+          {{ col }}
+        </th>
+        <ng-container *ngIf="col !== 'actions'">
+          <td
+            mat-cell
+            *matCellDef="let row"
+            appRtl
+            [ngStyle]="{
+              backgroundColor: tableOptions.rowsCellStyle.bgColor,
+              color: tableOptions.rowsCellStyle.color,
+              textAlign: tableOptions.rowsCellStyle.alignText,
+              fontSize: tableOptions.rowsCellStyle.fontSize
+            }"
+          >
+            {{ row[col] }}
+          </td>
+          <td
+            mat-footer-cell
+            *matFooterCellDef
+            [ngStyle]="{
+              backgroundColor: tableOptions.footerStyle.footerCellStyle.bgColor
+                ? tableOptions.footerStyle.footerCellStyle.bgColor
+                : '',
+              color: tableOptions.footerStyle.footerCellStyle.color
+                ? tableOptions.footerStyle.footerCellStyle.color
+                : '',
+              fontSize: tableOptions.footerStyle.footerCellStyle.fontSize
+                ? tableOptions.footerStyle.footerCellStyle.fontSize
+                : ''
+            }"
+          >
+            Total
+          </td>
+        </ng-container>
+        <ng-container *ngIf="col === 'actions'">
+          <td
+            mat-cell
+            *matCellDef="let row"
+            appRtl
+            [ngStyle]="{
+              backgroundColor: tableOptions.rowsCellStyle.bgColor,
+              color: tableOptions.rowsCellStyle.color,
+              textAlign: tableOptions.rowsCellStyle.alignText,
+              fontSize: tableOptions.rowsCellStyle.fontSize
+            }"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                actionButtonsTemplate;
+                context: { btnActions: tableOptions.actionsButtonsMethods }
+              "
+            ></ng-container>
+          </td>
+          <td
+            mat-footer-cell
+            *matFooterCellDef
+            [ngStyle]="{
+              backgroundColor: tableOptions.footerStyle.footerCellStyle.bgColor
+                ? tableOptions.footerStyle.footerCellStyle.bgColor
+                : '',
+              color: tableOptions.footerStyle.footerCellStyle.color
+                ? tableOptions.footerStyle.footerCellStyle.color
+                : '',
+              fontSize: tableOptions.footerStyle.footerCellStyle.fontSize
+                ? tableOptions.footerStyle.footerCellStyle.fontSize
+                : '',
+              textAlign: 'center'
+            }"
+          >
+            {{ 100000 | currency }}
+          </td>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    <ng-container *ngIf="tableOptions.showFooterRow">
+      <tr
+        mat-footer-row
+        *matFooterRowDef="columns"
+        [ngStyle]="{
+          backgroundColor: tableOptions.footerStyle.footerRow.bgColor
+            ? tableOptions.footerStyle.footerRow.bgColor
+            : ''
+        }"
+      ></tr>
+    </ng-container>
+  </table>
+
+  <div class="no-datasource-text-wrapper" *ngIf="tableDataSource.length === 0">
+    <p>{{ tableOptions.notDataMessage }}</p>
+  </div>
+
+ 
+  <div
+    class="material-pagination-wrapper"
+    [ngStyle]="{ 'align-self': tableOptions.paginationStyle.alignFlexSlef }"
+    [hidden]="!tableOptions.showPagination || tableDataSource.length === 0"
+  >
+    <mat-paginator
+      #paginator
+      [ngStyle]="{ display: 'none' }"
+      [ngStyle]="{
+        'background-color': tableOptions.paginationStyle.bgColor,
+        color: tableOptions.paginationStyle.color
+      }"
+      showFirstLastButtons
+      [pageSize]="tableOptions.pageSize ? tableOptions.pageSize : 5"
+      [pageSizeOptions]="tableOptions.paginationPageSize"
+    ></mat-paginator>
+
+    <div class="custom-pagination">
+      <div class="pagination-btn-items">
+        <button
+          type="button"
+          class="pagination-btn"
+          (click)="paginator.firstPage()"
+          [disabled]="!paginator.hasPreviousPage()"
+        >
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="pagination-btn"
+          (click)="paginator.previousPage()"
+        >
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="pagination-text-items">
+        <p>Page</p>
+        <div class="page-spliter">
+          <span class="page-index">{{ paginator.pageIndex + 1 }}</span
+          ><span>/</span><span>{{ itemsCount / tableOptions.pageSize }}</span>
+        </div>
+      </div>
+      <div class="pagination-btn-items">
+        <button
+          type="button"
+          class="pagination-btn"
+          (click)="paginator.nextPage()"
+          [disabled]="!paginator.hasNextPage()"
+        >
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="pagination-btn"
+          (click)="paginator.lastPage()"
+          [disabled]="!paginator.hasNextPage()"
+        >
+          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #actionButtonsTemplate let-btnActions="btnActions">
+  <div class="action-buttons-wrapper">
+    <button
+      mat-button
+      class="btn-action-item"
+      (click)="btnActions.add.actionButtonMethod()"
+    >
+      {{ btnActions.add.actionButtonName }}
+    </button>
+    <button
+      mat-button
+      class="btn-action-item"
+      (click)="btnActions.edit.actionButtonMethod()"
+    >
+      {{ btnActions.edit.actionButtonName }}
+    </button>
+    <button
+      mat-button
+      class="btn-action-item"
+      (click)="btnActions.remove.actionButtonMethod()"
+    >
+      {{ btnActions.remove.actionButtonName }}
+    </button>
+  </div>
+</ng-template> -->

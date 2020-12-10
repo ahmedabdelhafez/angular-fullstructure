@@ -1,0 +1,16 @@
+<nav mat-tab-nav-bar id="customTabNav" mat-align-tabs="center">
+  <p
+    mat-tab-link
+    *ngFor="let link of navigationLinks"
+    [routerLink]="link.link"
+    routerLinkActive="activeLinkChild"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    {{ link.label }} <span class="ml-1 mr-1"><mat-icon>cake</mat-icon></span>
+  </p>
+  <!-- <p mat-tab-link>Home</p> -->
+</nav>
+
+<div class="nav-child-element-wrapper">
+  <router-outlet></router-outlet>
+</div>

@@ -32,13 +32,21 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Cairo";
+  font-family: "Cairo", sans-serif;
 }
 
 .rtl-item {
   direction: rtl;
   text-align: right;
 }
+
+.sidenav-static {
+  position: fixed;
+  width: 100%;
+  z-index: 9999999999999;
+  transition: all 0.3s ease-in-out;
+}
+
 
 .swiper-pagination {
   text-align: left !important;
@@ -95,3 +103,4 @@ $someColor: seagreen;
 // button:not(.timepicker-dial__item) {
 //   color: $someColor !important;
 // }
+

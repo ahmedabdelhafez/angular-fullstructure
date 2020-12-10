@@ -14,6 +14,7 @@ import {
   RxFormGroup,
   ResetFormType,
   RxFormArray,
+  RxFormControl,
 } from "@rxweb/reactive-form-validators";
 import { CanComponentDeactivate } from "../../core/security/guard/candeactivate.guard";
 import { Observable, of } from "rxjs";
@@ -65,6 +66,11 @@ export class UseTabsComponent
       link: "./list",
       index: 2,
     },
+    {
+      label: "Home",
+      link: "./",
+      index: 3,
+    },
   ];
 
   constructor(
@@ -72,6 +78,12 @@ export class UseTabsComponent
     private http: HttpCall,
     private dialog: MatDialog
   ) {}
+  deleteData(deleteObject: any, id?: any) {
+    throw new Error('Method not implemented.');
+  }
+  getFormValues(formInstance?: FormGroup) {
+    throw new Error('Method not implemented.');
+  }
 
   openDialog(template: any) {
     this.dialog.open(template, {
@@ -107,7 +119,6 @@ export class UseTabsComponent
     this.empForm = <RxFormGroup>this.formBuilder.formGroup(userForm);
 
     this.getdataFromServer();
-
   }
 
   addCourse() {
@@ -227,6 +238,11 @@ export class UseTabsComponent
     formInstance.reset();
     // this.empForm.resetForm({ resetType: ResetFormType.ControlsOnly });
   }
+
+  setAgeError() {
+    (<RxFormControl>this.empForm.get("age")).setErrors({ invalidAge: true });
+  }
+
   updateData(updateObject?: any, id?: any): any {
     let data = {
       empid: "11",
@@ -238,12 +254,6 @@ export class UseTabsComponent
       address: { city: "cairo#@$%", zipcode: "1541" },
     };
     this.empForm.patchValue(data, { onlySelf: false });
-  }
-  deleteData(deleteObject: any, id?: any): any {
-    throw new Error("Method not implemented.");
-  }
-  getFormValues(formInstance?: FormGroup): any {
-    throw new Error("Method not implemented.");
   }
 
   getAllErrors() {

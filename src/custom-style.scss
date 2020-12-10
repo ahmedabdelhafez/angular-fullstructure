@@ -1,142 +1,156 @@
-@import "~@angular/material/theming";
+// @import "~@angular/material/theming";
+// // @include mat-core();
+// // typography
+// $first-custom-typography: mat-typography-config(
+//   $font-family: "Cairo",
+//   $display-4: mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+//   $display-3: mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+//   $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+//   $display-1: mat-typography-level(34px, 40px, 400),
+//   $headline: mat-typography-level(24px, 32px, 400),
+//   $title: mat-typography-level(20px, 32px, 500),
+//   $subheading-2: mat-typography-level(16px, 28px, 400),
+//   $subheading-1: mat-typography-level(15px, 24px, 400),
+//   $body-2: mat-typography-level(14px, 24px, 500),
+//   $body-1: mat-typography-level(14px, 20px, 400),
+//   $caption: mat-typography-level(12px, 20px, 400),
+//   $button: mat-typography-level(14px, 14px, 500),
+//   $input: mat-typography-level(inherit, 1.125, 400),
+// );
 
+// @include mat-core($first-custom-typography);
 
-/* For use in src/lib/core/theming/_palette.scss */
-$md-devilblue: (
-  50: #e4eef2,
-  100: #bdd4df,
-  200: #91b8c9,
-  300: #649bb3,
-  400: #4385a3,
-  500: #227093,
-  600: #1e688b,
-  700: #195d80,
-  800: #145376,
-  900: #0c4164,
-  A100: #195d80,
-  A200: #2f2f30,
-  A400: #31a5ff,
-  A700: #189aff,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #ffffff,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #ffffff,
-  ),
-);
+// ///// theme 2
+// $mat-primary: (
+//   100: #ffcde0,
+//   200: #723d46,
+//   300: #b8bedd,
+//   400: #3a86ff,
+//   500: #ff2f88,
+//   700: #512da8,
+//   contrast: (
+//     100: rgba(0, 0, 0, 0.87),
+//     500: #ffffff,
+//     700: #ffffff,
+//   ),
+// );
+// $mat-aceent: (
+//   100: #cc4467,
+//   200: #e26d5c,
+//   300: #9c89b8,
+//   500: #b7d180,
+//   400: #197278,
+//   700: #ffc400,
+//   contrast: (
+//     100: rgba(255, 255, 255, 0.87),
+//     500: rgba(0, 0, 0, 0.87),
+//     700: #ffffff,
+//   ),
+// );
+// $mat-warn: (
+//   100: red,
+//   200: #472d30,
+//   300: #f0a6ca,
+//   500: rgb(209, 95, 95),
+//   400: #fb5607,
+//   700: #ffc400,
+//   contrast: (
+//     100: rgba(255, 255, 255, 0.87),
+//     500: rgba(0, 0, 0, 0.87),
+//     700: #ffffff,
+//   ),
+// );
+// $mat-primary-palette: mat-palette($mat-primary, 100);
+// $mat-accent-palette: mat-palette($mat-aceent, 500);
+// $mat-warn-palette: mat-palette($mat-warn, 100);
 
-/* For use in src/lib/core/theming/_palette.scss */
-$md-warncolor: (
-  50: #f6e7e7,
-  100: #e8c4c4,
-  200: #d99c9c,
-  300: #ca7474,
-  400: #be5757,
-  500: #b33939,
-  600: #ac3333,
-  700: #a32c2c,
-  800: #9a2424,
-  900: #8b1717,
-  A100: #ffc1c1,
-  A200: #ff8e8e,
-  A400: #ff5b5b,
-  A700: #ff4141,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #ffffff,
-    500: #ffffff,
-    600: #ffffff,
-    700: #ffffff,
-    800: #ffffff,
-    900: #ffffff,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #ffffff,
-  ),
-);
+// $app-light-theme: mat-light-theme(
+//   $mat-primary-palette,
+//   $mat-accent-palette,
+//   $mat-warn-palette
+// );
+// @include angular-material-theme($app-light-theme);
 
-/* For use in src/lib/core/theming/_palette.scss */
-/* For use in src/lib/core/theming/_palette.scss */
-$md-accentcolor: (
-  50: #fff6e8,
-  100: #ffe8c6,
-  200: #ffd8a1,
-  300: #ffc87b,
-  400: #ffbd5e,
-  500: #ffb142,
-  600: #ffaa3c,
-  700: #ffa133,
-  800: #ff982b,
-  900: #ff881d,
-  A100: #ffffff,
-  A200: #ffffff,
-  A400: #ffe3ce,
-  A700: #ffd5b4,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #000000,
-    400: #000000,
-    500: #000000,
-    600: #000000,
-    700: #000000,
-    800: #000000,
-    900: #000000,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
-  ),
-);
+// /// orange theme
+// $mat-primary-palette-orange: mat-palette($mat-primary, 200);
+// $mat-accent-palette-orange: mat-palette($mat-aceent, 200);
+// $mat-warn-palette-orange: mat-palette($mat-warn, 200);
 
-$custom-theme-primary: mat-palette($md-devilblue, 900, 800, 700);
-$custom-theme-accent: mat-palette($md-accentcolor, A200, A300, A400);
-$custom-theme-warn: mat-palette($md-warncolor);
-//
-$custom-theme: mat-light-theme(
-  $custom-theme-primary,
-  $custom-theme-accent,
-  $custom-theme-warn
-);
+// $app-orange-theme: mat-light-theme(
+//   $mat-primary-palette-orange,
+//   $mat-accent-palette-orange,
+//   $mat-warn-palette-orange
+// );
 
-// << customize typography >> //
+// .orange-theme {
+//   // typography
+//   $first-custom-typography: mat-typography-config(
+//     $font-family: "Cairo",
+//     $display-4:
+//       mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+//     $display-3: mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+//     $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+//     $display-1: mat-typography-level(34px, 40px, 400),
+//     $headline: mat-typography-level(24px, 32px, 400),
+//     $title: mat-typography-level(20px, 32px, 500),
+//     $subheading-2: mat-typography-level(16px, 28px, 400),
+//     $subheading-1: mat-typography-level(15px, 24px, 400),
+//     $body-2: mat-typography-level(14px, 24px, 500),
+//     $body-1: mat-typography-level(14px, 20px, 400),
+//     $caption: mat-typography-level(12px, 20px, 400),
+//     $button: mat-typography-level(14px, 14px, 500),
+//     $input: mat-typography-level(inherit, 1.125, 400),
+//   );
 
-$app-typography: mat-typography-config(
-  $font-family: 'Cairo, Roboto, sans-serif',
-  $display-4: mat-typography-level(112px, 112px, 300),
-  $display-3: mat-typography-level(56px, 56px, 400),
-  $display-2: mat-typography-level(45px, 48px, 400),
-  $display-1: mat-typography-level(34px, 40px, 400),
-  $headline: mat-typography-level(24px, 32px, 400),
-  $title: mat-typography-level(20px, 32px, 500),
-  $subheading-2: mat-typography-level(16px, 28px, 400),
-  $subheading-1: mat-typography-level(15px, 24px, 400),
-  $body-2: mat-typography-level(14px, 24px, 500),
-  $body-1: mat-typography-level(14px, 20px, 400),
-  $caption: mat-typography-level(12px, 20px, 400),
-  $button: mat-typography-level(14px, 14px, 500),
-  // Line-height must be unit-less fraction of the font-size.
-  $input: mat-typography-level(16px, 1.25, 400),
-);
+//   @include mat-core($first-custom-typography);
+//   @include angular-material-color($app-orange-theme);
+// }
 
-@include mat-base-typography($app-typography);
-// Override the typography in the core CSS.
-@include mat-core($app-typography);
+// //// green theme
+// $mat-primary-palette-green: mat-palette($mat-primary, 300);
+// $mat-accent-palette-green: mat-palette($mat-aceent, 300);
+// $mat-warn-palette-green: mat-palette($mat-warn, 300);
 
-// << build the theme >> //
-@include angular-material-theme($custom-theme);
+// $app-green-theme: mat-light-theme(
+//   $mat-primary-palette-green,
+//   $mat-accent-palette-green,
+//   $mat-warn-palette-green
+// );
+// .green-theme {
+//   // typography
+//   $first-custom-typography: mat-typography-config(
+//     $font-family: "ٌRoboto",
+//     $display-4:
+//       mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+//     $display-3: mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+//     $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+//     $display-1: mat-typography-level(34px, 40px, 400),
+//     $headline: mat-typography-level(24px, 32px, 400),
+//     $title: mat-typography-level(20px, 32px, 500),
+//     $subheading-2: mat-typography-level(16px, 28px, 400),
+//     $subheading-1: mat-typography-level(15px, 24px, 400),
+//     $body-2: mat-typography-level(14px, 24px, 500),
+//     $body-1: mat-typography-level(14px, 20px, 400),
+//     $caption: mat-typography-level(12px, 20px, 400),
+//     $button: mat-typography-level(14px, 14px, 500),
+//     $input: mat-typography-level(inherit, 1.125, 400),
+//   );
+//   @include angular-material-color($app-green-theme);
+// }
+
+// // ###################################################
+// /////////////// << dark mode theme >> ////////////////
+
+// $mat-primary-palette-dark: mat-palette($mat-primary, 500);
+// $mat-accent-palette-dark: mat-palette($mat-aceent, 700);
+// $mat-warn-palette-dark: mat-palette($mat-warn, 400);
+
+// $angular-dark-theme: mat-dark-theme(
+//   $mat-primary-palette-dark,
+//   $mat-accent-palette-dark,
+//   $mat-warn-palette-dark
+// );
+
+// .darkMode {
+//   @include angular-material-color($angular-dark-theme);
+// }

@@ -15,7 +15,7 @@
           <input
             reactiveitemvalidation
             type="text"
-            class="form-control"
+            class="form-control "
             name="empId"
             id="empId"
             formControlName="empid"
@@ -24,6 +24,23 @@
           />
         </div>
       </div>
+      <div class="form-check">
+      
+          <input
+          reactiveitemvalidation
+            type="checkbox"
+            class="form-check-input"
+            id="isActive"
+            formControlName="isActive"
+            value="checkedValue"
+          />
+          Active
+       
+      </div>
+      <!-- <app-error-validation
+        [controlName]="'isActive'"
+        [formInstance]="empForm"
+      ></app-error-validation> -->
       <mat-form-field>
         <input
           matInput
@@ -36,6 +53,19 @@
           {{ empForm.controls.username["errorMessage"] }}
         </mat-error>
       </mat-form-field>
+      <mat-select
+        placeholder="select country"
+        formControlName="countryName"
+        reactiveitemvalidation
+      >
+        <mat-option value=""></mat-option>
+        <mat-option
+          *ngFor="let item of ['egypt', 'italy', 'greec', 'france']"
+          [value]="item"
+          >{{ item }}
+        </mat-option>
+      </mat-select>
+
       <mat-form-field>
         <input
           matInput
@@ -87,12 +117,13 @@
       <mat-form-field>
         <input matInput placeholder="email" formControlName="email" />
         <mat-error>
-          <app-error-validation
+          <!-- <app-error-validation
             [formInstance]="empForm"
             [controlName]="'email'"
             [validateErrors]="['required', 'email']"
             [errorsTranslatePrefix]="userInputTranslate"
-          ></app-error-validation>
+          ></app-error-validation> -->
+          {{ empForm.controls.email.errors | json }}
         </mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -124,15 +155,13 @@
       <div formGroupName="address">
         <mat-form-field>
           <input matInput placeholder="city" formControlName="city" />
-          <mat-error>
-            {{ empForm.get("address.city").errors?.contains?.refValues }}
-          </mat-error>
+
           <mat-error>
             <app-error-validation
               [formInstance]="empForm"
               [controlName]="'city'"
               [nestedGroupName]="'address'"
-              [validateErrors]="['required', 'email']"
+              [validateErrors]="['required']"
             ></app-error-validation>
           </mat-error>
         </mat-form-field>
@@ -187,7 +216,6 @@
                 ></app-error-validation>
               </mat-error>
             </mat-form-field>
-         
           </mat-card-content>
         </mat-card>
       </ng-container>
@@ -198,14 +226,22 @@
       <button
         mat-button
         type="button"
+        id="printBtn"
         printSectionId="print-item"
-        [useExistingCss]="true"
+        styleSheetFile="../../../assets/scss/pages/print.scss"
         ngxPrint
       >
         Print
       </button>
-      <button mat-button (click)="resetForm(empForm)">Reset</button>
-      <button mat-button (click)="getAllErrors()">Error Summry</button>
+      <button mat-button (click)="resetForm(empForm)" type="button">
+        Reset
+      </button>
+      <button mat-button (click)="getAllErrors()" type="button">
+        Error Summry
+      </button>
+      <button mat-button (click)="setAgeError()" type="button">
+        Set Age Error
+      </button>
       <!-- <button mat-button (click)="updateData()">
        Fill Form
       </button> -->
@@ -240,16 +276,16 @@
     *ngFor="let link of navLinks"
     [routerLink]="link.link"
     [routerLinkActive]="'activeLink'"
+    [routerLinkActiveOptions]="{ exact: true }"
   >
     {{ link.label }}
   </p>
-  <p mat-tab-link>Home</p>
 </nav>
 <div class="tab-child-container">
   <router-outlet #usertabChildRouter></router-outlet>
 </div>
 
-<div>
+<!-- <div>
   <form [formGroup]="bookForm">
     <mat-form-field>
       <input
@@ -259,4 +295,4 @@
       />
     </mat-form-field>
   </form>
-</div>
+</div> -->

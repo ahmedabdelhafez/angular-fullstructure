@@ -46,77 +46,22 @@
     matSort
     #table
     [dataSource]="dataSource"
-    [ngStyle]="{
-      'min-width': tableOptions.tableStyle.minWidth
-        ? tableOptions.tableStyle.minWidth
-        : '100%',
-      'background-color': tableOptions.tableStyle.bgColor
-        ? tableOptions.tableStyle.bgColor
-        : 'whitesmoke'
-    }"
     *ngIf="tableDataSource.length > 0"
   >
     <ng-container *ngFor="let col of columns; let i = index">
       <ng-container [matColumnDef]="col">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          appRtl
-          [ngStyle]="{
-            color: tableOptions.headerCellStyle.color,
-            backgroundColor: tableOptions.headerCellStyle.bgColor,
-            textAlign: tableOptions.headerCellStyle.alignText,
-            fontSize: tableOptions.headerCellStyle.fontSize
-          }"
-        >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ col }}
         </th>
         <ng-container *ngIf="col !== 'actions'">
-          <td
-            mat-cell
-            *matCellDef="let row"
-            appRtl
-            [ngStyle]="{
-              backgroundColor: tableOptions.rowsCellStyle.bgColor,
-              color: tableOptions.rowsCellStyle.color,
-              textAlign: tableOptions.rowsCellStyle.alignText,
-              fontSize: tableOptions.rowsCellStyle.fontSize
-            }"
-          >
+          <td mat-cell *matCellDef="let row">
             {{ row[col] }}
           </td>
-          <td
-            mat-footer-cell
-            *matFooterCellDef
-            [ngStyle]="{
-              backgroundColor: tableOptions.footerStyle.footerCellStyle.bgColor
-                ? tableOptions.footerStyle.footerCellStyle.bgColor
-                : '',
-              color: tableOptions.footerStyle.footerCellStyle.color
-                ? tableOptions.footerStyle.footerCellStyle.color
-                : '',
-              fontSize: tableOptions.footerStyle.footerCellStyle.fontSize
-                ? tableOptions.footerStyle.footerCellStyle.fontSize
-                : ''
-            }"
-          >
-            Total
-          </td>
+          <td mat-footer-cell *matFooterCellDef>Total</td>
         </ng-container>
         <!-- if table have action column option -->
         <ng-container *ngIf="col === 'actions'">
-          <td
-            mat-cell
-            *matCellDef="let row"
-            appRtl
-            [ngStyle]="{
-              backgroundColor: tableOptions.rowsCellStyle.bgColor,
-              color: tableOptions.rowsCellStyle.color,
-              textAlign: tableOptions.rowsCellStyle.alignText,
-              fontSize: tableOptions.rowsCellStyle.fontSize
-            }"
-          >
+          <td mat-cell *matCellDef="let row">
             <ng-container
               *ngTemplateOutlet="
                 actionButtonsTemplate;
@@ -124,22 +69,7 @@
               "
             ></ng-container>
           </td>
-          <td
-            mat-footer-cell
-            *matFooterCellDef
-            [ngStyle]="{
-              backgroundColor: tableOptions.footerStyle.footerCellStyle.bgColor
-                ? tableOptions.footerStyle.footerCellStyle.bgColor
-                : '',
-              color: tableOptions.footerStyle.footerCellStyle.color
-                ? tableOptions.footerStyle.footerCellStyle.color
-                : '',
-              fontSize: tableOptions.footerStyle.footerCellStyle.fontSize
-                ? tableOptions.footerStyle.footerCellStyle.fontSize
-                : '',
-              textAlign: 'center'
-            }"
-          >
+          <td mat-footer-cell *matFooterCellDef>
             {{ 100000 | currency }}
           </td>
         </ng-container>
@@ -152,15 +82,7 @@
     <tr mat-row *matRowDef="let row; columns: columns"></tr>
     <!-- show footer row for totals or any thing -->
     <ng-container *ngIf="tableOptions.showFooterRow">
-      <tr
-        mat-footer-row
-        *matFooterRowDef="columns"
-        [ngStyle]="{
-          backgroundColor: tableOptions.footerStyle.footerRow.bgColor
-            ? tableOptions.footerStyle.footerRow.bgColor
-            : ''
-        }"
-      ></tr>
+      <tr mat-footer-row *matFooterRowDef="columns"></tr>
     </ng-container>
   </table>
 
@@ -172,16 +94,11 @@
   <!-- table pagination original item -->
   <div
     class="material-pagination-wrapper"
-    [ngStyle]="{ 'align-self': tableOptions.paginationStyle.alignFlexSlef }"
     [hidden]="!tableOptions.showPagination || tableDataSource.length === 0"
   >
     <mat-paginator
       #paginator
       [ngStyle]="{ display: 'none' }"
-      [ngStyle]="{
-        'background-color': tableOptions.paginationStyle.bgColor,
-        color: tableOptions.paginationStyle.color
-      }"
       showFirstLastButtons
       [pageSize]="tableOptions.pageSize ? tableOptions.pageSize : 5"
       [pageSizeOptions]="tableOptions.paginationPageSize"

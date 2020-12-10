@@ -16,18 +16,31 @@
     "maxLength": "maxlength for item {{itemName}} is",
     "minLength": "minlength for item {{itemName}} is {{val1}} chars",
     "alpha": "the {{itemName}} accpts charachter only",
-    "notArabic": "this field must have arabic data only",
+    "notArabic": "this field accepts arabic chars only",
     "email": "please enter a valida email",
+    "notEmail": "please enter a valida email",
     "numeric": "this field accepts number only",
     "compare": "field {{itemName}} is not compatible with {{compareField}}",
-    "range": "field {{itemName}} must between {{val1}} and {{val2}}"
+    "range": "field {{itemName}} must between {{val1}} and {{val2}}",
+    "invalidAge": "pleae add a valida age ya man",
+    "requiredTrue": "required field",
+    "date": "please add a valid date",
+    "notEnglish": "this field must have english chars only",
+    "notUrl": "please add a valid url",
+    "notMobile": "pleae add a valid mobile number",
+    "notCurrency": "please add a valid currency amount",
+    "notAlphaArabic": "this field accepts arabic chars and digits only",
+    "notAlphaEnglish": "this field accepts english chars and digits only",
+    "notCreditcard": "pleae add a valid creadit card number",
+    "notDate": "pleae add a valid date",
+    "notInRange": "field value must between {{val1}} and {{val2}}"
   },
   "appcontrols": {
     "username": "username",
     "confirmPassword": "confirmPassword",
     "password": "password",
-    "salary":"Salary",
-    "empId":"empId"
+    "salary": "Salary",
+    "empId": "empId"
   },
   "statuscode": {
     "200": "The request has succeeded",
@@ -50,6 +63,7 @@
     "grid": "Grid CSS3",
     "slider": "Slider",
     "materialtest": "Material Test",
+    "profile": "Profile",
     "aboutemp": "About Emp"
   },
   "navbar": {
