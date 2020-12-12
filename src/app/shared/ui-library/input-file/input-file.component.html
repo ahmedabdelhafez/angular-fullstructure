@@ -6,6 +6,7 @@
   [disabled]="disabled"
   (input)="onChange($event.target.value)"
   (blur)="onTouched()"
+  [ngClass]="{ 'error-border': currentControl.invalid }"
 />
 
 <ng-container *ngIf="currentControl.invalid">

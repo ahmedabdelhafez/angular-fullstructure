@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { MediaObserver } from "@angular/flex-layout";
 
-import { DOCUMENT } from "@angular/common";
+import { DOCUMENT, ViewportScroller } from "@angular/common";
 import { RxFormGroup, RxFormBuilder } from "@rxweb/reactive-form-validators";
 import { MaterialColumn } from "src/app/shared/components/table-custom/table-types/MaterialColumn.interface";
 import { TableOptions } from "src/app/shared/components/table-custom/table-types/TableOptions.interface";
@@ -29,7 +29,10 @@ import { DataSource } from "@angular/cdk/table";
 })
 export class MaterialTestComponent implements OnInit {
   postData: any = [];
-  constructor(private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private viewScroll: ViewportScroller
+  ) {}
 
   tableOptions: TableOptions = {
     notDataMessage: "No Posts here",
@@ -54,11 +57,18 @@ export class MaterialTestComponent implements OnInit {
   ngOnInit() {
     this.postService.getAllPosts().subscribe(
       (data) => {
+        console.log(data);
+
         this.postData = data;
       },
       (err) => {
         console.log("an error here");
       }
     );
+  }
+
+  getRowValue(e) {
+    console.log("current row clicked value");
+    console.log(e);
   }
 }

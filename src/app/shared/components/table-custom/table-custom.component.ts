@@ -8,6 +8,8 @@ import {
   OnChanges,
   SimpleChanges,
   Inject,
+  Output,
+  EventEmitter,
 } from "@angular/core";
 import { MatPaginator, MatPaginatorIntl } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -22,35 +24,40 @@ import { DOCUMENT } from "@angular/common";
   styleUrls: ["./table-custom.component.scss"],
   providers: [{ provide: MatPaginatorIntl, useClass: TableCustomComponent }],
 })
-export class TableCustomComponent extends MatPaginatorIntl
+export class TableCustomComponent
+  extends MatPaginatorIntl
   implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   /** data source that have array of records to fill the table */
-  @Input("tableDataSource") tableDataSource;
+  @Input("tableDataSource") tableDataSource: any[] = [];
   itemsCount: number = 0;
   /** current page index in the material table */
   currentPageIndex: number = 0;
   numberOfPage: number = 0;
   initPageSize = 5;
-  dataSource: DataSource<any>;
+  dataSource: MatTableDataSource<any>;
   /** array of table columns with options for every column
    * type of variable must be `MaterialColumn` array
    */
   @Input("tableColumns") tableColumns: MaterialColumn[];
-  /**
+
+  /** 
    * additional options for material table to apply to it
-   * type must be of `Tableptions` Object
-   */
+   * type must be of `Tableptions` Object */
   @Input("tableOptions") tableOptions: TableOptions;
   /** table columns to fill the headers and fetch row items with column
    *  name from data source */
-  @Input('fileName') fileName: string = "work-file";
+  @Input("fileName") fileName: string = "work-file";
   columns: string[] = [];
+
+  /** an `event emmiter` used to get curent row value */
+  @Output("getClickedRow") getClickedRow = new EventEmitter<any>(true);
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild("exporter") exporterElement;
 
+  @ViewChild("exporter") exporterElement;
+  sortObject: any;
   constructor(@Inject(DOCUMENT) private document: Document) {
     super();
   }
@@ -87,6 +94,24 @@ export class TableCustomComponent extends MatPaginatorIntl
       this.paginator._intl.nextPageLabel = "Next Page";
       this.paginator._intl.previousPageLabel = "Prev Page";
     }
+  }
+
+  sortData(e) {
+    console.log(e);
+    this.sortObject = e;
+    /// << ge tsort direction and state >> ///
+    // this.sort.sortChange.subscribe((data) => {
+    //   // <<reset paginator after sorting>> //
+    //   this.paginator.pageIndex = 0;
+    //   this.sortObject = data;
+    //   console.log(data);
+    // });
+  }
+
+  onRowClick(val: any) {
+    // console.log("current clicked row value");
+    // console.log(val);
+    this.getClickedRow.emit(val);
   }
 
   ngOnDestroy(): void {}

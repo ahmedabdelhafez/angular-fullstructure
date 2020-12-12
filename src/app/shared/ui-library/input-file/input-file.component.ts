@@ -22,12 +22,14 @@ export class InputFileComponent implements ControlValueAccessor, OnInit {
   @Input("placeholder") placeholder: string = "";
   @Input("disable") disabled: boolean;
   @Input("label") label: string;
+  @Input("translationPrefix") translationPrefix: string =
+    "VALIDATION-MESSAGES.";
   /** value for html `id` property */
   // @Input("id") id: string;
   /** value for html `name` property */
   // @Input("name") name: string;
   /** type of input avilable types are `txt, email, password` */
-  @Input() type: "text" = "text";
+  @Input() type: string = "";
   // @Input("formControl") formControl: string;
 
   value: any = "";

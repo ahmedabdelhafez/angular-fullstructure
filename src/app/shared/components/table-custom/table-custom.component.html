@@ -41,16 +41,24 @@
 
   <table
     mat-table
+    matSort
+    matSortDirection="asc"
+    matSortDisableClear
     matTableExporter
     #exporter="matTableExporter"
-    matSort
+    (matSortChange)="sortData($event)"
     #table
     [dataSource]="dataSource"
     *ngIf="tableDataSource.length > 0"
   >
     <ng-container *ngFor="let col of columns; let i = index">
       <ng-container [matColumnDef]="col">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header="{{ col }}"
+          [arrowPosition]="'before'"
+        >
           {{ col }}
         </th>
         <ng-container *ngIf="col !== 'actions'">
@@ -79,7 +87,11 @@
     <!-- header columns names must be an array -->
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <!-- row data must be an array of column to allow table to map column name with data source -->
-    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: columns"
+      (click)="onRowClick(row)"
+    ></tr>
     <!-- show footer row for totals or any thing -->
     <ng-container *ngIf="tableOptions.showFooterRow">
       <tr mat-footer-row *matFooterRowDef="columns"></tr>
@@ -87,7 +99,8 @@
   </table>
 
   <!-- if datasource have no data show this message-->
-  <div class="no-datasource-text-wrapper" *ngIf="tableDataSource.length === 0">
+  <div class="no-datasource-text-wrapper" *ngIf="dataSource.data.length === 0">
+    <mat-spinner></mat-spinner>
     <p>{{ tableOptions.notDataMessage }}</p>
   </div>
 

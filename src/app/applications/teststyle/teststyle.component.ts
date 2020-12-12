@@ -33,9 +33,9 @@ import {
 import { HttpCall } from "src/app/services/HttpCall.service";
 import { CityDataSource } from "./datasource/CityDataSource";
 import { CityService } from "../../services/datasource_service/City.service";
-import { MatTable } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatTable } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
+import { MatPaginator } from "@angular/material/paginator";
 
 export interface PeriodicElement {
   name: string;
@@ -101,6 +101,7 @@ export class TeststyleComponent implements OnInit, AfterViewInit {
     // set default page size to 10 rows only
     this.paginator.pageSize = 10;
     this.dataSource = new CityDataSource(this.cityService);
+    /** get data on init */
     this.dataSource.getCityData(
       this.paginator.pageIndex,
       this.paginator.pageSize,
@@ -125,8 +126,9 @@ export class TeststyleComponent implements OnInit, AfterViewInit {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         tap((ele) => {
-          console.log("from tab"),
+          console.log("data fater mergeing observables"),
             console.log(ele),
+            /** get data after sort change of page change */
             this.dataSource.getCityData(
               this.paginator.pageIndex,
               this.paginator.pageSize,

@@ -52,7 +52,7 @@
     "404": "sorry: Request Not found",
     "unknownerror": "unknown error please contact with technical support"
   },
-  "url-translate": {
+  "URL-TRANSLATE": {
     "home": "home",
     "teststyle": "test",
     "testprint": "print",
